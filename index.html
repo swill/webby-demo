@@ -647,7 +647,7 @@
     <div class="container">
       <div class="hero-eyebrow" data-editable="">Free &amp; open source</div>
       <h1 class="hero-headline" data-editable="">Edit your website by clicking on it.</h1>
-      <p class="hero-subheadline" data-editable="">Webby turns any static HTML file into an editable, publishable website — right in your browser. No code, no CMS, no developer needed. Works with any static site hosted for free on GitHub Pages.</p>
+      <p class="hero-subheadline" data-editable="">Webby turns any static HTML file into an editable, publishable website — right in your browser. No code, no CMS, no developer needed. Works with any static site hosted on GitHub Pages.</p>
       <div class="hero-actions">
         <a href="#get-started" class="btn btn-primary" data-editable="">Get Started</a>
         <a href="https://github.com/swill/webby" class="btn btn-outline" target="_blank" rel="noopener" data-editable="">View on GitHub</a>
@@ -833,7 +833,7 @@ OUTPUT: Return ONLY the complete index.html. No explanation, no markdown fences.
           <div class="step-badge">3</div>
           <div class="step-content">
             <div class="step-content-title" data-editable="">Create your secrets.js file</div>
-            <p class="step-content-desc">In the same folder as index.html, create a plain text file called secrets.js. Add your <a href="https://console.anthropic.com" target="_blank" rel="noopener">Anthropic API key</a>, your <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">GitHub personal access token</a>, and your repository name. This file stays on your computer and is never published to GitHub — Webby's .gitignore keeps it safe automatically.</p>
+            <p class="step-content-desc" data-editable="">In the same folder as index.html, create a plain text file called secrets.js. Add your <a href="https://console.anthropic.com" target="_blank" rel="noopener">Anthropic API key</a>, your <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">GitHub personal access token</a>, and your repository name. This file stays on your computer and is never published to GitHub — Webby's .gitignore keeps it safe automatically.</p>
           </div>
         </li>
         <li class="get-started-step">
@@ -853,7 +853,7 @@ OUTPUT: Return ONLY the complete index.html. No explanation, no markdown fences.
       </ol>
 
       <div class="secrets-callout">
-        <div class="secrets-callout-heading" data-editable="">What does secrets.js look like?</div>
+        <div class="secrets-callout-heading" data-editable="">What does secrets.js<span style="font-size: 1rem;">&nbsp;look like?</span></div>
         <pre>window.SITE_SECRETS = {
   anthropicKey: "sk-ant-...",
   githubToken:  "ghp_...",
@@ -876,7 +876,7 @@ OUTPUT: Return ONLY the complete index.html. No explanation, no markdown fences.
         </div>
         <div class="faq-item">
           <dt class="faq-question" data-editable="">Is this really free?</dt>
-          <dd class="faq-answer" data-editable="">Webby itself is free and open source (MIT licence). GitHub Pages hosting is free. Claude.ai has a free tier that is sufficient for generating a site and adding sections occasionally. The Anthropic API key (used for AI section generation) has a small cost per use — typically a few cents per section generated.</dd>
+          <dd class="faq-answer" data-editable="">Webby itself is free and open source (MIT license). GitHub Pages hosting is free. Claude.ai has a free tier that is sufficient for generating a site and adding sections occasionally. The Anthropic API key (used for AI section generation) has a small cost per use — typically a few cents per section generated.</dd>
         </div>
         <div class="faq-item">
           <dt class="faq-question" data-editable="">What happens to my credentials?</dt>
@@ -887,7 +887,7 @@ OUTPUT: Return ONLY the complete index.html. No explanation, no markdown fences.
           <dd class="faq-answer" data-editable="">Yes, as long as your site is a single HTML file hosted on GitHub Pages. You'll need to add the data-zone, data-editable, and data-editable-image attributes to your HTML, and add the two script tags. The CLAUDE.md file in the Webby repository documents all the attributes in detail.</dd>
         </div>
         <div class="faq-item">
-          <dt class="faq-question" data-editable="">What if I want to customise the code or self-host webby.js?</dt>
+          <dt class="faq-question" data-editable="">What if I want to customize the code or self-host webby.js?</dt>
           <dd class="faq-answer" data-editable="">Webby is open source at github.com/swill/webby. Fork the repository, make your changes, and update the script tag in your index.html to point to your own hosted copy. The README has instructions for releasing your own version.</dd>
         </div>
       </dl>
