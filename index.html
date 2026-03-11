@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webby — Edit your website by clicking on it</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <style>
+    /* ── CSS Custom Properties ─────────────────────────────────────── */
+    :root {
+      --color-primary:    #2a5c45;
+      --color-secondary:  #4a9b7f;
+      --color-accent:     #e8734a;
+      --color-bg:         #faf8f5;
+      --color-bg-alt:     #f0ece5;
+      --color-text:       #2c2422;
+      --color-text-muted: #7a6e69;
+      --font-heading:     'DM Sans', sans-serif;
+      --font-body:        'DM Sans', sans-serif;
+      --font-mono:        'Courier New', Courier, monospace;
+      --font-size-base:   1rem;
+      --line-height-base: 1.65;
+      --space-xs:  0.25rem;
+      --space-sm:  0.5rem;
+      --space-md:  1rem;
+      --space-lg:  2rem;
+      --space-xl:  4rem;
+      --container-width: 1080px;
+      --radius:    0.5rem;
+      --shadow:    0 2px 16px rgba(44, 36, 34, 0.08);
+    }
+
+    /* ── Reset & Base ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-base);
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+
+    a { color: var(--color-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Layout Helpers ────────────────────────────────────────────── */
+    .container {
+      max-width: var(--container-width);
+      margin-inline: auto;
+      padding-inline: var(--space-lg);
+    }
+
+    section {
+      padding-block: var(--space-xl);
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-secondary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .section-heading {
+      font-family: var(--font-heading);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--color-text);
+      line-height: 1.2;
+      margin-bottom: var(--space-md);
+    }
+
+    .section-intro {
+      font-size: 1.125rem;
+      color: var(--color-text-muted);
+      max-width: 620px;
+      margin-bottom: var(--space-lg);
+    }
+
+    /* ── Buttons ───────────────────────────────────────────────────── */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+
+    .btn-primary {
+      background-color: var(--color-accent);
+      color: #fff;
+      border: 2px solid var(--color-accent);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+    }
+    .btn-outline:hover { background-color: var(--color-primary); color: #fff; }
+
+    /* ── Navigation ────────────────────────────────────────────────── */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(250, 248, 245, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(42, 92, 69, 0.12);
+      box-shadow: 0 1px 8px rgba(44, 36, 34, 0.06);
+    }
+
+    .nav-inner {
+      max-width: var(--container-width);
+      margin-inline: auto;
+      padding-inline: var(--space-lg);
+      height: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .nav-wordmark {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      flex-shrink: 0;
+    }
+    .nav-wordmark:hover { text-decoration: none; }
+
+    /* CSS-only mobile nav toggle */
+    #nav-toggle { display: none; }
+
+    .nav-toggle-label {
+      display: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+    .nav-toggle-label span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--color-primary);
+      border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .nav-links a:hover { color: var(--color-primary); text-decoration: none; }
+
+    .nav-links .nav-cta a {
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+
+    @media (max-width: 640px) {
+      .nav-toggle-label { display: flex; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        left: 0;
+        right: 0;
+        background-color: var(--color-bg);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        border-bottom: 1px solid rgba(42, 92, 69, 0.12);
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links li {
+        width: 100%;
+        border-top: 1px solid rgba(42, 92, 69, 0.08);
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 0.85rem 1.5rem;
+        font-size: 1rem;
+      }
+
+      #nav-toggle:checked ~ .nav-links { display: flex; }
+    }
+
+    /* ── Hero ──────────────────────────────────────────────────────── */
+    .hero {
+      background-color: var(--color-bg);
+      text-align: center;
+      padding-block: calc(var(--space-xl) * 1.5);
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      background-color: rgba(42, 92, 69, 0.1);
+      color: var(--color-primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 99px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero-headline {
+      font-family: var(--font-heading);
+      font-size: clamp(2.25rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      max-width: 720px;
+      margin-inline: auto;
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-subheadline {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--color-text-muted);
+      max-width: 560px;
+      margin-inline: auto;
+      margin-bottom: calc(var(--space-lg) * 1.5);
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: var(--space-md);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── How It Works ──────────────────────────────────────────────── */
+    .how-it-works {
+      background-color: var(--color-bg-alt);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+    }
+
+    .step-card {
+      background-color: var(--color-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: var(--space-lg) calc(var(--space-lg) * 1.25);
+      position: relative;
+    }
+
+    .step-number {
+      font-family: var(--font-heading);
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: rgba(42, 92, 69, 0.12);
+      line-height: 1;
+      margin-bottom: var(--space-sm);
+      user-select: none;
+    }
+
+    .step-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .step-desc {
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .steps-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Features ──────────────────────────────────────────────────── */
+    .features {
+      background-color: var(--color-bg);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+    }
+
+    .feature-card {
+      background-color: var(--color-bg-alt);
+      border-radius: var(--radius);
+      padding: var(--space-lg);
+      border: 1px solid rgba(42, 92, 69, 0.08);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .feature-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      font-size: 1.75rem;
+      margin-bottom: var(--space-md);
+      line-height: 1;
+    }
+
+    .feature-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: var(--space-sm);
+    }
+
+    .feature-desc {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .features-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Screenshots ───────────────────────────────────────────────── */
+    .screenshots {
+      background-color: var(--color-bg-alt);
+    }
+
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+    }
+
+    .screenshot-item {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .screenshot-item img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(42, 92, 69, 0.1);
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background-color: var(--color-bg);
+    }
+
+    .screenshot-caption {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+      padding-inline: var(--space-xs);
+    }
+
+    @media (max-width: 640px) {
+      .screenshots-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Bootstrap Prompt ──────────────────────────────────────────── */
+    .bootstrap {
+      background-color: var(--color-bg);
+    }
+
+    .prompt-card {
+      position: relative;
+      background-color: #f5f1ea;
+      border: 1px solid rgba(42, 92, 69, 0.18);
+      border-radius: var(--radius);
+      margin-top: var(--space-lg);
+      overflow: hidden;
+    }
+
+    .prompt-card-badge {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      background-color: var(--color-primary);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 99px;
+      z-index: 1;
+    }
+
+    .prompt-card pre {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: var(--color-text);
+      padding: var(--space-lg) calc(var(--space-lg) * 1.25);
+      padding-right: calc(var(--space-lg) * 1.25 + 90px);
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .bootstrap-note {
+      margin-top: var(--space-lg);
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      max-width: 680px;
+    }
+
+    /* ── Get Started ───────────────────────────────────────────────── */
+    .get-started {
+      background-color: var(--color-bg-alt);
+    }
+
+    .steps-list {
+      margin-top: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .get-started-step {
+      display: flex;
+      gap: var(--space-lg);
+      align-items: flex-start;
+    }
+
+    .step-badge {
+      flex-shrink: 0;
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: var(--color-primary);
+      color: #fff;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.15rem;
+    }
+
+    .step-content-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: var(--space-xs);
+    }
+
+    .step-content-desc {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    .step-content-desc a {
+      color: var(--color-primary);
+      text-decoration: underline;
+    }
+
+    .secrets-callout {
+      margin-top: var(--space-xl);
+      background-color: rgba(42, 92, 69, 0.06);
+      border: 1px solid rgba(42, 92, 69, 0.15);
+      border-radius: var(--radius);
+      padding: var(--space-lg) calc(var(--space-lg) * 1.25);
+    }
+
+    .secrets-callout-heading {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .secrets-callout pre {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      border-radius: calc(var(--radius) * 0.75);
+      padding: var(--space-md) var(--space-lg);
+      overflow-x: auto;
+      border: 1px solid rgba(42, 92, 69, 0.1);
+    }
+
+    /* ── FAQ ───────────────────────────────────────────────────────── */
+    .faq {
+      background-color: var(--color-bg);
+    }
+
+    .faq-list {
+      margin-top: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(42, 92, 69, 0.1);
+      box-shadow: var(--shadow);
+    }
+
+    .faq-item {
+      background-color: var(--color-bg);
+      border-bottom: 1px solid rgba(42, 92, 69, 0.08);
+      padding: var(--space-lg) calc(var(--space-lg) * 1.25);
+    }
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-question {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: var(--space-sm);
+    }
+
+    .faq-answer {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── Footer ────────────────────────────────────────────────────── */
+    .site-footer {
+      background-color: var(--color-bg-alt);
+      border-top: 1px solid rgba(42, 92, 69, 0.12);
+      padding-block: var(--space-lg);
+    }
+
+    .footer-inner {
+      max-width: var(--container-width);
+      margin-inline: auto;
+      padding-inline: var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .footer-wordmark {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+    .footer-wordmark:hover { text-decoration: none; }
+
+    .footer-license {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+    }
+
+    .footer-github a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-primary);
+    }
+
+    @media (max-width: 560px) {
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-sm);
+      }
+    }
+  </style>
+  
+  
+</head>
+<body style="">
+
+  <!-- ── Navigation ──────────────────────────────────────────────── -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-wordmark">Webby</a>
+      <input type="checkbox" id="nav-toggle" aria-label="Toggle navigation">
+      <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+      <ul class="nav-links">
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#screenshots">Screenshots</a></li>
+        <li><a href="#bootstrap">Bootstrap prompt</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li class="nav-cta"><a href="#get-started">Get started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Hero ────────────────────────────────────────────────────── -->
+  <section class="hero" data-zone="hero" data-zone-label="Hero" style="position: relative;">
+    <div class="container">
+      <div class="hero-eyebrow" data-editable="">Free &amp; open source</div>
+      <h1 class="hero-headline" data-editable="">Edit your website by clicking on it.</h1>
+      <p class="hero-subheadline" data-editable="">Webby turns any static HTML file into an editable, publishable website — right in your browser. No code, no CMS, no developer needed. Works with any static site hosted for free on GitHub Pages.</p>
+      <div class="hero-actions">
+        <a href="#get-started" class="btn btn-primary" data-editable="">Get Started</a>
+        <a href="https://github.com/swill/webby" class="btn btn-outline" target="_blank" rel="noopener" data-editable="">View on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How It Works ────────────────────────────────────────────── -->
+  <section id="how-it-works" data-zone="how-it-works" data-zone-label="How It Works" style="position: relative;">
+    <div class="container how-it-works">
+      <span class="section-label" data-editable="">Simple by design</span>
+      <h2 class="section-heading" data-editable="">Three steps. That's it.</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-title" data-editable="">Open</div>
+          <p class="step-desc" data-editable="">You open index.html in your browser. Because secrets.js is present, Webby activates and the editor appears at the top of the page — no installation, no setup.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-title" data-editable="">Edit</div>
+          <p class="step-desc" data-editable="">Click any text to change it. Click any image to replace it. Ask the AI to add a new section whenever you need one — just describe it in plain English.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-title" data-editable="">Publish</div>
+          <p class="step-desc" data-editable="">Hit the Publish button. Webby commits your changes directly to GitHub and your live site updates automatically — usually within about a minute.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features ────────────────────────────────────────────────── -->
+  <section id="features" data-zone="features" data-zone-label="Features" style="position: relative;">
+    <div class="container features">
+      <span class="section-label" data-editable="">What you get</span>
+      <h2 class="section-heading" data-editable="">Everything you need. Nothing you don't.</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">✏️</div>
+          <div class="feature-title" data-editable="">Edit in place</div>
+          <p class="feature-desc" data-editable="">Click directly on text and type. No forms, no preview windows, no saving drafts. What you see is exactly what gets published.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <div class="feature-title" data-editable="">AI-powered sections</div>
+          <p class="feature-desc" data-editable="">Describe a section you want and the AI builds it, styled to match your existing site automatically.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <div class="feature-title" data-editable="">Live theme editing</div>
+          <p class="feature-desc" data-editable="">Adjust colours, fonts, and spacing with instant visual feedback — no refresh needed, no guesswork.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🖼️</div>
+          <div class="feature-title" data-editable="">Image replacement</div>
+          <p class="feature-desc" data-editable="">Click any image to replace it. Your new image uploads to GitHub automatically — no separate file manager needed.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <div class="feature-title" data-editable="">One-click publishing</div>
+          <p class="feature-desc" data-editable="">Your edits commit directly to GitHub and trigger a live deploy in under a minute. Every change is version-controlled.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔓</div>
+          <div class="feature-title" data-editable="">No lock-in</div>
+          <p class="feature-desc" data-editable="">Your site is a single HTML file. Export it any time, move it anywhere, host it on any static host. You own it completely.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Screenshots ─────────────────────────────────────────────── -->
+  <section id="screenshots" data-zone="screenshots" data-zone-label="Screenshots" style="position: relative;">
+    <div class="container screenshots">
+      <span class="section-label" data-editable="">In action</span>
+      <h2 class="section-heading" data-editable="">See it in action</h2>
+      <p class="section-intro" data-editable="">Here's what the editing experience looks like.</p>
+      <div class="screenshots-grid">
+        <div class="screenshot-item" style="position: relative;">
+          <img src="./assets/placeholder.jpg" alt="Edit mode toolbar" data-editable-image="" style="cursor: pointer;">
+          <p class="screenshot-caption" data-editable="">The editor toolbar appears at the top of the page whenever you open the file locally.</p>
+        </div>
+        <div class="screenshot-item" style="position: relative;">
+          <img src="./assets/placeholder.jpg" alt="Clicking text to edit" data-editable-image="" style="cursor: pointer;">
+          <p class="screenshot-caption" data-editable="">Click any text on the page to edit it directly — no forms, no separate editor.</p>
+        </div>
+        <div class="screenshot-item" style="position: relative;">
+          <img src="./assets/placeholder.jpg" alt="AI Add Section modal" data-editable-image="" style="cursor: pointer;">
+          <p class="screenshot-caption" data-editable="">Describe a section in plain English and the AI generates it, styled to match your site.</p>
+        </div>
+        <div class="screenshot-item" style="position: relative;">
+          <img src="./assets/placeholder.jpg" alt="Theme panel open" data-editable-image="" style="cursor: pointer;">
+          <p class="screenshot-caption" data-editable="">The Theme panel lets you adjust every colour, font, and spacing value with instant feedback.</p>
+        </div>
+        <div class="screenshot-item" style="position: relative;">
+          <img src="./assets/placeholder.jpg" alt="Publish confirmation" data-editable-image="" style="cursor: pointer;">
+          <p class="screenshot-caption" data-editable="">One click publishes your changes to GitHub and triggers a live deploy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Bootstrap Prompt ────────────────────────────────────────── -->
+  <section id="bootstrap" data-zone="bootstrap" data-zone-label="Bootstrap Prompt" style="position: relative;">
+    <div class="container bootstrap">
+      <span class="section-label" data-editable="">Starting from scratch?</span>
+      <h2 class="section-heading" data-editable="">Start a new site in minutes</h2>
+      <p class="section-intro" data-editable="">Webby doesn't just edit existing sites — it also helps you create new ones from scratch.</p>
+      <p style="font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.7; max-width: 680px; margin-bottom: var(--space-lg);" data-editable="">You use a prompt with Claude.ai (no account needed beyond the free tier) to generate a complete, styled index.html from a description of your business. The prompt instructs Claude to analyse inspiration images for colours and typography, write realistic placeholder content, and wire up all the data attributes Webby needs — so the editor works immediately on the generated file.</p>
+      <div class="prompt-card">
+        <span class="prompt-card-badge">Example prompt</span>
+        <pre>You are generating the initial index.html for a professional website.
+
+I am attaching [N] inspiration images. Analyze them for:
+- Dominant and accent colors → translate to a CSS variable palette
+- Typography mood (serif/sans-serif, weight, spacing)
+- Overall aesthetic tone (minimalist, warm, clinical, natural, bold, etc.)
+
+Use those signals to define a cohesive CSS variable system and base styles.
+
+BUSINESS DETAILS:
+Name:         [Full name or practice name]
+Profession:   [e.g. Osteopath, Naturopath, Coach, Photographer]
+Tagline:      [One sentence — what they do and for whom]
+Location:     [City, Country]
+Contact:      [Email and/or phone to appear on site]
+
+TONE &amp; AESTHETIC:
+[Describe the feeling the site should evoke. Be as specific or loose as you like.
+Example: "Calm, trustworthy, professional. Like a high-end wellness clinic."]
+
+SECTIONS TO INCLUDE:
+[List each section and what it should contain. Example:
+1. Hero — Name, tagline, call-to-action button
+2. About — Photo and 2–3 paragraphs
+3. Services — 3 service cards
+4. Testimonials — 3 client quotes
+5. Contact — Email, phone, location]
+
+TECHNICAL REQUIREMENTS:
+Generate a single index.html file with the following:
+1. DOCTYPE html5, semantic HTML, mobile-first responsive layout
+2. No external CSS frameworks — all styles inline in a &lt;style&gt; block
+3. CSS custom properties for all colours, fonts, and spacing
+4. Google Fonts import (2 typefaces max)
+5. Each section must have data-zone and data-zone-label attributes
+6. Add data-editable on every editable text element
+7. Add data-editable-image on every &lt;img&gt; element
+8. Include these two script tags at the end of &lt;head&gt;:
+   &lt;script src="./secrets.js"&gt;&lt;/script&gt;
+   &lt;script src="https://swill.github.io/webby/webby.js"&gt;&lt;/script&gt;
+
+OUTPUT: Return ONLY the complete index.html. No explanation, no markdown fences.</pre>
+      </div>
+      <p class="bootstrap-note" data-editable="">This is the exact prompt format used to generate the site you're looking at right now. Attach 2–5 photos that capture the look and feel you're going for — screenshots of sites you like, colour palette images, photos from your business — and Claude will translate them into a cohesive visual design.</p>
+    </div>
+  </section>
+
+  <!-- ── Get Started ─────────────────────────────────────────────── -->
+  <section id="get-started" data-zone="get-started" data-zone-label="Get Started" style="position: relative;">
+    <div class="container get-started">
+      <span class="section-label" data-editable="">Let's do this</span>
+      <h2 class="section-heading" data-editable="">Ready? Here's how to set it up.</h2>
+      <p class="section-intro" data-editable="">Everything you need is free — GitHub (free), Claude.ai (free tier), and a text editor to create one small file. If you can copy and paste, you can do this.</p>
+
+      <ol class="steps-list" style="list-style: none;">
+        <li class="get-started-step">
+          <div class="step-badge">1</div>
+          <div class="step-content">
+            <div class="step-content-title" data-editable="">Create a GitHub account and repository</div>
+            <p class="step-content-desc" data-editable="">Sign up at github.com if you don't have an account. Create a new public repository for your site (e.g. <em>your-name-website</em>). Enable GitHub Pages under Settings → Pages → Deploy from branch → main. Your site will be live at <em>your-username.github.io/your-repo</em>.</p>
+          </div>
+        </li>
+        <li class="get-started-step">
+          <div class="step-badge">2</div>
+          <div class="step-content">
+            <div class="step-content-title" data-editable="">Generate your index.html with Claude</div>
+            <p class="step-content-desc" data-editable="">Open Claude.ai, paste in the Bootstrap Prompt above, attach a few inspiration images, and fill in your business details. Claude will return a complete, styled HTML file ready for Webby. Save it as index.html in a folder on your computer.</p>
+          </div>
+        </li>
+        <li class="get-started-step">
+          <div class="step-badge">3</div>
+          <div class="step-content">
+            <div class="step-content-title" data-editable="">Create your secrets.js file</div>
+            <p class="step-content-desc">In the same folder as index.html, create a plain text file called secrets.js. Add your <a href="https://console.anthropic.com" target="_blank" rel="noopener">Anthropic API key</a>, your <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">GitHub personal access token</a>, and your repository name. This file stays on your computer and is never published to GitHub — Webby's .gitignore keeps it safe automatically.</p>
+          </div>
+        </li>
+        <li class="get-started-step">
+          <div class="step-badge">4</div>
+          <div class="step-content">
+            <div class="step-content-title" data-editable="">Open index.html in your browser</div>
+            <p class="step-content-desc" data-editable="">Double-click the file. The Webby editor will appear automatically at the top of the page. Click any text to edit it, click any image to replace it. Everything updates live as you work — no refresh needed.</p>
+          </div>
+        </li>
+        <li class="get-started-step">
+          <div class="step-badge">5</div>
+          <div class="step-content">
+            <div class="step-content-title" data-editable="">Hit Publish</div>
+            <p class="step-content-desc" data-editable="">When you're happy with your edits, click the Publish button in the Webby toolbar. Webby will commit your changes to GitHub and your site will be live within about a minute. Every publish is a git commit, so your full history is always there.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="secrets-callout">
+        <div class="secrets-callout-heading" data-editable="">What does secrets.js look like?</div>
+        <pre>window.SITE_SECRETS = {
+  anthropicKey: "sk-ant-...",
+  githubToken:  "ghp_...",
+  repo:         "your-username/your-repo",
+  branch:       "main"
+};</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ─────────────────────────────────────────────────────── -->
+  <section id="faq" data-zone="faq" data-zone-label="FAQ" style="position: relative;">
+    <div class="container faq">
+      <span class="section-label" data-editable="">Got questions?</span>
+      <h2 class="section-heading" data-editable="">Common questions</h2>
+      <dl class="faq-list">
+        <div class="faq-item">
+          <dt class="faq-question" data-editable="">Do I need to know how to code?</dt>
+          <dd class="faq-answer" data-editable="">Not at all. You edit text by clicking on it, replace images by clicking them, and add new sections by describing what you want in plain English. The only technical step is creating the secrets.js file — which is just copying a short template and filling in three values.</dd>
+        </div>
+        <div class="faq-item">
+          <dt class="faq-question" data-editable="">Is this really free?</dt>
+          <dd class="faq-answer" data-editable="">Webby itself is free and open source (MIT licence). GitHub Pages hosting is free. Claude.ai has a free tier that is sufficient for generating a site and adding sections occasionally. The Anthropic API key (used for AI section generation) has a small cost per use — typically a few cents per section generated.</dd>
+        </div>
+        <div class="faq-item">
+          <dt class="faq-question" data-editable="">What happens to my credentials?</dt>
+          <dd class="faq-answer" data-editable="">Your API keys and tokens live only in secrets.js on your own computer. They are never committed to GitHub, never sent anywhere except directly to the Anthropic and GitHub APIs, and never stored by Webby. You are always in control.</dd>
+        </div>
+        <div class="faq-item">
+          <dt class="faq-question" data-editable="">Can I use this for an existing site?</dt>
+          <dd class="faq-answer" data-editable="">Yes, as long as your site is a single HTML file hosted on GitHub Pages. You'll need to add the data-zone, data-editable, and data-editable-image attributes to your HTML, and add the two script tags. The CLAUDE.md file in the Webby repository documents all the attributes in detail.</dd>
+        </div>
+        <div class="faq-item">
+          <dt class="faq-question" data-editable="">What if I want to customise the code or self-host webby.js?</dt>
+          <dd class="faq-answer" data-editable="">Webby is open source at github.com/swill/webby. Fork the repository, make your changes, and update the script tag in your index.html to point to your own hosted copy. The README has instructions for releasing your own version.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ── Footer ──────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="#" class="footer-wordmark">Webby</a>
+      <span class="footer-license" data-editable="">Open source under the MIT licence</span>
+      <div class="footer-github">
+        <a href="https://github.com/swill/webby" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+
+
+</body></html>
