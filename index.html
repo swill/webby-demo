@@ -622,18 +622,143 @@
   </style>
   
   
-<meta name="keywords" content="web editor, standalone, user friendly"><meta name="description" content="A simple browser based web editor, no dependencies and no coding required."><link rel="icon" type="image/png" href="./assets/favicon.png"><link rel="apple-touch-icon" href="./assets/favicon.png"></head>
+<meta name="keywords" content="web editor, standalone, user friendly"><meta name="description" content="A simple browser based web editor, no dependencies and no coding required."><link rel="icon" type="image/png" href="./assets/favicon.png"><link rel="apple-touch-icon" href="./assets/favicon.png"><style id="__webby-nav-styles">/* ── Navigation ────────────────────────────────────────────────── */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(250, 248, 245, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(42, 92, 69, 0.12);
+  box-shadow: 0 1px 8px rgba(44, 36, 34, 0.06);
+}
+
+.nav-inner {
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--space-lg);
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.nav-wordmark {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+}
+.nav-wordmark:hover { text-decoration: none; }
+
+/* Hamburger Menu Toggle Button */
+.nav-toggle-btn {
+  display: none; /* Hidden by default on desktop */
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+  background: none;
+  border: none;
+  outline: none;
+  z-index: 101; /* Ensure it's above the nav links when menu is open */
+}
+.nav-toggle-btn span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Hamburger to 'X' animation */
+.nav-toggle-btn.is-active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle-btn.is-active span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle-btn.is-active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-links {
+  display: flex; /* Default desktop display */
+  align-items: center;
+  gap: var(--space-lg);
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.nav-links a:hover { color: var(--color-primary); text-decoration: none; }
+
+.nav-links .nav-cta a {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* Tablet/Mobile styles (up to 900px screen width) */
+@media (max-width: 900px) { /* Changed breakpoint to 900px */
+  .nav-toggle-btn { display: flex; } /* Show hamburger button */
+
+  .nav-links {
+    display: none; /* Hidden by default on tablet/mobile */
+    position: fixed; /* Use fixed to ensure it's never clipped and covers content */
+    top: 3.5rem; /* Height of the nav-inner */
+    left: 0;
+    right: 0;
+    bottom: 0; /* Make it full height of the viewport */
+    background-color: var(--color-bg); /* Solid background to cover page content */
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    border-top: 1px solid rgba(42, 92, 69, 0.12); /* Border at the top of the dropdown menu */
+    box-shadow: var(--shadow);
+    overflow-y: auto; /* Enable scrolling for long menus */
+    z-index: 9000; /* High z-index */
+  }
+
+  .nav-links.is-open { /* Class added by JS to open the menu */
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+    border-bottom: 1px solid rgba(42, 92, 69, 0.08); /* Individual item borders */
+  }
+  .nav-links li:last-child {
+      border-bottom: none; /* No border for the last item */
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 0.85rem 1.5rem;
+    font-size: 1rem;
+    width: 100%; /* Ensure links take full width */
+  }
+}</style></head>
 <body style="">
 
   <!-- ── Navigation ──────────────────────────────────────────────── -->
-  <nav class="site-nav" aria-label="Main navigation" style="">
+  <nav class="site-nav" aria-label="Main navigation">
     <div class="nav-inner">
       <a href="#" class="nav-wordmark">Webby</a>
-      <input type="checkbox" id="nav-toggle" aria-label="Toggle navigation">
-      <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
+      <!-- New button for toggle, replacing the checkbox/label -->
+      <button class="nav-toggle-btn" aria-expanded="false" aria-controls="main-nav-links">
         <span></span><span></span><span></span>
-      </label>
-      <ul class="nav-links">
+      </button>
+      <ul class="nav-links" id="main-nav-links">
         <li><a href="#how-it-works">How it works</a></li>
         <li><a href="#features">Features</a></li>
         <li><a href="#screenshots">Screenshots</a></li>
@@ -642,6 +767,51 @@
         <li class="nav-cta"><a href="#get-started">Get started</a></li>
       </ul>
     </div>
+    <script>
+      (function() {
+        const navToggleBtn = document.querySelector('.site-nav .nav-toggle-btn');
+        const navLinks = document.querySelector('.site-nav .nav-links');
+        const navLinksList = navLinks.querySelectorAll('a');
+        const breakpoint = 900; // Matches the CSS media query breakpoint
+
+        function toggleNav() {
+          const isOpen = navLinks.classList.toggle('is-open');
+          navToggleBtn.classList.toggle('is-active', isOpen);
+          navToggleBtn.setAttribute('aria-expanded', isOpen);
+        }
+
+        function closeNav() {
+          if (navLinks.classList.contains('is-open')) {
+            navLinks.classList.remove('is-open');
+            navToggleBtn.classList.remove('is-active');
+            navToggleBtn.setAttribute('aria-expanded', false);
+          }
+        }
+
+        // Toggle navigation on button click
+        navToggleBtn.addEventListener('click', toggleNav);
+
+        // Close navigation when a link is clicked (in mobile/tablet view)
+        navLinksList.forEach(link => {
+          link.addEventListener('click', () => {
+            if (window.innerWidth <= breakpoint) {
+              closeNav();
+            }
+          });
+        });
+
+        // Close navigation on window resize if desktop width is reached
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(() => {
+            if (window.innerWidth > breakpoint) {
+              closeNav();
+            }
+          }, 100); // Debounce resize event for performance
+        });
+      })();
+    </script>
   </nav>
 
   <!-- ── Hero ────────────────────────────────────────────────────── -->
