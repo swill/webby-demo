@@ -626,7 +626,7 @@
 <body style="">
 
   <!-- ── Navigation ──────────────────────────────────────────────── -->
-  <nav class="site-nav" aria-label="Main navigation">
+  <nav class="site-nav" aria-label="Main navigation" style="">
     <div class="nav-inner">
       <a href="#" class="nav-wordmark">Webby</a>
       <input type="checkbox" id="nav-toggle" aria-label="Toggle navigation">
@@ -649,7 +649,7 @@
     <div class="container">
       <div class="hero-eyebrow" data-editable="">Free &amp; open source</div>
       <h1 class="hero-headline" data-editable="">Edit your website by clicking on it.</h1>
-      <p class="hero-subheadline" data-editable="">Webby turns any static HTML file into an editable, publishable website — right in your browser. No code, no CMS, no developer needed. Works with any static site hosted for free on GitHub Pages.</p>
+      <p class="hero-subheadline" data-editable="">Webby turns any static HTML file into an editable, publishable website — right in your browser. No code, no CMS, no developer needed. Works with any static site and is hosted for free on GitHub Pages.</p>
       <div class="hero-actions">
         <a href="#get-started" class="btn btn-primary" data-editable="">Get Started</a>
         <a href="https://github.com/swill/webby" class="btn btn-outline" target="_blank" rel="noopener" data-editable="">View on GitHub</a>
@@ -770,7 +770,7 @@
       <p style="font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.7; max-width: 680px; margin-bottom: var(--space-lg);" data-editable="">You use a prompt with Claude.ai (no account needed beyond the free tier) to generate a complete, styled index.html from a description of your business. The prompt instructs Claude to analyse inspiration images for colours and typography, write realistic placeholder content, and wire up all the data attributes Webby needs — so the editor works immediately on the generated file.</p>
       <div class="prompt-card">
         <span class="prompt-card-badge">Example prompt</span>
-        <pre>You are generating the initial downloadable index.html for a professional website.
+        <pre id="promptText">You are generating the initial downloadable index.html for a professional website.
 
 I am attaching [N] inspiration images. Analyze them for:
 - Dominant and accent colors → translate to a CSS variable palette
@@ -779,43 +779,88 @@ I am attaching [N] inspiration images. Analyze them for:
 
 Use those signals to define a cohesive CSS variable system and base styles.
 
+---
+
 BUSINESS DETAILS:
 Name:         [Full name or practice name]
 Profession:   [e.g. Osteopath, Naturopath, Coach, Photographer]
 Tagline:      [One sentence — what they do and for whom]
 Location:     [City, Country]
 Contact:      [Email and/or phone to appear on site]
+Social:       [Instagram, LinkedIn, etc. — or leave blank]
+
+---
 
 TONE &amp; AESTHETIC:
-[Describe the feeling the site should evoke. Be as specific or loose as you like.
-Example: "Calm, trustworthy, professional. Like a high-end wellness clinic."]
+[Describe the feeling the site should evoke. Examples:
+- "Calm, trustworthy, professional. Like a high-end wellness clinic."
+- "Warm and approachable. Earthy tones, clean layout, not too corporate."
+- "Minimal and modern. Lots of whitespace, strong typography."
+Use your own words — be as specific or loose as you like.]
+
+---
 
 SECTIONS TO INCLUDE:
-[List each section and what it should contain. Example:
-1. Hero — Name, tagline, call-to-action button
-2. About — Photo and 2–3 paragraphs
-3. Services — 3 service cards
-4. Testimonials — 3 client quotes
-5. Contact — Email, phone, location]
+[List each section and what it should contain. Examples:
+
+1. Hero — Full-width header with name, tagline, and a call-to-action button ("Book a Session")
+2. About — Photo + 2–3 paragraphs about background, philosophy, approach
+3. Services — 3 service cards: Osteopathy, Sports Therapy, Online Consultations
+4. Testimonials — 3 short quotes from clients
+5. FAQ — 4 common questions with answers
+6. Contact — Email, phone, location, contact form (static mailto: is fine)
+7. Footer — Name, copyright, social links
+
+Adjust this list to match the actual site.]
+
+---
 
 TECHNICAL REQUIREMENTS:
 Generate a single index.html file with the following:
+
 1. DOCTYPE html5, semantic HTML, mobile-first responsive layout
 2. No external CSS frameworks — all styles inline in a &lt;style&gt; block
-3. CSS custom properties for all colours, fonts, and spacing
-4. Google Fonts import (2 typefaces max)
-5. Each section must have data-zone and data-zone-label attributes
-6. Add data-editable on every editable text element
-7. Add data-editable-image on every &lt;img&gt; element
-8. Include these two script tags at the end of &lt;head&gt;:
+3. A CSS custom property system using the variables defined from the images:
+   --color-primary, --color-secondary, --color-accent,
+   --color-bg, --color-bg-alt, --color-text, --color-text-muted,
+   --font-heading, --font-body,
+   --space-xs through --space-xl,
+   --container-width, --radius, --shadow
+4. Google Fonts import for the chosen typefaces (2 max)
+5. Each section must have:
+   - data-zone="{slug}" on the &lt;section&gt; element
+   - data-zone-label="{Human Label}" on the &lt;section&gt; element
+   - data-editable on every user-editable text element (headings, paragraphs, spans)
+   - data-editable-image on every &lt;img&gt; element
+6. A single &lt;nav&gt; with smooth-scroll links to each section
+7. Responsive mobile navigation (hamburger toggle using only CSS or minimal inline JS)
+   Mobile nav requirements — these are mandatory, not optional:
+   - The expanded mobile menu must be fully visible on screen and never clipped
+   - Use position: fixed or position: absolute (not static/relative) for the expanded menu so it
+     escapes any parent overflow constraints
+   - Set a z-index high enough (e.g. 9000) that the menu appears above all page content
+   - Never rely on a parent container with overflow: hidden to contain the menu
+   - The menu must be scrollable (overflow-y: auto) if it could exceed viewport height
+   - Test the toggle logic: the menu must open AND close correctly on repeated hamburger clicks
+8. No JavaScript frameworks — vanilla JS only, and only where necessary
+9. Include this script tag in the &lt;head&gt;, immediately after the &lt;style&gt; block:
    &lt;script src="./secrets.js"&gt;&lt;/script&gt;
-   &lt;script src="https://swill.github.io/webby/webby.js"&gt;&lt;/script&gt;
+   &lt;script src="https://[YOUR_CDN]/webby.js"&gt;&lt;/script&gt;
+   (These will be stripped on export — they enable edit mode locally)
+10. All placeholder text should be realistic and relevant to the profession
+11. Placeholder images should use: &lt;img src="./assets/placeholder.jpg" data-editable-image alt="..." /&gt;
+12. The overall visual result should be polished, professional, and production-ready
 
-OUTPUT: Return ONLY the complete index.html. No explanation, no markdown fences.</pre>
+---
+
+OUTPUT:
+Return ONLY the complete index.html file contents.
+No explanation, no markdown fences, no preamble.
+Start your response with: &lt;!DOCTYPE html&gt;</pre>
       </div>
       <p class="bootstrap-note" data-editable="">This is the exact prompt format used to generate the site you're looking at right now. Attach 2–5 photos that capture the look and feel you're going for — screenshots of sites you like, colour palette images, photos from your business — and Claude will translate them into a cohesive visual design.</p>
     </div>
-  </section>
+</section>
 
   <!-- ── Get Started ─────────────────────────────────────────────── -->
   <section id="get-started" data-zone="get-started" data-zone-label="Get Started" style="position: relative;">
