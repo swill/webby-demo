@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="--color-accent: #e8734a; --color-secondary: #4a9b7f;"><head>
+<html lang="en" style="--color-accent: #e8734a; --color-secondary: #4a9b7f; --container-width: 1080px;"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Webby | An in-line website editor</title>
@@ -28,7 +28,7 @@
       --space-md:  1rem;
       --space-lg:  2rem;
       --space-xl:  4rem;
-      --container-width: 1080px;
+      --container-width:;
       --radius:    0.5rem;
       --shadow:    0 2px 16px rgba(44, 36, 34, 0.08);
     }
@@ -123,9 +123,17 @@
       top: 0;
       z-index: 100;
       background-color: rgba(250, 248, 245, 0.95);
-      backdrop-filter: blur(8px);
       border-bottom: 1px solid rgba(42, 92, 69, 0.12);
       box-shadow: 0 1px 8px rgba(44, 36, 34, 0.06);
+    }
+    /* Achieve blur via pseudo-element instead */
+    .site-nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: -1;
     }
 
     .nav-inner {
@@ -623,38 +631,6 @@
   
   
 <meta name="keywords" content="web editor, standalone, user friendly"><meta name="description" content="A simple browser based web editor, no dependencies and no coding required."><link rel="icon" type="image/png" href="./assets/favicon.png"><link rel="apple-touch-icon" href="./assets/favicon.png"><style id="__webby-nav-styles">/* ── Navigation ────────────────────────────────────────────────── */
-.site-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background-color: rgba(250, 248, 245, 0.95);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(42, 92, 69, 0.12);
-  box-shadow: 0 1px 8px rgba(44, 36, 34, 0.06);
-}
-
-.nav-inner {
-  max-width: var(--container-width);
-  margin-inline: auto;
-  padding-inline: var(--space-lg);
-  height: 3.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-md);
-}
-
-.nav-wordmark {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-primary);
-  text-decoration: none;
-  letter-spacing: -0.01em;
-  flex-shrink: 0;
-}
-.nav-wordmark:hover { text-decoration: none; }
-
 /* Hamburger Menu Toggle Button */
 .nav-toggle-btn {
   display: none; /* Hidden by default on desktop */
@@ -665,7 +641,7 @@
   background: none;
   border: none;
   outline: none;
-  z-index: 101; /* Ensure it's above the nav links when menu is open */
+  z-index: 9001; /* Ensure it's above the nav links when menu is open */
 }
 .nav-toggle-btn span {
   display: block;
@@ -709,7 +685,7 @@
 }
 
 /* Tablet/Mobile styles (up to 900px screen width) */
-@media (max-width: 900px) { /* Changed breakpoint to 900px */
+@media (max-width: 900px) { /* Breakpoint standardized to 900px */
   .nav-toggle-btn { display: flex; } /* Show hamburger button */
 
   .nav-links {
@@ -723,7 +699,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-    border-top: 1px solid rgba(42, 92, 69, 0.12); /* Border at the top of the dropdown menu */
+    border-top: 1px solid rgba(42, 92, 69, 0.12); /* Border at the top of the dropdown menu, derived from var(--color-primary) */
     box-shadow: var(--shadow);
     overflow-y: auto; /* Enable scrolling for long menus */
     z-index: 9000; /* High z-index */
@@ -735,7 +711,7 @@
 
   .nav-links li {
     width: 100%;
-    border-bottom: 1px solid rgba(42, 92, 69, 0.08); /* Individual item borders */
+    border-bottom: 1px solid rgba(42, 92, 69, 0.08); /* Individual item borders, derived from var(--color-primary) */
   }
   .nav-links li:last-child {
       border-bottom: none; /* No border for the last item */
@@ -748,10 +724,10 @@
     width: 100%; /* Ensure links take full width */
   }
 }</style></head>
-<body style="">
+<body style="" class="">
 
   <!-- ── Navigation ──────────────────────────────────────────────── -->
-  <nav class="site-nav" aria-label="Main navigation">
+  <nav class="site-nav" aria-label="Main navigation" style="">
     <div class="nav-inner">
       <a href="#" class="nav-wordmark">Webby</a>
       <button class="nav-toggle-btn" aria-expanded="false" aria-controls="main-nav-links">
@@ -777,6 +753,8 @@
           const isOpen = navLinks.classList.toggle('is-open');
           navToggleBtn.classList.toggle('is-active', isOpen);
           navToggleBtn.setAttribute('aria-expanded', isOpen);
+          // Optional: Add/remove body overflow-hidden to prevent background scrolling
+          document.body.classList.toggle('no-scroll', isOpen);
         }
 
         function closeNav() {
@@ -784,6 +762,7 @@
             navLinks.classList.remove('is-open');
             navToggleBtn.classList.remove('is-active');
             navToggleBtn.setAttribute('aria-expanded', false);
+            document.body.classList.remove('no-scroll');
           }
         }
 
@@ -814,7 +793,7 @@
   </nav>
 
   <!-- ── Hero ────────────────────────────────────────────────────── -->
-  <section class="hero" data-zone="hero" data-zone-label="Hero" style="position: relative;">
+  <section class="hero" data-zone="hero" data-zone-label="Hero" style="position: relative;" id="hero">
     <div class="container">
       <div class="hero-eyebrow" data-editable="">Free &amp; open source</div>
       <h1 class="hero-headline" data-editable="">Edit your website by clicking on it.</h1>
@@ -1102,7 +1081,7 @@ Start your response with: &lt;!DOCTYPE html&gt;</pre>
     </div>
   </section>
   
-  <section class="support-cta" data-zone="need-help" data-zone-label="Need More Help" style="position: relative;">
+  <section class="support-cta" data-zone="need-help" data-zone-label="Need More Help" style="position: relative;" id="need-help">
     <div class="container">
       <span class="section-label" data-editable="">DETAILED GUIDE</span>
       <h2 class="section-heading" data-editable="">Still have questions?</h2>
