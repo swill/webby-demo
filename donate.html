@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate — Webby</title>
+  <meta name="description" content="Support Webby's development. Webby is free and open source. If it's saved you time and money, consider buying the creator a coffee.">
+  
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
+
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --color-primary:    #00C9D4;
+        --color-secondary:  #E63946;
+        --color-accent:     #F5A623;
+        --color-bg:         #0B0E2A;
+        --color-bg-alt:     #131850;
+        --color-text:       #EEF2FF;
+        --color-text-muted: #7B8DB0;
+        --font-heading:     'Syne', sans-serif;
+        --font-body:        'Plus Jakarta Sans', sans-serif;
+        --space-xs:  0.5rem;
+        --space-sm:  1rem;
+        --space-md:  2rem;
+        --space-lg:  4.5rem;
+        --space-xl:  9rem;
+        --container-width: 1140px;
+        --radius: 14px;
+        --shadow: 0 8px 40px rgba(0,0,0,0.5);
+      }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        font-family: var(--font-body);
+        background: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.75;
+        overflow-x: hidden;
+      }
+
+      h1,h2,h3,h4,h5 {
+        font-family: var(--font-heading);
+        line-height: 1.15;
+      }
+
+      .container {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 0 var(--space-md);
+      }
+
+      a { color: var(--color-primary); text-decoration: none; transition: color 0.2s; }
+      a:hover { color: #00e5f0; }
+
+      .btn {
+        display: inline-block;
+        padding: 0.85rem 2.1rem;
+        border-radius: var(--radius);
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 0.9rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        transition: all 0.25s;
+        cursor: pointer;
+        text-decoration: none;
+        border: none;
+      }
+      .btn-primary {
+        background: var(--color-primary);
+        color: var(--color-bg);
+      }
+      .btn-primary:hover {
+        background: #00e5f0;
+        box-shadow: 0 0 28px rgba(0,201,212,0.55);
+        color: var(--color-bg);
+      }
+      .btn-secondary {
+        background: var(--color-secondary);
+        color: #fff;
+      }
+      .btn-secondary:hover {
+        background: #ff4f5e;
+        box-shadow: 0 0 28px rgba(230,57,70,0.5);
+        color: #fff;
+      }
+      .btn-outline {
+        background: transparent;
+        border: 2px solid var(--color-primary);
+        color: var(--color-primary);
+      }
+      .btn-outline:hover {
+        background: var(--color-primary);
+        color: var(--color-bg);
+      }
+      .btn-gold {
+        background: var(--color-accent);
+        color: var(--color-bg);
+      }
+      .btn-gold:hover {
+        background: #ffbe3d;
+        box-shadow: 0 0 28px rgba(245,166,35,0.5);
+        color: var(--color-bg);
+      }
+
+      section { padding: var(--space-lg) 0; }
+
+      .section-eyebrow {
+        font-family: var(--font-heading);
+        font-size: 0.78rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-primary);
+        margin-bottom: 0.6rem;
+      }
+
+      .section-title {
+        font-size: clamp(2rem, 4vw, 3.1rem);
+        font-weight: 800;
+        margin-bottom: var(--space-sm);
+      }
+
+      .section-subtitle {
+        color: var(--color-text-muted);
+        font-size: 1.1rem;
+        max-width: 620px;
+        margin-bottom: var(--space-md);
+        line-height: 1.8;
+      }
+
+      .accent        { color: var(--color-primary); }
+      .accent-gold   { color: var(--color-accent); }
+      .accent-coral  { color: var(--color-secondary); }
+
+      .card {
+        background: var(--color-bg-alt);
+        border: 1px solid rgba(0,201,212,0.14);
+        border-radius: var(--radius);
+        padding: var(--space-md);
+        transition: transform 0.28s, box-shadow 0.28s, border-color 0.28s;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 50px rgba(0,201,212,0.1);
+        border-color: rgba(0,201,212,0.35);
+      }
+
+      .grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: var(--space-md); }
+      .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--space-md); }
+      .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: var(--space-md); }
+
+      @media (max-width: 900px) {
+        .grid-3, .grid-4 { grid-template-columns: repeat(2,1fr); }
+      }
+      @media (max-width: 600px) {
+        .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      }
+
+      /* ── NAV ─────────────────────────────────────────── */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(11,14,42,0.97);
+        border-bottom: 1px solid rgba(0,201,212,0.18);
+      }
+      .nav-inner {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 0 var(--space-md);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+      }
+      .nav-logo {
+        font-family: var(--font-heading);
+        font-size: 1.45rem;
+        font-weight: 800;
+        color: var(--color-text);
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+      .nav-logo span { color: var(--color-primary); }
+      .nav-links {
+        display: flex;
+        gap: 1.8rem;
+        list-style: none;
+        align-items: center;
+      }
+      .nav-links a {
+        color: var(--color-text-muted);
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .nav-links a:hover, .nav-links a.active { color: var(--color-primary); }
+      .nav-cta-link { margin-left: 0.5rem; }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 8px;
+        background: none;
+        border: none;
+        z-index: 9100;
+      }
+      .hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--color-text);
+        transition: all 0.3s;
+        border-radius: 2px;
+      }
+      nav.nav-open .hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      nav.nav-open .hamburger span:nth-child(2) { opacity: 0; }
+      nav.nav-open .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 68px;
+        left: 0; right: 0;
+        background: #0B0E2A;
+        border-bottom: 1px solid rgba(0,201,212,0.2);
+        z-index: 9000;
+        overflow-y: auto;
+        max-height: calc(100vh - 68px);
+        padding: var(--space-sm) var(--space-md) var(--space-md);
+      }
+      nav.nav-open .mobile-menu { display: block; }
+      .mobile-menu ul { list-style: none; }
+      .mobile-menu ul li { border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .mobile-menu ul li a {
+        display: block;
+        padding: 1rem 0;
+        color: var(--color-text);
+        font-size: 1.05rem;
+        font-weight: 600;
+        font-family: var(--font-heading);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .mobile-menu ul li a:hover { color: var(--color-primary); }
+      .mobile-menu .mobile-cta { margin-top: var(--space-sm); }
+
+      @media (max-width: 860px) {
+        .hamburger { display: flex; }
+        .nav-links, .nav-cta-link { display: none; }
+      }
+
+      /* ── FOOTER ──────────────────────────────────────── */
+      footer {
+        background: var(--color-bg-alt);
+        border-top: 1px solid rgba(0,201,212,0.14);
+        padding: var(--space-lg) 0 var(--space-md);
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr 1fr;
+        gap: var(--space-md);
+        margin-bottom: var(--space-md);
+      }
+      .footer-brand .nav-logo { font-size: 1.3rem; display: inline-block; margin-bottom: 0.75rem; }
+      .footer-brand p { color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.7; }
+      .footer-col h4 {
+        font-family: var(--font-heading);
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+        margin-bottom: 0.9rem;
+      }
+      .footer-col ul { list-style: none; }
+      .footer-col ul li { margin-bottom: 0.55rem; }
+      .footer-col ul li a { color: var(--color-text-muted); font-size: 0.88rem; transition: color 0.2s; }
+      .footer-col ul li a:hover { color: var(--color-primary); }
+      .footer-bottom {
+        border-top: 1px solid rgba(255,255,255,0.07);
+        padding-top: var(--space-sm);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .footer-bottom p { color: var(--color-text-muted); font-size: 0.83rem; }
+      .social-links { display: flex; gap: 1.2rem; }
+      .social-links a { color: var(--color-text-muted); font-size: 0.83rem; transition: color 0.2s; }
+      .social-links a:hover { color: var(--color-primary); }
+
+      @media (max-width: 700px) {
+        .footer-grid { grid-template-columns: 1fr; }
+      }
+
+      /* ── PAGE HERO BANNER ────────────────────────────── */
+      .page-hero {
+        padding: var(--space-lg) 0;
+        background: linear-gradient(135deg, #0B0E2A 0%, #141850 60%, #0d1a38 100%);
+        border-bottom: 1px solid rgba(0,201,212,0.15);
+        position: relative;
+        overflow: hidden;
+      }
+      .page-hero::before {
+        content: '';
+        position: absolute;
+        top: -60px; right: -60px;
+        width: 340px; height: 340px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(0,201,212,0.12) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .page-hero::after {
+        content: '';
+        position: absolute;
+        bottom: -80px; left: 10%;
+        width: 220px; height: 220px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .page-hero h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; }
+      .page-hero p { color: var(--color-text-muted); font-size: 1.15rem; max-width: 560px; margin-top: 1rem; }
+
+      /* ── UTILITY ──────────────────────────────────────── */
+      .text-center { text-align: center; }
+      .mx-auto { margin-left: auto; margin-right: auto; }
+      .mb-lg { margin-bottom: var(--space-lg); }
+      .mb-md { margin-bottom: var(--space-md); }
+      .mb-sm { margin-bottom: var(--space-sm); }
+      .tag {
+        display: inline-block;
+        padding: 0.25rem 0.8rem;
+        border-radius: 50px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .tag-teal { background: rgba(0,201,212,0.14); color: var(--color-primary); }
+      .tag-coral { background: rgba(230,57,70,0.14); color: var(--color-secondary); }
+      .tag-gold  { background: rgba(245,166,35,0.14); color: var(--color-accent); }
+
+      img {
+        max-width: 100%;
+        border-radius: var(--radius);
+        display: block;
+      }
+
+      /* glowing divider */
+      .glow-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+        margin: 0;
+        opacity: 0.35;
+      }
+
+      /* code-style badge */
+      .code-badge {
+        display: inline-block;
+        background: rgba(0,201,212,0.1);
+        border: 1px solid rgba(0,201,212,0.25);
+        border-radius: 6px;
+        padding: 0.2rem 0.6rem;
+        font-family: monospace;
+        font-size: 0.85rem;
+        color: var(--color-primary);
+      }
+
+      /* step numbers */
+      .step-num {
+        width: 42px; height: 42px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--color-primary), #006ccc);
+        display: flex; align-items: center; justify-content: center;
+        font-family: var(--font-heading);
+        font-weight: 800;
+        font-size: 1.1rem;
+        color: #fff;
+        flex-shrink: 0;
+        box-shadow: 0 0 18px rgba(0,201,212,0.35);
+      }
+
+      /* blockquote / testimonial */
+      .testimonial-card {
+        background: var(--color-bg-alt);
+        border: 1px solid rgba(0,201,212,0.12);
+        border-radius: var(--radius);
+        padding: var(--space-md);
+        position: relative;
+        transition: transform 0.28s, box-shadow 0.28s;
+      }
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 50px rgba(0,201,212,0.1);
+      }
+      .testimonial-card::before {
+        content: '"';
+        position: absolute;
+        top: -10px; left: 20px;
+        font-size: 5rem;
+        font-family: var(--font-heading);
+        color: var(--color-primary);
+        opacity: 0.25;
+        line-height: 1;
+      }
+      .testimonial-text {
+        color: var(--color-text);
+        font-size: 1rem;
+        line-height: 1.75;
+        margin-bottom: 1.2rem;
+        padding-top: 1rem;
+      }
+      .testimonial-author { font-weight: 600; font-size: 0.9rem; color: var(--color-text-muted); }
+      .testimonial-author strong { color: var(--color-primary); display: block; margin-bottom: 0.15rem; }
+
+      /* feature icon circle */
+      .feature-icon {
+        width: 56px; height: 56px;
+        border-radius: 14px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+      }
+      .fi-teal  { background: rgba(0,201,212,0.12); }
+      .fi-coral { background: rgba(230,57,70,0.12); }
+      .fi-gold  { background: rgba(245,166,35,0.12); }
+      .fi-purple{ background: rgba(139,92,246,0.12); }
+
+      /* highlight box */
+      .highlight-box {
+        background: linear-gradient(135deg, rgba(0,201,212,0.08), rgba(245,166,35,0.06));
+        border: 1px solid rgba(0,201,212,0.2);
+        border-radius: var(--radius);
+        padding: var(--space-md);
+      }
+
+      /* coffee card */
+      .coffee-card {
+        background: linear-gradient(135deg, #1a1240, #1c2060);
+        border: 1px solid rgba(245,166,35,0.25);
+        border-radius: var(--radius);
+        padding: var(--space-md);
+        text-align: center;
+      }
+    </style>
+  
+  
+</head>
+<body>
+    <nav>
+      <div class="nav-inner">
+        <a href="./index.html" class="nav-logo">Webby<span>.</span></a>
+        <ul class="nav-links">
+          <li><a href="./index.html">Home</a></li>
+<li><a href="./about.html">About</a></li>
+<li><a href="./getting-started.html">Getting Started</a></li>
+<li><a href="./features-and-editing.html">Features &amp; Editing</a></li>
+<li><a href="./donate.html" class="active">Donate</a></li>
+
+        </ul>
+        <a href="./getting-started.html" class="btn btn-primary nav-cta-link" style="font-size:0.8rem;padding:0.6rem 1.3rem;">Get Started</a>
+        <button class="hamburger" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="mobile-menu">
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+<li><a href="./about.html">About</a></li>
+<li><a href="./getting-started.html">Getting Started</a></li>
+<li><a href="./features-and-editing.html">Features &amp; Editing</a></li>
+<li><a href="./donate.html">Donate</a></li>
+
+        </ul>
+        <a href="./getting-started.html" class="btn btn-primary mobile-cta">Get Started Free</a>
+      </div>
+      <script>
+        (function(){
+          var nav = document.currentScript.closest('nav');
+          nav.addEventListener('click', function(e){
+            if(e.target.closest('.hamburger')){
+              nav.classList.toggle('nav-open');
+            }
+          });
+        })();
+      </script>
+    </nav>
+
+  <!-- PAGE HERO -->
+  <section data-zone="hero" data-zone-label="Hero" class="page-hero">
+    <div class="container">
+      <p class="section-eyebrow" data-editable="">Support the Project</p>
+      <h1 data-editable="">Keep Webby<br><span class="accent">Free &amp; Growing</span></h1>
+      <p data-editable="">Webby is built and maintained as a passion project. Your support keeps the lights on and the features coming.</p>
+    </div>
+  </section>
+
+  <div class="glow-divider"></div>
+
+  <!-- FREE & OPEN SOURCE -->
+  <section data-zone="free-open-source" data-zone-label="Free &amp; Open-Source" style="background:var(--color-bg);">
+    <div class="container">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
+        <div>
+          <p class="section-eyebrow" data-editable="">Philosophy</p>
+          <h2 class="section-title" data-editable="">Free &amp; Open Source.<br><span class="accent">Enabling Creativity.</span></h2>
+          <p class="section-subtitle" data-editable="">
+            Webby exists because I believe that publishing a beautiful website should be accessible to everyone — not just developers, and not just those who can afford a monthly CMS subscription.
+          </p>
+          <p style="color:var(--color-text-muted); margin-bottom:1.5rem;" data-editable="">
+            Every line of code is open source and available on GitHub. There is no paid tier, no feature gating, and no plan to add one. The full functionality — inline editing, AI generation, publishing — is free for personal and commercial use under the MIT License.
+          </p>
+          <p style="color:var(--color-text-muted); margin-bottom:2rem;" data-editable="">
+            The project is built on my own time, fuelled by genuine curiosity about what the web can be when the friction of publishing is removed. Your support, whether financial or a GitHub star, means more than you might expect.
+          </p>
+          <a href="https://github.com/swill/webby/" class="btn btn-outline" target="_blank" data-editable="">Star on GitHub ⭐</a>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1.2rem;">
+          <div class="card" style="border-color:rgba(0,201,212,0.3);">
+            <h3 style="font-size:1.1rem; margin-bottom:0.6rem;" data-editable="">MIT Licensed</h3>
+            <p style="color:var(--color-text-muted); font-size:0.92rem;" data-editable="">Use Webby for any project — personal, client, commercial. Modify it, fork it, build on it. The only ask is attribution.</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size:1.1rem; margin-bottom:0.6rem;" data-editable="">No Vendor Lock-in</h3>
+            <p style="color:var(--color-text-muted); font-size:0.92rem;" data-editable="">Your site is just an HTML file on GitHub. If you ever want to leave, everything you've built is portable. No exports, no migrations, no data loss.</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size:1.1rem; margin-bottom:0.6rem;" data-editable="">Community First</h3>
+            <p style="color:var(--color-text-muted); font-size:0.92rem;" data-editable="">Issues, feature requests, and pull requests are welcome. Webby improves every time someone uses it and shares what they found.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="glow-divider"></div>
+
+  <!-- FREE SERVICES -->
+  <section data-zone="free-services" data-zone-label="Free Services" style="background:var(--color-bg-alt);">
+    <div class="container">
+      <div class="text-center mb-md">
+        <p class="section-eyebrow" data-editable="">Designed for Zero Cost</p>
+        <h2 class="section-title" data-editable="">Built On<br><span class="accent">Free Services</span></h2>
+        <p class="section-subtitle mx-auto" style="text-align:center;" data-editable="">
+          Webby is intentionally designed around services with generous free tiers so that getting started costs nothing — not even a credit card.
+        </p>
+      </div>
+      <div class="grid-3">
+        <div class="card text-center">
+          <div class="feature-icon fi-teal mx-auto">🐙</div>
+          <h3 style="margin-bottom:0.5rem;" data-editable="">GitHub Pages</h3>
+          <p style="color:var(--color-text-muted); font-size:0.9rem;" data-editable="">Free static site hosting with automatic HTTPS. GitHub Actions CI/CD included. No usage limits for public repos.</p>
+          <div class="tag tag-teal" style="margin-top:1rem;" data-editable="">100% Free</div>
+        </div>
+        <div class="card text-center">
+          <div class="feature-icon fi-gold mx-auto">🤖</div>
+          <h3 style="margin-bottom:0.5rem;" data-editable="">Anthropic API</h3>
+          <p style="color:var(--color-text-muted); font-size:0.9rem;" data-editable="">New accounts include free credits. Typical section generation costs a fraction of a cent — generating dozens of sections for a few dollars at most.</p>
+          <div class="tag tag-gold" style="margin-top:1rem;" data-editable="">Effectively Free</div>
+        </div>
+        <div class="card text-center">
+          <div class="feature-icon fi-coral mx-auto">📄</div>
+          <h3 style="margin-bottom:0.5rem;" data-editable="">Webby Itself</h3>
+          <p style="color:var(--color-text-muted); font-size:0.9rem;" data-editable="">The editor is served from GitHub Pages — the same free hosting your site uses. No subscription, no SaaS fees, no per-seat pricing. Ever.</p>
+          <div class="tag tag-coral" style="margin-top:1rem;" data-editable="">Always Free</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="glow-divider"></div>
+
+  <!-- BUY ME A COFFEE -->
+  <section data-zone="buy-me-coffee" data-zone-label="Buy Me A Coffee" style="background:var(--color-bg);">
+    <div class="container">
+      <div style="max-width:700px; margin:0 auto; text-align:center;">
+        <p class="section-eyebrow" data-editable="">Fuelled by Coffee &amp; Kudos</p>
+        <h2 class="section-title" data-editable="">If Webby Saved You<br><span class="accent-gold">Time or Money</span></h2>
+        <p style="color:var(--color-text-muted); font-size:1.1rem; margin-bottom:3rem; line-height:1.85;" data-editable="">
+          There's no obligation and no expectation. But if Webby has replaced a CMS subscription, saved you hours of wrestling with a deploy pipeline, or just made building websites fun again — a coffee is a genuinely meaningful way to say thanks.
+        </p>
+        <div class="coffee-card">
+          <div style="font-size:3.5rem; margin-bottom:1rem;">☕</div>
+          <h3 style="font-size:1.5rem; margin-bottom:0.8rem;" data-editable="">Buy Me a Coffee</h3>
+          <p style="color:var(--color-text-muted); margin-bottom:1.5rem;" data-editable="">Every coffee directly funds time spent on new features, bug fixes, and documentation. It also serves as a signal that this project matters — which is genuinely motivating.</p>
+          <a href="https://github.com/swill" class="btn btn-gold" target="_blank" data-editable="">Support via GitHub →</a>
+        </div>
+        <div style="margin-top:3rem; display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap;">
+          <a href="https://github.com/swill/webby/" class="btn btn-outline" target="_blank" data-editable="">⭐ Star on GitHub</a>
+          <a href="./getting-started.html" class="btn btn-primary" data-editable="">Start Using Webby</a>
+        </div>
+        <p style="color:var(--color-text-muted); font-size:0.9rem; margin-top:2rem;" data-editable="">
+          Built with care by <a href="https://github.com/swill" target="_blank">github.com/swill</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="./index.html" class="nav-logo">Webby<span style="color:var(--color-primary)">.</span></a>
+            <p data-editable="">A zero-dependency, browser-based inline editing system for static websites. Edit live, publish instantly to GitHub Pages — no terminal, no CMS, no backend.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="./index.html">Home</a></li>
+              <li><a href="./about.html">About</a></li>
+              <li><a href="./getting-started.html">Getting Started</a></li>
+              <li><a href="./features-and-editing.html">Features &amp; Editing</a></li>
+              <li><a href="./donate.html">Donate</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="https://github.com/swill/webby/" target="_blank">GitHub Repository</a></li>
+              <li><a href="https://github.com/swill/webby/blob/main/README.md" target="_blank">Documentation</a></li>
+              <li><a href="https://github.com/swill/webby/blob/main/BOOTSTRAP_PROMPT.md" target="_blank">Bootstrap Prompt</a></li>
+              <li><a href="https://github.com/swill" target="_blank">github.com/swill</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p data-editable="">© 2026 Webby. Free &amp; Open Source under the MIT License.</p>
+          <div class="social-links">
+            <a href="https://github.com/swill/webby/" target="_blank">GitHub</a>
+            <a href="./donate.html">Support</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+</body></html>
