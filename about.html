@@ -184,6 +184,8 @@
   .section--alt { background: var(--color-bg-alt); }
   .section--dark { background: var(--color-primary); color: var(--color-bg); }
   .section--dark h1, .section--dark h2, .section--dark h3 { color: var(--color-bg); }
+  .section--dark .step h1, .section--dark .step h2, .section--dark .step h3 { color: var(--color-accent); }
+  .section--dark code { color: var(--color-accent-2); }
   .section--teal { background: linear-gradient(150deg, #dbf6f1 0%, #fff4eb 100%); }
   .section--cream { background: var(--color-bg-alt); }
   .section--pink { background: linear-gradient(145deg, #fbe6f6 0%, #fff3ea 100%); }
@@ -443,7 +445,7 @@
     <div class="section-head">
       <span class="section-eyebrow" data-editable="">How it works</span>
       <h2 data-editable="">Two modes. <span class="accent-word yellow">One file.</span> Zero magic.</h2>
-      <p class="section-lead" data-editable="">Webby has two runtimes that live inside the same HTML file. When <code><span style="color: var(--color-accent-2);">secrets.js</span></code> is present alongside the page, the editor activates. When the site is deployed, those scripts are gone — and so is the editor. Nothing to hide, nothing to leak.</p>
+      <p class="section-lead" data-editable="">Webby has two runtimes that live inside the same HTML file. When <code>secrets.js</code> is present alongside the page, the editor activates. When the site is deployed, those scripts are gone — and so is the editor. Nothing to hide, nothing to leak.</p>
     </div>
     <div class="steps">
       <div class="step">
@@ -543,6 +545,8 @@
     </div>
   </div>
 </footer>
+
+
 
 
 
