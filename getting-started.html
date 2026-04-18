@@ -283,6 +283,7 @@
   .cta-banner h2 { color: white; max-width: 680px; margin-left: auto; margin-right: auto; }
   .cta-banner p { color: rgba(255,255,255,0.9); max-width: 560px; margin: 0 auto var(--space-md); font-size: 1.08rem; }
   .cta-banner code { color: var(--color-accent-2); }
+  .cta-banner .btn-dark:hover { background: var(--color-accent); }
 
   /* Code block */
   .code-block { background: #0e0f23; color: #e2e4ff; border-radius: var(--radius); padding: var(--space-md); font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.65; overflow-x: auto; position: relative; border: 1px solid rgba(255,255,255,0.08); }
@@ -428,7 +429,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5L12 2z"></path></svg>
         </div>
         <h3 data-editable="">Google AI Studio</h3>
-        <p data-editable="">Get a free <a href="https://aistudio.google.com">Gemini API key</a> — no billing required. This powers the AI section generator, reformatter, and page builder.</p>
+        <p data-editable="">Get a free <a href="https://aistudio.google.com"><span style="color: var(--color-accent);"><span style="color: var(--color-accent-4);">Gemini API key</span></span></a> — no billing required. This powers the AI section generator, reformatter, and page builder.</p>
         <p class="mt-sm" data-editable=""><strong>What to grab:</strong> the string that starts with <code>AIza…</code>. Paste it into <code>secrets.js</code> as <code>geminiKey</code>.</p>
       </div>
       <div class="card">
@@ -436,8 +437,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
         </div>
         <h3 data-editable="">GitHub + GitHub Pages</h3>
-        <p data-editable="">Create a <strong>public</strong> repository, enable <strong>Pages → Deploy from a branch</strong>, and issue a fine-grained Personal Access Token scoped to <em>contents: read + write</em> on that one repo.</p>
-        <p class="mt-sm" data-editable=""><strong>What to grab:</strong> the token that starts with <code>ghp_…</code> and your repo name like <code>you/your-site</code>.</p>
+        <p data-editable=""><a href="https://github.com/" target="_blank" rel="noopener noreferrer"><span style="color: var(--color-accent);"><span style="color: var(--color-secondary);"><span style="color: var(--color-accent-4);">Create a <strong>public</strong> repository</span></span></span></a>, in <strong>Settings</strong>, enable <strong>Pages → Deploy from a branch</strong>, and issue a <span style="color: var(--color-accent-4);"><span style="color: var(--color-primary);"><span style="color: var(--color-secondary);"><span style="color: var(--color-accent-4);"><a href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener noreferrer"><span style="color: var(--color-accent-4);">fine-grained Personal Access Token</span></a></span></span></span></span> scoped to <em>contents: read + write</em>&nbsp;permissions on that one repo.</p>
+        <p class="mt-sm" data-editable=""><strong>What to grab:</strong> the token that starts with <code>ghp_…</code> and your repo name like <code>gh-user/your-site</code>.</p>
       </div>
     </div>
   </div>
@@ -577,6 +578,7 @@
     </div>
   </div>
 </footer>
+
 
 
 
