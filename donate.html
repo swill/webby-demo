@@ -283,6 +283,7 @@
   .cta-banner h2 { color: white; max-width: 680px; margin-left: auto; margin-right: auto; }
   .cta-banner p { color: rgba(255,255,255,0.9); max-width: 560px; margin: 0 auto var(--space-md); font-size: 1.08rem; }
   .cta-banner code { color: var(--color-accent-2); }
+  .cta-banner .btn-dark:hover { background: var(--color-accent); }
 
   /* Code block */
   .code-block { background: #0e0f23; color: #e2e4ff; border-radius: var(--radius); padding: var(--space-md); font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.65; overflow-x: auto; position: relative; border: 1px solid rgba(255,255,255,0.08); }
@@ -378,7 +379,7 @@
   </script>
 </nav>
 
-<section class="hero hero--page" data-zone="hero" data-zone-label="Hero" id="hero">
+<section class="hero hero--page" data-zone="hero" data-zone-label="Hero" id="hero" style="">
   <div class="container hero-inner">
     <span class="hero-badge" data-editable=""><span class="dot"></span>Donate</span>
     <h1 data-editable="">Fueled by <span class="accent-word">coffee</span> and <span class="accent-word teal">kindness</span>.</h1>
@@ -417,22 +418,22 @@
       <div class="donate-card v1">
         <span class="emoji" aria-hidden="true">🎨</span>
         <h3 data-editable="">Gemini API — free</h3>
-        <p data-editable="">Grab a free API key at <a href="https://aistudio.google.com">aistudio.google.com</a>. No billing required for the tier Webby uses.</p>
+        <p data-editable="">Grab a free API key at <a href="https://aistudio.google.com"><span style="color: var(--color-accent-4);">aistudio.google.com</span></a>. No billing required for the tier Webby uses.</p>
       </div>
       <div class="donate-card v2">
         <span class="emoji" aria-hidden="true">📦</span>
         <h3 data-editable="">GitHub Pages — free</h3>
-        <p data-editable="">Host your site on GitHub Pages, a free, fast, HTTPS-backed static host that serves straight from your repo's <code>main</code> branch.</p>
+        <p data-editable="">Host your site on <a href="https://github.com/" target="_blank" rel="noopener noreferrer"><span style="color: var(--color-accent-4);">GitHub Pages</span></a>, a free, fast, HTTPS-backed static host that serves straight from your repo's <code>main</code> branch.</p>
       </div>
       <div class="donate-card v3">
         <span class="emoji" aria-hidden="true">🔑</span>
         <h3 data-editable="">Fine-grained PAT — free</h3>
-        <p data-editable="">GitHub's fine-grained personal access tokens cost nothing and let you scope a key to just the one repo you're publishing.</p>
+        <p data-editable="">GitHub's <a href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener noreferrer"><span style="color: var(--color-accent-4);">fine-grained personal access tokens</span></a> cost nothing and let you scope a key to just the one repo you're publishing.</p>
       </div>
     </div>
     <div class="inline-note mt-md">
       <span class="inline-icon">💚</span>
-      <span data-editable="">If you'd rather use your own domain, that's the only step that might cost a few dollars a year — and only if you choose to. GitHub Pages will happily serve <code>username.github.io/repo</code> forever, free.</span>
+      <span data-editable="">If you'd rather use your own domain, that's the only step that might cost a few dollars a year from a domain registrar — and only if you choose to. GitHub Pages will happily serve <code>username.github.io/repo</code> forever, free.</span>
     </div>
   </div>
 </section>
@@ -520,6 +521,7 @@
     </div>
   </div>
 </footer>
+
 
 
 
