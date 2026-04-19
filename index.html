@@ -37,6 +37,7 @@
     --radius: 18px;
     --shadow: 0 24px 60px -24px rgba(26, 27, 58, 0.28);
     --font-dancing-script: 'Dancing Script', cursive;
+  --color-accent-5: #42468e;
 }
 
   body {
@@ -273,7 +274,7 @@
   .steps .step:nth-child(5) .step-num { background: var(--color-accent-4); }
   .step h3 { margin: 0 0 0.3rem; }
   .step p { margin: 0; color: var(--color-text-muted); }
-  .section--dark .step h1, .section--dark .step h2, .section--dark .step h3 { color: var(--color-text-muted); }
+  .section--dark .step h1, .section--dark .step h2, .section--dark .step h3 { color: var(--color-accent-5); }
   @media (max-width: 520px) { .step { grid-template-columns: 56px 1fr; gap: var(--space-sm); } .step-num { width: 52px; height: 52px; font-size: 1.35rem; border-radius: 14px; } }
 
   /* CTA banner */
@@ -285,7 +286,8 @@
   .cta-banner h2 { color: white; max-width: 680px; margin-left: auto; margin-right: auto; }
   .cta-banner p { color: rgba(255,255,255,0.9); max-width: 560px; margin: 0 auto var(--space-md); font-size: 1.08rem; }
   .cta-banner code { color: var(--color-accent-2); }
-  .cta-banner .btn-dark:hover { background: var(--color-accent); }
+  .cta-banner .btn-dark { background: var(--color-accent-5); }
+  .cta-banner .btn-dark:hover { background: var(--color-primary); }
 
   /* Code block */
   .code-block { background: #0e0f23; color: #e2e4ff; border-radius: var(--radius); padding: var(--space-md); font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.65; overflow-x: auto; position: relative; border: 1px solid rgba(255,255,255,0.08); }
@@ -584,6 +586,7 @@
     </div>
   </div>
 </footer>
+
 
 
 
