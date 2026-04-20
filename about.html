@@ -2,8 +2,8 @@
 <html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — Webby</title>
-<meta name="description" content="The story behind Webby — a free, AI-enabled inline web editing tool built around the idea that the HTML file itself is the content database.">
+<title>About GitQi — Built across a kitchen table.</title>
+<meta name="description" content="The story behind GitQi — built for a real person, validated in real time, and released as free OSS because it deserved to exist.">
 
 
 
@@ -227,6 +227,22 @@
   .card h3 { margin-top: 0; margin-bottom: 0.4rem; }
   .card p { color: var(--color-text-muted); margin: 0; }
 
+  /* Path card (two-paths section) */
+  .path-card { background: var(--color-bg); border-radius: calc(var(--radius) * 1.2); padding: calc(var(--space-md) + 0.4rem); border: 1px solid var(--color-border); position: relative; overflow: hidden; transition: transform 0.28s ease, box-shadow 0.28s ease; display: flex; flex-direction: column; }
+  .path-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+  .path-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; }
+  .path-card.get-key::before { background: linear-gradient(90deg, var(--color-accent), var(--color-accent-3)); }
+  .path-card.git-qi::before { background: linear-gradient(90deg, var(--color-accent-2), var(--color-secondary)); }
+  .path-mark { width: 68px; height: 68px; border-radius: 20px; display: grid; place-items: center; font-size: 2rem; margin-bottom: var(--space-sm); }
+  .path-card.get-key .path-mark { background: linear-gradient(135deg, var(--color-accent), var(--color-accent-3)); color: var(--color-primary); }
+  .path-card.git-qi .path-mark { background: linear-gradient(135deg, var(--color-accent-2), var(--color-secondary)); color: var(--color-bg); font-family: var(--font-heading); font-weight: 600; }
+  .path-label { display: inline-block; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--color-secondary); margin-bottom: var(--space-xs); }
+  .path-card.get-key .path-label { color: #c05a1a; }
+  .path-card.git-qi .path-label { color: #0b8e87; }
+  .path-card h3 { font-size: clamp(1.4rem, 1.2vw + 0.9rem, 1.85rem); margin-top: 0; }
+  .path-card p { color: var(--color-text-muted); flex-grow: 1; }
+  .path-card .btn { margin-top: var(--space-sm); align-self: flex-start; }
+
   /* Testimonial */
   .testimonial { background: var(--color-bg); border-radius: var(--radius); padding: calc(var(--space-md) + 0.2rem); box-shadow: var(--shadow); position: relative; border-top: 6px solid var(--color-accent); }
   .testimonial.v2 { border-top-color: var(--color-accent-2); }
@@ -272,6 +288,8 @@
   .steps .step:nth-child(3) .step-num { background: var(--color-accent-2); color: var(--color-primary); }
   .steps .step:nth-child(4) .step-num { background: var(--color-accent-3); color: var(--color-primary); }
   .steps .step:nth-child(5) .step-num { background: var(--color-accent-4); }
+  .steps .step:nth-child(6) .step-num { background: var(--color-accent-5); }
+  .steps .step:nth-child(7) .step-num { background: var(--color-primary); color: var(--color-accent-3); }
   .step h3 { margin: 0 0 0.3rem; }
   .step p { margin: 0; color: var(--color-text-muted); }
   .section--dark .step h1, .section--dark .step h2, .section--dark .step h3 { color: var(--color-accent-5); }
@@ -301,6 +319,8 @@
   /* Inline note */
   .inline-note { display: flex; gap: 0.85rem; padding: 1rem 1.15rem; background: rgba(45,212,191,0.12); border-left: 4px solid var(--color-accent-2); border-radius: 10px; color: var(--color-text); font-size: 0.95rem; margin-top: var(--space-sm); }
   .inline-note.warn { background: rgba(255,140,60,0.12); border-left-color: var(--color-accent); }
+  .inline-note.lock { background: rgba(26,27,58,0.06); border-left-color: var(--color-primary); }
+  .inline-note.win { background: rgba(253,224,71,0.22); border-left-color: var(--color-accent-3); }
   .inline-note .inline-icon { font-size: 1.2rem; flex-shrink: 0; line-height: 1.2; }
 
   /* Donate cards */
@@ -346,22 +366,23 @@
 </style>
 
 
-<link rel="icon" type="image/png" href="./assets/favicon.png"><link rel="apple-touch-icon" href="./assets/favicon.png"><meta name="keywords" content="about, project, free, open-source"><style id="__webby-section-experience-styles">/* No specific CSS needed for this section as existing utility and component classes are leveraged. */</style></head>
+<link rel="icon" type="image/png" href="./assets/favicon.png"><link rel="apple-touch-icon" href="./assets/favicon.png"><meta name="keywords" content="about, gitqi, story, philosophy, open source"></head>
 <body style="">
 <nav class="site-nav" style="">
   <div class="nav-inner">
     <a href="./index.html" class="nav-brand">
-      <span class="nav-logo" aria-hidden="true">W</span>
-      <span>Webby</span>
+      <span class="nav-logo" aria-hidden="true">G</span>
+      <span>GitQi</span>
     </a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-menu">
       <li><a href="./index.html">Home</a></li>
-      <li><a href="./about.html" class="active">About</a></li>
-      <li><a href="./getting-started.html">Getting Started</a></li>
-      <li><a href="./features-and-editing.html">Features &amp; Editing</a></li>
+      <li><a href="./about.html">About</a></li>
+      <li><a href="./get-key.html">Get Key</a></li>
+      <li><a href="./git-qi.html">Git Qi</a></li>
+      <li><a href="./features.html">Features</a></li>
       <li><a href="./donate.html">Donate</a></li>
     </ul>
   </div>
@@ -385,138 +406,118 @@
 
 <section class="hero hero--page" data-zone="hero" data-zone-label="Hero" id="hero" style="">
   <div class="container hero-inner">
-    <span class="hero-badge" data-editable=""><span class="dot"></span>About the project</span>
-    <h1 data-editable="">A small, <span class="accent-word">opinionated</span> editor <br>for people who <span class="accent-word teal">own</span> their sites.</h1>
-    <p class="hero-subtitle" data-editable="">Webby is a browser-based inline editing system for static HTML. <span style="color: var(--color-accent-4);"><span style="color: var(--color-bg-alt);"><span style="color: var(--color-accent-4);"><span style="color: var(--color-accent-3);">The page itself is the database.</span></span></span></span> You edit in place, save to your own <span style="font-family: var(--font-body);"><span style="font-family: var(--font-body);"><span style="font-family: var(--font-heading);"><span style="font-family: var(--font-body);">folder</span></span></span></span>, and publish straight to GitHub Pages — no CMS, no backend, no middleman.</p>
+    <span class="hero-badge" data-editable=""><span class="dot"></span>About GitQi</span>
+    <h1 data-editable="">Built across a <span class="accent-word">kitchen table</span>.</h1>
+    <p class="hero-subtitle" data-editable="">GitQi isn't a startup, a platform, or a funded bet. It's a small tool built for one person, validated in real time, and released because it deserved to exist for everyone else who might need it.</p>
   </div>
-</section><section class="section" data-zone="experience" data-zone-label="Experience" id="experience">
+</section>
+
+<section class="section" data-zone="origin-story" data-zone-label="Origin Story" id="origin-story" style="">
   <div class="container">
     <div class="about-layout">
       <div>
-        <span class="section-eyebrow" data-editable="">Our BACKGROUND</span>
-        <h2 data-editable="">Elegance from decades of <span class="accent-word pink">experience</span>.</h2>
-        <p data-editable="">Inspired by decades of web development and supporting average people maintain websites. The hard part is always <span class="accent-word magenta">theming</span>, <span class="accent-word">feature availability</span>, and&nbsp;<span class="accent-word teal">intuitive upates</span>.</p>
-        <p data-editable="">Webby solves for these hard parts so you can focus on the content. We put the <strong>control in your hands</strong>, giving you the power to craft and manage your online presence with ease.</p>
+        <span class="section-eyebrow" data-editable="">The origin story</span>
+        <h2 data-editable="">Built for a <span class="accent-word magenta">real person</span>, in real time.</h2>
+        <p data-editable="">GitQi was built for an osteopath and educational consultant who wanted to leave Wix. She didn't want a CMS. She didn't want a developer on retainer. She wanted to own her website the same way she owns her clinic notes — completely, permanently, and without asking anyone's permission.</p>
+        <p data-editable="">So it was built specifically for her, while she used it. Each feature was shaped across a kitchen table, iterated in the minutes after she hit a snag, and validated by whether she'd reach for it unprompted the next day. That process — one real user, in real life, with real opinions — is the reason GitQi feels the way it does.</p>
+        <p data-editable="">She has been almost entirely self-sufficient since day one. She updates her site whenever she wants. She doesn't ask for help. She doesn't pay a subscription. The only real barrier, looking back, was the initial setup — which is exactly what the <a href="./get-key.html">Get Key</a> guide is designed to solve.</p>
+        <p data-editable="">GitQi is released as free, MIT-licensed open source because the whole premise of the tool is that you own the page. It would be hypocritical to charge rent on the thing that lets you stop paying rent.</p>
       </div>
       <div class="about-image">
-        <img src="./assets/placeholder.jpg" alt="A person working on a laptop, representing web development and user control" data-editable-image="" style="cursor: pointer;">
+        <img src="./assets/placeholder.jpg" alt="A kitchen table with a laptop, coffee, and a notepad — the GitQi workbench" data-editable-image="" style="cursor: pointer;">
       </div>
     </div>
   </div>
 </section>
 
-<section class="section" data-zone="what-you-can-do" data-zone-label="What You Can Do" id="what-you-can-do">
+<section class="section section--teal" data-zone="name" data-zone-label="The Name" id="name" style="">
   <div class="container">
     <div class="section-head">
-      <span class="section-eyebrow" data-editable="">What you can do</span>
-      <h2 data-editable="">A complete publishing pipeline, <span class="accent-word magenta">without the plumbing</span>.</h2>
-      <p class="section-lead" data-editable="">Webby is built for solo makers, freelancers, and small studios who want the elegance of a hand-crafted site and the ease of an inline editor. It's tiny, transparent, and yours to read.</p>
+      <span class="section-eyebrow" data-editable="">The name</span>
+      <h2 data-editable="">Why <span class="accent-word magenta">GitQi</span>, and how to say it.</h2>
+      <p class="section-lead" data-editable="">GitQi is a small pun with a real meaning. It rewards saying aloud. It also has two pronunciations, and we're not going to pick one for you.</p>
     </div>
-    <div class="grid-3">
-      <div class="card">
-        <div class="card-icon accent">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-        </div>
-        <h3 data-editable="">Edit any HTML inline</h3>
-        <p data-editable="">Drop Webby onto a static HTML file and every tagged element becomes click-to-edit. Text, links, images, and entire sections.</p>
+    <div class="name-grid">
+      <div class="name-tile">
+        <span class="lead">Git</span>
+        <p data-editable="">The publishing backbone of the tool — literally true. And for non-technical readers, it reads as <em>get</em>.</p>
       </div>
-      <div class="card">
-        <div class="card-icon teal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5L12 2z"></path></svg>
-        </div>
-        <h3 data-editable="">Generate with AI</h3>
-        <p data-editable="">Add a new themed section, reformat existing ones, or spin up a whole new page — all through Gemini, all on-theme with your palette and fonts.</p>
+      <div class="name-tile">
+        <span class="lead">Qi · 气</span>
+        <p data-editable="">Life force, flow, ownership. The philosophy that your site, your content, and your credentials belong to you.</p>
       </div>
-      <div class="card">
-        <div class="card-icon pink">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4z"></path><path d="M4 10h10v10H4z"></path><path d="M16 12h4v8h-4z"></path></svg>
-        </div>
-        <h3 data-editable="">Run multi-page sites</h3>
-        <p data-editable="">Build as many pages as you need. The nav, manifest, and theme are synced automatically across every file on disk.</p>
+      <div class="name-tile">
+        <span class="lead">get-key</span>
+        <p data-editable="">You're getting the key to your own website. No landlord, no platform, no lock-in, no loading screen standing between you and your page.</p>
       </div>
-      <div class="card">
-        <div class="card-icon yellow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
-        </div>
-        <h3 data-editable="">Swap images cleanly</h3>
-        <p data-editable="">Click an image, pick a new one, and it's saved to your local <code>assets/</code> folder and pushed to GitHub the next time you publish.</p>
+      <div class="name-tile">
+        <span class="lead">git-chee</span>
+        <p data-editable="">Equally valid. Maps to empowerment and self-mastery — the Qi reading. Whichever you prefer is correct.</p>
       </div>
-      <div class="card">
-        <div class="card-icon orange">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-        </div>
-        <h3 data-editable="">Auto-save, never lose work</h3>
-        <p data-editable="">Every edit serializes back to your local files within ~1.5 seconds. Close the tab, reopen it, keep typing.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon accent">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg>
-        </div>
-        <h3 data-editable="">Publish in one click</h3>
-        <p data-editable="">Webby strips every trace of the editor and your credentials before shipping clean HTML straight to your GitHub repo.</p>
-      </div>
+    </div>
+    <div class="inline-note mt-md">
+      <span class="inline-icon">🍾</span>
+      <span data-editable="">A live pronunciation poll has been described as a "champagne problem". Both readings are part of the brand. Use whichever feels natural in your mouth.</span>
     </div>
   </div>
 </section>
 
-<section class="section section--dark" data-zone="how-it-works" data-zone-label="How It Works" id="how-it-works">
+<section class="section" data-zone="philosophy" data-zone-label="Philosophy" id="philosophy" style="">
   <div class="container">
     <div class="section-head">
-      <span class="section-eyebrow" data-editable="">How it works</span>
-      <h2 data-editable="">Two modes. <span class="accent-word yellow">One file.</span> Zero magic.</h2>
-      <p class="section-lead" data-editable="">Webby has two runtimes that live inside the same HTML file. When <code>secrets.js</code> is present alongside the page, the editor activates. When the site is deployed, those scripts are gone — and so is the editor. Nothing to hide, nothing to leak.</p>
+      <span class="section-eyebrow" data-editable="">Philosophy</span>
+      <h2 data-editable="">A counter-narrative to <span class="accent-word">platform rental</span>.</h2>
+      <p class="section-lead" data-editable="">GitQi is not positioned as "easier Wix". It's positioned as <em>leaving Wix behind</em> — permanently, cleanly, and without missing anything that mattered. These are the principles it's built on.</p>
     </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num" aria-hidden="true">1</div>
-        <div>
-          <h3 data-editable="">Generate the initial HTML</h3>
-          <p data-editable="">Use the bootstrap prompt with Claude to scaffold your pages. The result is plain, semantic HTML with <code>data-zone</code> and <code>data-editable</code> attributes that Webby recognizes.</p>
-        </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-icon accent">📄</div>
+        <h3 data-editable="">Your HTML is the database</h3>
+        <p data-editable="">There is no backing store, no CMS schema, no headless API. The file you see in the browser is the file on disk is the file on GitHub. That's the whole data model — and it means you can read it, grep it, diff it, or walk away with it at any time.</p>
       </div>
-      <div class="step">
-        <div class="step-num" aria-hidden="true">2</div>
-        <div>
-          <h3 data-editable="">Drop in <code>secrets.js</code> and open the page</h3>
-          <p data-editable="">Add your Gemini API key, your GitHub token, and the target repo. Open the HTML in Chrome or Edge. The editor toolbar appears automatically.</p>
-        </div>
+      <div class="card">
+        <div class="card-icon teal">🏠</div>
+        <h3 data-editable="">Local-first, by design</h3>
+        <p data-editable="">Your credentials live in one file on your machine and never leave it. GitQi has no servers to compromise, no account system to leak, no "forgot your password" flow because there is no password. Local is not a fallback. It is the default.</p>
       </div>
-      <div class="step">
-        <div class="step-num" aria-hidden="true">3</div>
-        <div>
-          <h3 data-editable="">Link your folder once</h3>
-          <p data-editable="">Select the folder containing your HTML files. Webby uses the File System Access API to write every change back to disk — continuously and silently.</p>
-        </div>
+      <div class="card">
+        <div class="card-icon pink">🔓</div>
+        <h3 data-editable="">MIT and free, forever</h3>
+        <p data-editable="">The code is yours to read, fork, audit, and run. No closed core. No paid tier. No "we'll open-source it if we fail". The whole premise of the tool is ownership — charging rent on it would undo the point.</p>
       </div>
-      <div class="step">
-        <div class="step-num" aria-hidden="true">4</div>
-        <div>
-          <h3 data-editable="">Edit, reformat, add sections, add pages</h3>
-          <p data-editable="">Click text, swap images, hover a section to reformat or delete it, or ask AI to generate a new one. Nav, theme, and pages stay in sync.</p>
-        </div>
+      <div class="card">
+        <div class="card-icon yellow">🔧</div>
+        <h3 data-editable="">Right to Repair your website</h3>
+        <p data-editable="">You should be able to open your site, understand it, change it, and publish it without needing a specialist's help. GitQi is built to make that feel obvious instead of heroic.</p>
       </div>
-      <div class="step">
-        <div class="step-num" aria-hidden="true">5</div>
-        <div>
-          <h3 data-editable="">Publish to GitHub Pages</h3>
-          <p data-editable="">Click <em>Publish</em>. Webby serializes every page, strips the editor and credentials, and pushes the clean files to your repo via the GitHub API.</p>
-        </div>
-      </div>
-    </div>
-    <div class="inline-note mt-md" style="background: rgba(253,224,71,0.12); border-left-color: var(--color-accent-3); color: rgba(253,251,245,0.85);">
-      <span class="inline-icon">🔒</span>
-      <span data-editable="">Your <code>secrets.js</code> file never leaves your computer. The published HTML contains no credentials, no editor code, nothing but your content.</span>
     </div>
   </div>
 </section>
 
-<section class="section" data-zone="get-started" data-zone-label="Get Started CTA" id="get-started" style="">
+<section class="section section--pink" data-zone="who" data-zone-label="Who it's for" id="who" style="">
   <div class="container">
-    <div class="cta-banner">
-      <span class="section-eyebrow" data-editable="">Start your site</span>
-      <h2 data-editable="">Five minutes from cloning to <span class="accent-word yellow">publishing</span>.</h2>
-      <p data-editable="">The Getting Started guide walks you through the prompt, the free services, the config file, and your first edits.</p>
-      <a href="./getting-started.html" class="btn btn-dark" data-editable="">Open the Getting Started guide <span class="arrow">→</span></a>
+    <div class="section-head">
+      <span class="section-eyebrow" data-editable="">Who it's for</span>
+      <h2 data-editable="">Two paths, <span class="accent-word magenta">one tool</span>.</h2>
+      <p class="section-lead" data-editable="">GitQi serves two audiences who are really a progression. Most people start on the Get Key path. Some arrive at Git Qi later — or not all. That's fine. Both are welcome.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-icon yellow">🔑</div>
+        <h3 data-editable="">Get Key</h3>
+        <p data-editable="">Clinic owners, consultants, studio owners, practitioners. People currently paying a platform, or paying someone to update their site, who want to own the content themselves.&nbsp;</p>
+        <div class="mt-md">
+          <a href="./get-key.html" class="btn btn-dark" data-editable="">Open the Get Key guide <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon pink">气</div>
+        <h3 data-editable="">Git Qi</h3>
+        <p data-editable="">Small developers, technical freelancers, indie makers who want to read the source, contribute, or self-host <code>gitqi.js</code>. Get involved and celebrate the OSS ethos.</p>
+        <div class="mt-md">
+          <a href="./git-qi.html" class="btn btn-primary" data-editable="">Enter the Git Qi path <span class="arrow">→</span></a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -526,12 +527,12 @@
     <div class="footer-top">
       <div>
         <a href="./index.html" class="footer-brand">
-          <span class="nav-logo" aria-hidden="true">W</span>
-          <span>Webby</span>
+          <span class="nav-logo" aria-hidden="true">G</span>
+          <span>GitQi</span>
         </a>
         <p class="footer-tagline" data-editable="">A zero-dependency, AI-enabled inline editor for static websites. Free, open source, and delightfully opinionated.</p>
         <div class="footer-socials">
-          <a href="https://github.com/swill/webby/" aria-label="GitHub repository" data-editable="" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/swill/gitqi/" aria-label="GitHub repository" data-editable="" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.09 0 4.43-2.7 5.4-5.26 5.69.41.35.78 1.05.78 2.12v3.14c0 .31.21.68.8.56C20.21 21.38 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"></path></svg>
           </a>
           <a href="https://github.com/swill" aria-label="Author on GitHub" data-editable="" target="_blank" rel="noopener noreferrer">
@@ -543,36 +544,27 @@
         <p class="footer-heading" data-editable="">Explore</p>
         <ul class="footer-links">
           <li><a href="./about.html" data-editable="">About the project</a></li>
-          <li><a href="./getting-started.html" data-editable="">Getting started</a></li>
-          <li><a href="./features-and-editing.html" data-editable="">Features &amp; editing</a></li>
+          <li><a href="./get-key.html" data-editable="">Get Key guide</a></li>
+          <li><a href="./git-qi.html" data-editable="">Git Qi (advanced)</a></li>
+          <li><a href="./features.html" data-editable="">Features &amp; editing</a></li>
           <li><a href="./donate.html" data-editable="">Donate</a></li>
         </ul>
       </div>
       <div>
         <p class="footer-heading" data-editable="">Resources</p>
         <ul class="footer-links">
-          <li><a href="https://github.com/swill/webby/" data-editable="" target="_blank" rel="noopener noreferrer">Source on GitHub</a></li>
-          <li><a href="https://github.com/swill/webby/blob/main/README.md" data-editable="" target="_blank" rel="noopener noreferrer">Documentation</a></li>
+          <li><a href="https://github.com/swill/gitqi/" data-editable="" target="_blank" rel="noopener noreferrer">Source on GitHub</a></li>
+          <li><a href="https://github.com/swill/gitqi/blob/main/README.md" data-editable="" target="_blank" rel="noopener noreferrer">Documentation (README)</a></li>
           <li><a href="https://aistudio.google.com" data-editable="" target="_blank" rel="noopener noreferrer">Free Gemini API key</a></li>
           <li><a href="https://pages.github.com/" data-editable="" target="_blank" rel="noopener noreferrer">GitHub Pages</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span data-editable="">© 2026 Webby · Crafted with care by <a href="https://github.com/swill" target="_blank" rel="noopener noreferrer">@swill</a>.</span>
-      <span data-editable="">MIT licensed. Forever free.</span>
+      <span data-editable="">© 2026 GitQi · Crafted with care by <a href="https://github.com/swill" target="_blank" rel="noopener noreferrer">@swill</a> · MIT licensed · Forever free.</span>
     </div>
   </div>
 </footer>
-
-
-
-
-
-
-
-
-
 
 
 
