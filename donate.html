@@ -63,7 +63,7 @@
   h2 { font-size: clamp(2rem, 2.8vw + 0.9rem, 3.15rem); font-variation-settings: 'opsz' 72; }
   h3 { font-size: clamp(1.25rem, 0.6vw + 1.1rem, 1.55rem); }
   p { margin: 0 0 var(--space-sm); }
-  a { color: var(----color-accent-4); text-decoration: none; }
+  a { color: var(--color-accent-4); text-decoration: none; }
   img { max-width: 100%; display: block; }
   ul { margin: 0 0 var(--space-sm); padding-left: 1.15rem; }
   li { margin-bottom: 0.3rem; }
@@ -361,8 +361,81 @@
   .center { text-align: center; }
   .max-prose { max-width: 760px; }
 
+  /* Name play */
+  .name-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-sm); }
+  @media (max-width: 860px) { .name-grid { grid-template-columns: 1fr 1fr; } }
+  .name-tile { background: var(--color-bg); border-radius: var(--radius); padding: var(--space-md); border 1px solid var(--color-border); }
+  .name-tile .lead { font-family: var(--font-heading); font-size: 2.3rem; color: var(--color-accent); display: block; margin-bottom: 0.3rem; font-weight: 500; font-style: italic; }
+  .name-tile:nth-child(2) .lead { color: var(--color-accent-2); }
+  .name-tile:nth-child(3) .lead { color: var(--color-secondary); }
+  .name-tile:nth-child(4) .lead { color: var(--color-accent-4); }
+  .name-tile p { margin: 0; color: var(--color-text-muted); font-size: 0.95rem; }
+
   /* Flourish */
   .flourish { position: absolute; pointer-events: none; opacity: 0.55; z-index: 0; }
+
+  /* Guide step (large, detailed numbered steps used on the Get Key guide) */
+  .guide-step { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: calc(var(--radius) * 1.15); padding: calc(var(--space-md) + 0.3rem); margin-bottom: var(--space-md); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+  .guide-step:hover { box-shadow: var(--shadow); }
+  .guide-step:last-child { margin-bottom: 0; }
+  .guide-step-head { display: grid; grid-template-columns: 80px 1fr; gap: var(--space-md); align-items: start; margin-bottom: var(--space-sm); }
+  .guide-step-num { width: 72px; height: 72px; border-radius: 20px; display: grid; place-items: center; font-family: var(--font-heading); font-size: 2rem; color: var(--color-accent-3); background: var(--color-primary); font-weight: 600; font-variation-settings: 'opsz' 144; line-height: 1; }
+  /*.guide-step:nth-of-type(1) .guide-step-num { background: var(--color-accent); color: var(--color-primary); }
+  .guide-step:nth-of-type(2) .guide-step-num { background: var(--color-secondary); }
+  .guide-step:nth-of-type(3) .guide-step-num { background: var(--color-accent-4); }
+  .guide-step:nth-of-type(4) .guide-step-num { background: var(--color-accent-3); color: var(--color-primary); }
+  .guide-step:nth-of-type(5) .guide-step-num { background: var(--color-accent-2); color: var(--color-primary); }
+  .guide-step:nth-of-type(6) .guide-step-num { background: var(--color-accent-5); }
+  .guide-step:nth-of-type(7) .guide-step-num { background: var(--color-primary); color: var(--color-accent-3); }*/
+  .guide-step-head h2 { margin: 0.15rem 0 0.4rem; font-size: clamp(1.45rem, 1.6vw + 0.9rem, 2.05rem); }
+  .guide-step-head .section-eyebrow { margin-bottom: 0.2rem; }
+  .guide-step-head p { color: var(--color-text-muted); margin: 0; }
+  .guide-step h4 { font-family: var(--font-body); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; margin: var(--space-md) 0 var(--space-xs); color: var(--color-secondary); display: inline-flex; align-items: center; gap: 0.45rem; }
+  .guide-step h4::before { content: ""; width: 18px; height: 2px; background: currentColor; border-radius: 2px; display: inline-block; }
+  .guide-step h4.why { color: var(--color-accent); }
+  .guide-step h4.how { color: #0b8e87; }
+  .guide-step h4.done { color: var(--color-accent-5); }
+  .guide-step ol, .guide-step ul { color: var(--color-text-muted); padding-left: 1.3rem; margin: 0 0 var(--space-sm); }
+  .guide-step ol li, .guide-step ul li { margin-bottom: 0.45rem; }
+  .guide-step ol li::marker, .guide-step ul li::marker { color: var(--color-secondary); font-weight: 600; }
+  .guide-step > p { color: var(--color-text-muted); }
+  .guide-step > p strong { color: var(--color-primary); }
+  @media (max-width: 520px) { .guide-step-head { grid-template-columns: 56px 1fr; gap: var(--space-sm); } .guide-step-num { width: 54px; height: 54px; font-size: 1.45rem; border-radius: 14px; } .guide-step-head h2 { font-size: 1.35rem; } }
+
+  /* Progress strip — pill row previewing a sequence of steps (used in hero on dark bg) */
+  .progress-strip { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: calc(var(--space-md) + 0.25rem); }
+  .progress-dot { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.9rem 0.4rem 0.4rem; border-radius: 999px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); color: rgba(253,251,245,0.88); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.01em; line-height: 1.2; }
+  .progress-dot .n { width: 22px; height: 22px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--color-accent-3); color: var(--color-primary); font-family: var(--font-heading); font-weight: 700; font-size: 0.78rem; flex-shrink: 0; font-variation-settings: 'opsz' 9; }
+  /*.progress-dot:nth-child(1) .n { background: var(--color-accent); color: var(--color-primary); }
+  .progress-dot:nth-child(2) .n { background: var(--color-secondary); color: white; }
+  .progress-dot:nth-child(3) .n { background: var(--color-accent-4); color: white; }
+  .progress-dot:nth-child(4) .n { background: var(--color-accent-3); color: var(--color-primary); }
+  .progress-dot:nth-child(5) .n { background: var(--color-accent-2); color: var(--color-primary); }
+  .progress-dot:nth-child(6) .n { background: var(--color-accent-5); color: white; }
+  .progress-dot:nth-child(7) .n { background: var(--color-bg); color: var(--color-primary); }*/
+  /* Progress strip on light backgrounds (fallback if used outside hero) */
+  .section .progress-strip .progress-dot { background: rgba(26,27,58,0.04); border-color: var(--color-border); color: var(--color-text-muted); }
+
+  /* Tech flow — horizontal pipeline with arrow connectors (e.g. "The publish pipeline") */
+  .tech-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-sm); margin-top: var(--space-md); }
+  .tech-flow .node { position: relative; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: calc(var(--radius) * 0.9); padding: calc(var(--space-sm) + 0.3rem) var(--space-sm) var(--space-sm); display: flex; flex-direction: column; gap: 0.4rem; transition: transform 0.22s ease, box-shadow 0.22s ease; }
+  .tech-flow .node:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .tech-flow .node::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; border-top-left-radius: inherit; border-top-right-radius: inherit; }
+  .tech-flow .node:nth-of-type(1)::before { background: var(--color-accent); }
+  .tech-flow .node:nth-of-type(2)::before { background: var(--color-secondary); }
+  .tech-flow .node:nth-of-type(3)::before { background: var(--color-accent-2); }
+  .tech-flow .node:nth-of-type(4)::before { background: var(--color-accent-3); }
+  .tech-flow .node:nth-of-type(5)::before { background: var(--color-accent-4); }
+  .tech-flow .node strong { font-family: var(--font-heading); font-weight: 600; font-size: 1.05rem; color: var(--color-primary); letter-spacing: -0.01em; line-height: 1.25; }
+  .tech-flow .node span { font-size: 0.92rem; color: var(--color-text-muted); line-height: 1.5; }
+  @media (max-width: 760px) {
+    .tech-flow { grid-template-columns: 1fr; gap: calc(var(--space-sm) + 0.6rem); }
+  }
+  /* Tech flow on dark sections */
+  .section--dark .tech-flow .node { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.12); }
+  .section--dark .tech-flow .node strong { color: var(--color-bg); }
+  .section--dark .tech-flow .node span { color: rgba(253,251,245,0.72); }
+  .section--dark .tech-flow .node:not(:last-child)::after { color: var(--color-accent-3); }
 </style>
 
 
@@ -546,6 +619,7 @@
     </div>
   </div>
 </footer>
+
 
 
 
