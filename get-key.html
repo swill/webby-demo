@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Key — Your step-by-step guide to owning your website.</title>
+<meta name="description" content="A plain-English guide to setting up GitQi from scratch. No technical knowledge needed — every step explains the what and the why.">
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster:wght@400&amp;display=swap"><style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  :root {
+    --color-primary: #1a1b3a;
+    --color-secondary: #d946ef;
+    --color-accent: #ff8c3c;
+    --color-accent-2: #2dd4bf;
+    --color-accent-3: #fde047;
+    --color-accent-4: #f472b6;
+    --color-bg: #fdfbf5;
+    --color-bg-alt: #f3ede0;
+    --color-text: #1a1b3a;
+    --color-text-muted: #5a5d7a;
+    --color-border: rgba(26, 27, 58, 0.09);
+
+    --font-heading: 'Fraunces', 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.75rem;
+    --space-lg: 3.5rem;
+    --space-xl: 6rem;
+
+    --container-width: 1200px;
+    --radius: 18px;
+    --shadow: 0 24px 60px -24px rgba(26, 27, 58, 0.28);
+    --font-funky: 'Lobster', system-ui, sans-serif;
+  --color-accent-5: #42468e;
+}
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.6;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin: 0 0 var(--space-sm);
+    color: var(--color-primary);
+    font-variation-settings: 'opsz' 32;
+  }
+  h1 { font-size: clamp(2.6rem, 5.5vw + 1rem, 5.25rem); font-weight: 500; letter-spacing: -0.035em; font-variation-settings: 'opsz' 144; }
+  h2 { font-size: clamp(2rem, 2.8vw + 0.9rem, 3.15rem); font-variation-settings: 'opsz' 72; }
+  h3 { font-size: clamp(1.25rem, 0.6vw + 1.1rem, 1.55rem); }
+  p { margin: 0 0 var(--space-sm); }
+  a { color: var(----color-accent-4); text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  ul { margin: 0 0 var(--space-sm); padding-left: 1.15rem; }
+  li { margin-bottom: 0.3rem; }
+  code { font-family: 'SF Mono', Menlo, Consolas, monospace; background: rgba(217,70,239,0.1); color: #a020c0; padding: 0.15em 0.4em; border-radius: 6px; font-size: 0.92em; }
+
+  .container { max-width: var(--container-width); margin: 0 auto; padding: 0 var(--space-md); }
+
+  .btn { margin-bottom:0.8em; display: inline-flex; align-items: center; gap: 0.55em; padding: 0.95em 1.55em; border-radius: 999px; font-family: var(--font-body); font-weight: 600; font-size: 1rem; letter-spacing: -0.01em; cursor: pointer; border: 2px solid transparent; transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, color 0.22s ease; text-decoration: none; line-height: 1; }
+  .btn-primary { background: var(--color-accent); color: var(--color-primary); box-shadow: 0 14px 34px -14px rgba(255, 140, 60, 0.75); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -14px rgba(255, 140, 60, 0.8); }
+  .btn-dark { background: var(--color-primary); color: var(--color-bg); }
+  .btn-dark:hover { background: var(--color-secondary); color: white; transform: translateY(-2px); }
+  .btn-ghost { background: transparent; color: var(--color-primary); border-color: currentColor; }
+  .btn-ghost:hover { background: var(--color-primary); color: var(--color-bg); }
+  .btn-ghost.on-dark { color: var(--color-bg); }
+  .btn-ghost.on-dark:hover { background: var(--color-bg); color: var(--color-primary); }
+  .btn .arrow { transition: transform 0.22s ease; }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  /* Navigation */
+  .site-nav { position: sticky; top: 0; z-index: 1000; background: rgba(253,251,245,0.94); border-bottom: 1px solid var(--color-border); }
+  .nav-inner { max-width: var(--container-width); margin: 0 auto; padding: 0.85rem var(--space-md); display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); position: relative; }
+  .nav-brand { display: flex; align-items: center; gap: 0.65rem; font-family: var(--font-heading); font-weight: 600; font-size: 1.3rem; color: var(--color-primary); text-decoration: none; }
+  .nav-logo { width: 38px; height: 38px; border-radius: 11px; display: inline-flex; align-items: center; justify-content: center; color: var(--color-bg); font-family: var(--font-heading); font-weight: 700; font-size: 1.25rem; background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 50%, var(--color-accent-2) 100%); box-shadow: 0 10px 24px -10px rgba(217,70,239,0.5); }
+  .nav-menu { display: flex; gap: 0.2rem; list-style: none; margin: 0; padding: 0; align-items: center; }
+  .nav-menu a { font-weight: 500; font-size: 0.96rem; padding: 0.55rem 0.9rem; border-radius: 999px; color: var(--color-text); transition: background 0.2s ease, color 0.2s ease; display: inline-block; }
+  .nav-menu a:hover { background: var(--color-bg-alt); color: var(--color-secondary); }
+  .nav-menu a.active { background: var(--color-primary); color: var(--color-bg); }
+  .nav-menu a.active:hover { background: var(--color-primary); color: var(--color-accent-3); }
+
+  .nav-toggle { display: none; background: transparent; border: 0; width: 46px; height: 46px; cursor: pointer; position: relative; padding: 0; border-radius: 10px; }
+  .nav-toggle:hover { background: var(--color-bg-alt); }
+  .nav-toggle span { position: absolute; left: 12px; right: 12px; height: 2px; background: var(--color-primary); transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease; border-radius: 2px; }
+  .nav-toggle span:nth-child(1) { top: 16px; }
+  .nav-toggle span:nth-child(2) { top: 22px; }
+  .nav-toggle span:nth-child(3) { top: 28px; }
+  .site-nav.is-open .nav-toggle span:nth-child(1) { top: 22px; transform: rotate(45deg); }
+  .site-nav.is-open .nav-toggle span:nth-child(2) { opacity: 0; }
+  .site-nav.is-open .nav-toggle span:nth-child(3) { top: 22px; transform: rotate(-45deg); }
+
+  @media (max-width: 920px) {
+    .nav-toggle { display: block; }
+    .nav-menu {
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      max-height: calc(100vh - 72px);
+      overflow-y: auto;
+      background: var(--color-bg);
+      flex-direction: column;
+      align-items: stretch;
+      padding: var(--space-sm) var(--space-md);
+      gap: 0.15rem;
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: 0 18px 40px -18px rgba(26,27,58,0.25);
+      transform: translateY(-12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.24s ease, opacity 0.24s ease;
+      z-index: 9000;
+    }
+    .site-nav.is-open .nav-menu { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .nav-menu a { padding: 0.95rem 1rem; font-size: 1.05rem; border-radius: 12px; }
+  }
+
+  /* Hero */
+  .hero { position: relative; overflow: hidden; isolation: isolate; }
+  .hero--home {
+    background:
+      radial-gradient(ellipse at 88% 12%, rgba(217,70,239,0.45), transparent 52%),
+      radial-gradient(ellipse at 10% 90%, rgba(45,212,191,0.4), transparent 55%),
+      radial-gradient(ellipse at 70% 85%, rgba(255,140,60,0.28), transparent 50%),
+      linear-gradient(135deg, #14152e, #1a1b3a 55%, #251a4c);
+    color: var(--color-bg);
+    padding: calc(var(--space-xl) * 1.05) 0 calc(var(--space-xl) * 1.05);
+  }
+  .hero--page {
+    background:
+      radial-gradient(ellipse at 85% 30%, rgba(255,140,60,0.32), transparent 52%),
+      radial-gradient(ellipse at 15% 80%, rgba(45,212,191,0.32), transparent 55%),
+      radial-gradient(ellipse at 50% 0%, rgba(217,70,239,0.22), transparent 60%),
+      linear-gradient(135deg, #14152e, #1a1b3a 60%, #2a1b45);
+    color: var(--color-bg);
+    padding: calc(var(--space-lg) * 1.35) 0 calc(var(--space-lg) * 1.35);
+  }
+  .hero h1, .hero h2, .hero h3 { color: var(--color-bg); }
+  .hero-inner { position: relative; z-index: 1; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.45rem 0.95rem; border-radius: 999px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.2); font-size: 0.78rem; color: var(--color-accent-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: var(--space-sm); }
+  .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-accent-3); box-shadow: 0 0 12px var(--color-accent-3); }
+  .hero-subtitle { font-size: clamp(1.05rem, 0.8vw + 0.9rem, 1.3rem); line-height: 1.55; color: rgba(253,251,245,0.8); max-width: 560px; margin-top: var(--space-sm); }
+  .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: calc(var(--space-md) + 0.25rem); }
+
+  .accent-word { color: var(--color-accent); font-style: italic; font-weight: 500; }
+  .accent-word.teal { color: var(--color-accent-2); }
+  .accent-word.yellow { color: var(--color-accent-3); }
+  .accent-word.pink { color: var(--color-accent-4); }
+  .accent-word.magenta { color: var(--color-secondary); }
+
+  .hero-split { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--space-lg); align-items: center; }
+  @media (max-width: 920px) { .hero-split { grid-template-columns: 1fr; gap: var(--space-lg); } }
+
+  .hero-media { position: relative; isolation: isolate; }
+  .hero-media-frame { position: relative; aspect-ratio: 4/5; border-radius: calc(var(--radius) * 1.4); overflow: hidden; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.55); }
+  .hero-media-frame img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-sticker { position: absolute; border-radius: 16px; padding: 0.7rem 1rem; font-size: 0.85rem; font-weight: 600; box-shadow: 0 14px 30px -10px rgba(0,0,0,0.35); display: inline-flex; align-items: center; gap: 0.5rem; z-index: 2; font-family: var(--font-body); }
+  .hero-sticker-1 { top: -1.2rem; left: -1.2rem; background: var(--color-accent-3); color: var(--color-primary); transform: rotate(-5deg); }
+  .hero-sticker-2 { bottom: 2.5rem; right: -1.3rem; background: var(--color-secondary); color: white; transform: rotate(4deg); }
+  .hero-sticker-3 { top: 45%; left: -1.6rem; background: var(--color-accent-2); color: var(--color-primary); transform: rotate(-3deg); }
+
+  .hero-blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.55; pointer-events: none; }
+
+  /* Stats row */
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); margin-top: var(--space-lg); padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.12); }
+  @media (max-width: 700px) { .stat-row { grid-template-columns: 1fr 1fr; } }
+  .stat-num { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.3rem); color: var(--color-accent-3); font-weight: 500; letter-spacing: -0.02em; }
+  .stat-label { font-size: 0.88rem; color: rgba(253,251,245,0.7); letter-spacing: 0.04em; }
+
+  /* Sections */
+  section[data-zone] { scroll-margin-top: 90px; }
+  .section { padding: var(--space-xl) 0; position: relative; overflow: hidden; }
+  .section--alt { background: var(--color-bg-alt); }
+  .section--dark { background: var(--color-primary); color: var(--color-bg); }
+  .section--dark h1, .section--dark h2, .section--dark h3 { color: var(--color-bg); }
+
+  .section--teal { background: linear-gradient(150deg, #dbf6f1 0%, #fff4eb 100%); }
+  .section--cream { background: var(--color-bg-alt); }
+  .section--pink { background: linear-gradient(145deg, #fbe6f6 0%, #fff3ea 100%); }
+  .section--dark code { color: var(--color-accent-2); }
+  .section--dark .step code { color: #a020c0; }
+  .section-eyebrow { display: inline-block; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--color-secondary); margin-bottom: var(--space-xs); }
+  .section--dark .section-eyebrow { color: var(--color-accent-3); }
+  .section--teal .section-eyebrow { color: #0b8e87; }
+  .section--pink .section-eyebrow { color: #a020c0; }
+  .section-head { max-width: 760px; margin-bottom: var(--space-lg); }
+  .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .section-lead { font-size: clamp(1.05rem, 0.7vw + 0.95rem, 1.2rem); color: var(--color-text-muted); line-height: 1.55; }
+  .section--dark .section-lead { color: rgba(253,251,245,0.78); }
+
+  /* About layout */
+  .about-layout { display: grid; grid-template-columns: 1.05fr 1fr; gap: var(--space-lg); align-items: center; }
+  @media (max-width: 860px) { .about-layout { grid-template-columns: 1fr; gap: var(--space-md); } }
+  .about-image { position: relative; isolation: isolate; }
+  .about-image img { border-radius: var(--radius); box-shadow: var(--shadow); aspect-ratio: 4/5; object-fit: cover; width: 100%; position: relative; z-index: 1; }
+  .about-image::before { content: ""; position: absolute; top: -1.2rem; right: -1.2rem; width: 55%; height: 55%; background: var(--color-accent-3); border-radius: var(--radius); z-index: 0; transform: rotate(5deg); }
+  .about-image::after { content: ""; position: absolute; bottom: -1.2rem; left: -1.2rem; width: 45%; height: 45%; background: var(--color-accent-2); border-radius: var(--radius); z-index: 0; transform: rotate(-6deg); }
+
+  /* Cards */
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+  @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } }
+  @media (max-width: 760px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .card { background: var(--color-bg); border-radius: var(--radius); padding: calc(var(--space-md) - 0.15rem); border: 1px solid var(--color-border); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; }
+  .card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+  .card-icon { width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center; margin-bottom: var(--space-sm); color: white; font-size: 1.5rem; background: var(--color-primary); }
+  .card-icon.accent { background: linear-gradient(135deg, var(--color-accent), var(--color-secondary)); }
+  .card-icon.teal { background: linear-gradient(135deg, var(--color-accent-2), #0b8e87); }
+  .card-icon.pink { background: linear-gradient(135deg, var(--color-secondary), var(--color-accent-4)); }
+  .card-icon.yellow { background: linear-gradient(135deg, var(--color-accent-3), var(--color-accent)); color: var(--color-primary); }
+  .card-icon.orange { background: linear-gradient(135deg, var(--color-accent), #e0521a); }
+  .card-icon svg { width: 26px; height: 26px; }
+  .card h3 { margin-top: 0; margin-bottom: 0.4rem; }
+  .card p { color: var(--color-text-muted); margin: 0; }
+
+  /* Path card (two-paths section) */
+  .path-card { background: var(--color-bg); border-radius: calc(var(--radius) * 1.2); padding: calc(var(--space-md) + 0.4rem); border: 1px solid var(--color-border); position: relative; overflow: hidden; transition: transform 0.28s ease, box-shadow 0.28s ease; display: flex; flex-direction: column; }
+  .path-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+  .path-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; }
+  .path-card.get-key::before { background: linear-gradient(90deg, var(--color-accent), var(--color-accent-3)); }
+  .path-card.git-qi::before { background: linear-gradient(90deg, var(--color-accent-2), var(--color-secondary)); }
+  .path-mark { width: 68px; height: 68px; border-radius: 20px; display: grid; place-items: center; font-size: 2rem; margin-bottom: var(--space-sm); }
+  .path-card.get-key .path-mark { background: linear-gradient(135deg, var(--color-accent), var(--color-accent-3)); color: var(--color-primary); }
+  .path-card.git-qi .path-mark { background: linear-gradient(135deg, var(--color-accent-2), var(--color-secondary)); color: var(--color-bg); font-family: var(--font-heading); font-weight: 600; }
+  .path-label { display: inline-block; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--color-secondary); margin-bottom: var(--space-xs); }
+  .path-card.get-key .path-label { color: #c05a1a; }
+  .path-card.git-qi .path-label { color: #0b8e87; }
+  .path-card h3 { font-size: clamp(1.4rem, 1.2vw + 0.9rem, 1.85rem); margin-top: 0; }
+  .path-card p { color: var(--color-text-muted); flex-grow: 1; }
+  .path-card .btn { margin-top: var(--space-sm); align-self: flex-start; }
+
+  /* Testimonial */
+  .testimonial { background: var(--color-bg); border-radius: var(--radius); padding: calc(var(--space-md) + 0.2rem); box-shadow: var(--shadow); position: relative; border-top: 6px solid var(--color-accent); }
+  .testimonial.v2 { border-top-color: var(--color-accent-2); }
+  .testimonial.v3 { border-top-color: var(--color-secondary); }
+  .testimonial .quote-mark { font-family: var(--font-heading); font-size: 3rem; line-height: 0.3; position: absolute; top: 1.6rem; right: 1.5rem; color: var(--color-accent); opacity: 0.35; font-style: italic; }
+  .testimonial.v2 .quote-mark { color: var(--color-accent-2); }
+  .testimonial.v3 .quote-mark { color: var(--color-secondary); }
+  .testimonial blockquote { margin: 0 0 var(--space-sm); font-family: var(--font-heading); font-size: 1.2rem; line-height: 1.45; color: var(--color-primary); font-weight: 500; font-style: italic; }
+  .testimonial cite { font-style: normal; font-size: 0.92rem; color: var(--color-text-muted); display: block; margin-top: var(--space-xs); }
+  .testimonial cite strong { color: var(--color-primary); display: block; font-weight: 600; font-style: normal; }
+
+  /* Feature showcase */
+  .feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); align-items: center; margin-bottom: calc(var(--space-xl) * 0.9); }
+  .feature-row:last-child { margin-bottom: 0; }
+  @media (max-width: 900px) { .feature-row { grid-template-columns: 1fr; margin-bottom: var(--space-xl); } .feature-row .feature-media { order: -1; } }
+  .feature-media { position: relative; isolation: isolate; }
+  .feature-media img { border-radius: var(--radius); width: 100%; aspect-ratio: 5/4; object-fit: cover; box-shadow: var(--shadow); position: relative; z-index: 1; }
+  .feature-media::before { content:""; position: absolute; border-radius: var(--radius); z-index: 0; }
+  .feature-media.frame-orange::before { inset: -0.9rem auto auto -0.9rem; width: 55%; height: 60%; background: var(--color-accent); transform: rotate(-3deg); }
+  .feature-media.frame-teal::before { inset: auto -0.9rem -0.9rem auto; width: 55%; height: 60%; background: var(--color-accent-2); transform: rotate(5deg); }
+  .feature-media.frame-pink::before { inset: -0.9rem -0.9rem auto auto; width: 48%; height: 55%; background: var(--color-accent-4); transform: rotate(4deg); }
+  .feature-media.frame-yellow::before { inset: auto auto -0.9rem -0.9rem; width: 55%; height: 55%; background: var(--color-accent-3); transform: rotate(-4deg); }
+  .feature-media.frame-magenta::before { inset: -0.9rem auto auto -0.9rem; width: 55%; height: 55%; background: var(--color-secondary); transform: rotate(-5deg); }
+
+  .feature-chip { display: inline-block; padding: 0.38rem 0.82rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 999px; margin-bottom: var(--space-sm); }
+  .chip-orange { background: rgba(255,140,60,0.16); color: #c05a1a; }
+  .chip-teal { background: rgba(45,212,191,0.2); color: #0b8e87; }
+  .chip-pink { background: rgba(217,70,239,0.15); color: #a020c0; }
+  .chip-yellow { background: rgba(253,224,71,0.3); color: #8a6d00; }
+  .chip-magenta { background: rgba(244,114,182,0.2); color: #b33076; }
+
+  .feature-text h3 { font-size: clamp(1.5rem, 2vw + 0.5rem, 2rem); }
+  .feature-text ul { padding-left: 1.1rem; color: var(--color-text-muted); }
+  .feature-text ul li::marker { color: var(--color-secondary); }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: 1fr; gap: var(--space-sm); }
+  .step { display: grid; grid-template-columns: 76px 1fr; gap: var(--space-md); align-items: start; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius); padding: calc(var(--space-md) - 0.1rem); transition: transform 0.22s ease, box-shadow 0.22s ease; }
+  .step:hover { transform: translateX(4px); box-shadow: var(--shadow); }
+  .step-num { width: 64px; height: 64px; border-radius: 18px; display: grid; place-items: center; font-family: var(--font-heading); font-size: 1.65rem; color: white; background: var(--color-primary); font-weight: 600; font-variation-settings: 'opsz' 144; }
+  .steps .step:nth-child(1) .step-num { background: var(--color-accent); color: var(--color-primary); }
+  .steps .step:nth-child(2) .step-num { background: var(--color-secondary); }
+  .steps .step:nth-child(3) .step-num { background: var(--color-accent-2); color: var(--color-primary); }
+  .steps .step:nth-child(4) .step-num { background: var(--color-accent-3); color: var(--color-primary); }
+  .steps .step:nth-child(5) .step-num { background: var(--color-accent-4); }
+  .steps .step:nth-child(6) .step-num { background: var(--color-accent-5); }
+  .steps .step:nth-child(7) .step-num { background: var(--color-primary); color: var(--color-accent-3); }
+  .step h3 { margin: 0 0 0.3rem; }
+  .step p { margin: 0; color: var(--color-text-muted); }
+  .section--dark .step h1, .section--dark .step h2, .section--dark .step h3 { color: var(--color-accent-5); }
+  @media (max-width: 520px) { .step { grid-template-columns: 56px 1fr; gap: var(--space-sm); } .step-num { width: 52px; height: 52px; font-size: 1.35rem; border-radius: 14px; } }
+
+  /* CTA banner */
+  .cta-banner { background: linear-gradient(120deg, var(--color-accent) 0%, var(--color-secondary) 55%, #7a2fc4 100%); color: white; padding: calc(var(--space-lg) + 0.5rem) var(--space-md); border-radius: calc(var(--radius) * 1.6); text-align: center; position: relative; overflow: hidden; isolation: isolate; }
+  .cta-banner::before, .cta-banner::after { content: ""; position: absolute; border-radius: 50%; z-index: -1; filter: blur(30px); opacity: 0.6; }
+  .cta-banner::before { top: -50px; left: -40px; width: 220px; height: 220px; background: var(--color-accent-3); }
+  .cta-banner::after { bottom: -60px; right: -50px; width: 260px; height: 260px; background: var(--color-accent-2); }
+  .cta-banner .section-eyebrow { color: rgba(255,255,255,0.9); }
+  .cta-banner h2 { color: white; max-width: 680px; margin-left: auto; margin-right: auto; }
+  .cta-banner p { color: rgba(255,255,255,0.9); max-width: 560px; margin: 0 auto var(--space-md); font-size: 1.08rem; }
+  .cta-banner code { color: var(--color-accent-2); }
+  .cta-banner .btn-dark { background: var(--color-accent-5); }
+  .cta-banner .btn-dark:hover { background: var(--color-primary); }
+
+  /* Code block */
+  .code-block { background: #0e0f23; color: #e2e4ff; border-radius: var(--radius); padding: var(--space-md); font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.65; overflow-x: auto; position: relative; border: 1px solid rgba(255,255,255,0.08); }
+  .code-block::before { content: ""; position: absolute; top: 16px; left: 18px; width: 11px; height: 11px; border-radius: 50%; background: #ff6058; box-shadow: 18px 0 0 #ffc02e, 36px 0 0 #29cd42; }
+  .code-block pre { margin: 28px 0 0; white-space: pre; font-family: inherit; color: inherit; }
+  .code-block .k { color: #c379f5; }
+  .code-block .s { color: #7ff5c3; }
+  .code-block .c { color: #7c819e; font-style: italic; }
+  .code-block .p { color: #ffa96b; }
+
+  /* Inline note */
+  .inline-note { display: flex; gap: 0.85rem; padding: 1rem 1.15rem; background: rgba(45,212,191,0.12); border-left: 4px solid var(--color-accent-2); border-radius: 10px; color: var(--color-text); font-size: 0.95rem; margin-top: var(--space-sm); }
+  .inline-note.warn { background: rgba(255,140,60,0.12); border-left-color: var(--color-accent); }
+  .inline-note.lock { background: rgba(26,27,58,0.06); border-left-color: var(--color-primary); }
+  .inline-note.win { background: rgba(253,224,71,0.22); border-left-color: var(--color-accent-3); }
+  .inline-note .inline-icon { font-size: 1.2rem; flex-shrink: 0; line-height: 1.2; }
+
+  /* Donate cards */
+  .donate-card { background: var(--color-bg); border-radius: var(--radius); padding: calc(var(--space-md) + 0.3rem); border: 1px solid var(--color-border); position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .donate-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .donate-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; }
+  .donate-card.v1::before { background: linear-gradient(90deg, var(--color-accent), var(--color-secondary)); }
+  .donate-card.v2::before { background: linear-gradient(90deg, var(--color-accent-2), #0b8e87); }
+  .donate-card.v3::before { background: linear-gradient(90deg, var(--color-accent-3), var(--color-accent)); }
+  .donate-card h3 { margin-top: 0; font-size: 1.45rem; }
+  .donate-card .emoji { font-size: 2rem; margin-bottom: var(--space-sm); display: block; }
+
+  /* Footer */
+  .site-footer { background: var(--color-primary); color: var(--color-bg); padding: calc(var(--space-lg) + 0.5rem) 0 var(--space-md); position: relative; overflow: hidden; }
+  .site-footer::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--color-accent), var(--color-secondary) 35%, var(--color-accent-4) 65%, var(--color-accent-2)); }
+  .site-footer a { color: inherit; }
+  .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: var(--space-lg); padding-bottom: var(--space-md); border-bottom: 1px solid rgba(255,255,255,0.1); }
+  @media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; gap: var(--space-md); } }
+  @media (max-width: 560px) { .footer-top { grid-template-columns: 1fr; } }
+  .footer-brand { display: flex; align-items: center; gap: 0.65rem; font-family: var(--font-heading); font-size: 1.4rem; font-weight: 600; margin-bottom: var(--space-xs); color: var(--color-bg); text-decoration: none; }
+  .footer-brand .nav-logo { width: 38px; height: 38px; font-size: 1.2rem; }
+  .footer-tagline { color: rgba(253,251,245,0.68); max-width: 340px; margin: 0 0 var(--space-sm); font-size: 0.97rem; }
+  .footer-heading { font-family: var(--font-body); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--color-accent-3); margin: 0 0 var(--space-sm); font-weight: 700; }
+  .footer-links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.45rem; }
+  .footer-links a { color: rgba(253,251,245,0.78); font-size: 0.95rem; transition: color 0.2s ease; }
+  .footer-links a:hover { color: var(--color-accent-3); }
+  .footer-bottom { padding-top: var(--space-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm); color: rgba(253,251,245,0.55); font-size: 0.9rem; }
+  .footer-socials { display: flex; gap: 0.5rem; }
+  .footer-socials a { width: 40px; height: 40px; border-radius: 50%; display: inline-grid; place-items: center; background: rgba(255,255,255,0.08); transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease; color: var(--color-bg); }
+  .footer-socials a:hover { background: var(--color-accent); color: var(--color-primary); transform: translateY(-2px); }
+  .footer-socials svg { width: 18px; height: 18px; }
+
+  /* Utility */
+  .mt-sm { margin-top: var(--space-sm); }
+  .mt-md { margin-top: var(--space-md); }
+  .mt-lg { margin-top: var(--space-lg); }
+  .mb-lg { margin-bottom: var(--space-lg); }
+  .center { text-align: center; }
+  .max-prose { max-width: 760px; }
+
+  /* Flourish */
+  .flourish { position: absolute; pointer-events: none; opacity: 0.55; z-index: 0; }
+</style>
+
+
+<link rel="icon" type="image/png" href="./assets/favicon.png"><link rel="apple-touch-icon" href="./assets/favicon.png"><meta name="keywords" content="get key, getting started, setup, github pages, gitqi guide"></head>
+<body style="">
+<nav class="site-nav" style="">
+  <div class="nav-inner">
+    <a href="./index.html" class="nav-brand">
+      <span class="nav-logo" aria-hidden="true">G</span>
+      <span>GitQi</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-menu">
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./about.html">About</a></li>
+      <li><a href="./get-key.html">Get Key</a></li>
+      <li><a href="./git-qi.html">Git Qi</a></li>
+      <li><a href="./features.html">Features</a></li>
+      <li><a href="./donate.html">Donate</a></li>
+    </ul>
+  </div>
+  <script>
+    (function(){
+      const nav = document.currentScript.closest('nav');
+      nav.addEventListener('click', function(e){
+        const btn = e.target.closest('.nav-toggle');
+        if (btn) {
+          const open = nav.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        } else if (e.target.closest('.nav-menu a')) {
+          nav.classList.remove('is-open');
+          const t = nav.querySelector('.nav-toggle');
+          if (t) t.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+  </script>
+</nav>
+
+<section class="hero hero--page" data-zone="hero" data-zone-label="Hero" id="hero" style="">
+  <div class="container hero-inner">
+    <span class="hero-badge" data-editable=""><span class="dot"></span>The Get Key path</span>
+    <h1 data-editable="">From zero to your own <span class="accent-word">live website</span>. Step by step.</h1>
+    <p class="hero-subtitle" data-editable="">No technical background needed. Each step tells you what you're doing and why — so you understand it, not just copy it. Estimated time: about 30 minutes the first time.</p>
+    <div class="progress-strip" aria-hidden="true">
+      <span class="progress-dot"><span class="n">1</span> Prompt</span>
+      <span class="progress-dot"><span class="n">2</span> Repo</span>
+      <span class="progress-dot"><span class="n">3</span> Token</span>
+      <span class="progress-dot"><span class="n">4</span> AI key</span>
+      <span class="progress-dot"><span class="n">5</span> secrets.js</span>
+      <span class="progress-dot"><span class="n">6</span> Edit &amp; publish</span>
+      <span class="progress-dot"><span class="n">7</span> Go live</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" data-zone="before-you-start" data-zone-label="Before You Start" id="before-you-start" style="">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow" data-editable="">Before you start</span>
+      <h2 data-editable="">What this is and <span class="accent-word magenta">what you'll have</span> at the end.</h2>
+      <p class="section-lead" data-editable="">GitQi is a small tool that turns an ordinary HTML file into something you can edit by clicking on it — and publish to a live website with one click. You don't need to install anything. You don't need a terminal. You just need Chrome or Edge.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon yellow">✨</div>
+        <h3 data-editable="">A live website</h3>
+        <p data-editable="">Yours, at a free <code>.github.io</code> address. You can point a custom domain at it later if you want.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon teal">💰</div>
+        <h3 data-editable="">Zero recurring cost</h3>
+        <p data-editable="">A free GitHub account, a free AI key. No subscription. No billing card required at any step.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon pink">🌐</div>
+        <h3 data-editable="">A browser requirement</h3>
+        <p data-editable="">Use Chrome or Edge for editing. Your live site works in every browser — but the editor needs the File System Access API, which only Chromium browsers support today.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt" data-zone="steps" data-zone-label="The Steps" id="steps" style="">
+  <div class="container">
+
+    <div class="guide-step" data-zone="step-1" data-zone-label="Step 1 · Prompt" id="step-1">
+      <div class="guide-step-head">
+        <div class="guide-step-num" aria-hidden="true">1</div>
+        <div>
+          <span class="section-eyebrow" data-editable="">Step 1 · Prompt</span>
+          <h2 data-editable="">Design your <span class="accent-word magenta">site prompt</span>.</h2>
+          <p data-editable=""><strong>What you're doing:</strong> writing a description of your site so an AI can build the first version for you.</p>
+        </div>
+      </div>
+      <h4 class="why" data-editable="">Why it matters</h4>
+      <p data-editable="">GitQi doesn't use templates. Instead, it uses your ideas and AI to generate an HTML file (or multiple) that matches your business, your tone, and your visual taste — from the ground up. You describe it; AI builds it. Everything it produces, you can edit word-by-word on the page later.</p>
+      <h4 class="how" data-editable="">How to do it</h4>
+      <ol>
+        <li data-editable="">Open the Bootstrap Prompt from the <a href="https://github.com/swill/gitqi/blob/main/BOOTSTRAP_PROMPT.md" target="_blank" rel="noopener noreferrer">GitQi repository</a>.</li>
+        <li data-editable="">Fill in the bracketed fields: your name, your business, a tagline, the sections you want, and the vibe or feel you're going for. Be specific — "warm, earthy, handcrafted" is more useful than "nice".</li>
+        <li data-editable="">Gather 2–5 screenshots or photos of sites, palettes, or designs you like. These are attached to the prompt, not uploaded anywhere permanent.</li>
+        <li data-editable="">Open <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">Claude.ai</a> (a free account works), paste the prompt, attach your images, and send it.</li>
+        <li data-editable="">Copy the HTML it produces and save it as <code>index.html</code> in a new folder on your desktop (e.g. <code>my-site/</code>).</li>
+      </ol>
+      <h4 class="done" data-editable="">Done when</h4>
+      <p data-editable="">You have an <code>index.html</code> file in a folder on your computer.</p>
+      <div class="inline-note">
+        <span class="inline-icon">💡</span>
+        <span data-editable="">The AI-generated HTML is a starting point, not a final product. You can edit every word of it directly on the page — that's what GitQi is for. Don't try to make it perfect in the prompt, establish a starting theme you are happy with.</span>
+      </div>
+    </div>
+
+    <div class="guide-step" data-zone="step-2" data-zone-label="Step 2 · Repo" id="step-2">
+      <div class="guide-step-head">
+        <div class="guide-step-num" aria-hidden="true">2</div>
+        <div>
+          <span class="section-eyebrow" data-editable="">Step 2 · Repo</span>
+          <h2 data-editable="">Create a GitHub <span class="accent-word teal">repository</span>.</h2>
+          <p data-editable=""><strong>What you're doing:</strong> making a home on GitHub for your site's files to live. Free, permanent, and entirely yours.</p>
+        </div>
+      </div>
+      <h4 class="why" data-editable="">Why it matters</h4>
+      <p data-editable="">GitHub is where your site will live. GitQi publishes by pushing your HTML file to a GitHub repository, and GitHub then serves it as a live website through a feature called <em>GitHub Pages</em> — for free, forever, with no subscription. Your site is just a file in a folder on GitHub. You can always download it, move it, or delete it.</p>
+      <h4 class="how" data-editable="">How to do it</h4>
+      <ol>
+        <li data-editable="">Go to <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com</a> and create a free account if you don't have one.</li>
+        <li data-editable="">In the top-right, click the <code>+</code> icon → <strong>New repository</strong>.</li>
+        <li data-editable="">Name it something simple and lowercase with hyphens, like <code>my-clinic-site</code>.</li>
+        <li data-editable="">Set it to <strong>Public</strong> (required for free GitHub Pages).</li>
+        <li data-editable="">Leave every other option at its default. You do <em>not</em> need to add a README, a <code>.gitignore</code>, or a license — GitQi will populate the repository for you.</li>
+        <li data-editable="">Click <strong>Create repository</strong>.</li>
+      </ol>
+      <h4 class="done" data-editable="">Done when</h4>
+      <p data-editable="">You land on a page that says something like "Quick setup — if you've done this kind of thing before". The repository exists but is empty. That's exactly what we want. We'll come back and turn on GitHub Pages in <strong>Step 7</strong>, once there's a file in the repo for Pages to serve.</p>
+      <div class="inline-note lock">
+        <span class="inline-icon">🔒</span>
+        <span data-editable="">Your repository is public, which means anyone can see your site's HTML. That's normal and expected — it's how GitHub Pages works. Your personal credentials (API keys, tokens) will never be in this repository. GitQi is specifically designed to prevent that.</span>
+      </div>
+    </div>
+
+    <div class="guide-step" data-zone="step-3" data-zone-label="Step 3 · Token" id="step-3">
+      <div class="guide-step-head">
+        <div class="guide-step-num" aria-hidden="true">3</div>
+        <div>
+          <span class="section-eyebrow" data-editable="">Step 3 · Token</span>
+          <h2 data-editable="">Create a GitHub <span class="accent-word pink">access token</span>.</h2>
+          <p data-editable=""><strong>What you're doing:</strong> giving GitQi narrow permission to push files into your one repository.</p>
+        </div>
+      </div>
+      <h4 class="why" data-editable="">Why it matters</h4>
+      <p data-editable="">When you click <em>Publish</em> in GitQi, the tool needs to write your HTML file to GitHub. To do that, it needs permission. A <em>Personal Access Token</em> is how you grant that permission — scoped only to this one site repository, with no access to anything else on your account.</p>
+      <h4 class="how" data-editable="">How to do it</h4>
+      <ol>
+        <li data-editable="">On GitHub, click your profile photo (top-right) → <strong>Settings</strong>.</li>
+        <li data-editable="">Scroll to the bottom of the left sidebar → <strong>Developer settings</strong>.</li>
+        <li data-editable="">Click <strong>Personal access tokens</strong> → <strong>Fine-grained tokens</strong>.</li>
+        <li data-editable="">Click <strong>Generate new token</strong>.</li>
+        <li data-editable="">Give it a name like <code>gitqi-my-site</code> so future-you remembers what it's for.</li>
+        <li data-editable="">Set expiration to not expire, or expire in 1 year (in which case you'll repeat this step once a year).</li>
+        <li data-editable="">Under <strong>Repository access</strong>, choose <em>Only select repositories</em> and pick the repository you just created.</li>
+        <li data-editable="">Under <strong>Permissions → Repository permissions</strong>, find <strong>Contents</strong> and add it, then set it to <em>Read and write</em>.</li>
+        <li data-editable="">Click <strong>Generate token</strong> and <strong>copy the token immediately</strong> — GitHub only shows it once. It starts with <code>ghp_</code>.</li>
+      </ol>
+      <h4 class="done" data-editable="">Done when</h4>
+      <p data-editable="">You have a token string starting with <code>ghp_</code> copied somewhere safe (a notes app is fine — we'll move it into a file in Step 5).</p>
+      <div class="inline-note lock">
+        <span class="inline-icon">🔒</span>
+        <span data-editable="">This token can only read and write files in your one repository. It cannot access your GitHub account, your profile, your other repositories, or anything else. If it's ever exposed, you can revoke it with one click and generate a new one.</span>
+      </div>
+    </div>
+
+    <div class="guide-step" data-zone="step-4" data-zone-label="Step 4 · AI Key" id="step-4" style="">
+      <div class="guide-step-head">
+        <div class="guide-step-num" aria-hidden="true">4</div>
+        <div>
+          <span class="section-eyebrow" data-editable="">Step 4 · AI Key</span>
+          <h2 data-editable="">Get a free <span class="accent-word yellow"><span style="color: var(--color-accent);" data-gitqi-style="">AI key</span></span>.</h2>
+          <p data-editable=""><strong>What you're doing:</strong>&nbsp;grabbing a free key from Google AI Studio so GitQi can generate new sections and pages for your site.</p>
+        </div>
+      </div>
+      <h4 class="why" data-editable="">Why it matters</h4>
+      <p data-editable="">GitQi uses AI to help you add new content — describe a section and it appears, styled to match your site. To do this, it needs access to an AI model. Google AI Studio provides a free API key with a generous usage limit — no billing, no credit card, no payment details required. It's the easiest free AI key on the internet.</p>
+      <h4 class="how" data-editable="">How to do it</h4>
+      <ol>
+        <li data-editable="">Go to <a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">aistudio.google.com</a> and sign in with your Google account (Gmail works fine).</li>
+        <li data-editable="">Accept the terms of service if prompted.</li>
+        <li data-editable="">Click <strong>Get API key</strong> in the left sidebar (or at <a href="https://aistudio.google.com/api-keys" target="_blank" rel="noopener noreferrer">aistudio.google.com/api-keys</a>).</li>
+        <li data-editable="">Click <strong>Create API key</strong>. If AI Studio asks you to pick a Google Cloud project, let it create a new one for you — you don't need to configure it.</li>
+        <li data-editable="">Copy the key that appears. It starts with <code>AIza</code>.</li>
+      </ol>
+      <h4 class="done" data-editable="">Done when</h4>
+      <p data-editable="">You have a key string starting with <code>AIza</code> copied somewhere safe.</p>
+      <div class="inline-note">
+        <span class="inline-icon">💡</span>
+        <span data-editable="">This key is used directly from your browser — it never passes through GitQi's servers (there are no GitQi servers). Your usage is strictly between your browser and Google's API. The free tier is generous for personal site use.</span>
+      </div>
+      <div class="inline-note lock">
+        <span class="inline-icon">🔒</span>
+        <span data-editable="">Google will <strong>never</strong> ask you for a payment method to create this key. If you see a prompt about "enabling billing", you're in the wrong place — step back to AI Studio (not Google Cloud Console) and try again.</span>
+      </div>
+    </div>
+
+    <div class="guide-step" data-zone="step-5" data-zone-label="Step 5 · secrets.js" id="step-5">
+      <div class="guide-step-head">
+        <div class="guide-step-num" aria-hidden="true">5</div>
+        <div>
+          <span class="section-eyebrow" data-editable="">Step 5 · secrets.js</span>
+          <h2 data-editable="">Create your <span class="accent-word"><span style="color: var(--color-primary);" data-gitqi-style=""><span style="color: var(--color-secondary);" data-gitqi-style="">secrets.js</span></span></span> file.</h2>
+          <p data-editable=""><strong>What you're doing:</strong> saving your keys into one small file that lives only on your computer. It is never published.</p>
+        </div>
+      </div>
+      <h4 class="why" data-editable="">Why it matters</h4>
+      <p data-editable="">GitQi needs to know your GitHub token, your AI key, and which repository to publish to. Rather than asking you every time, it reads this from a file called <code>secrets.js</code> that sits next to your HTML. This file is the only thing you configure. It never gets uploaded — GitQi is specifically designed to strip it out before publishing.</p>
+      <h4 class="how" data-editable="">How to do it</h4>
+      <ol>
+        <li data-editable="">Open a plain-text editor (Notepad on Windows, TextEdit on Mac — on Mac, switch to plain-text mode under <em>Format → Make Plain Text</em>).</li>
+        <li data-editable="">Paste the following exactly:</li>
+      </ol>
+      <div class="code-block">
+<pre><span class="c">// secrets.js — lives beside your HTML, never published</span>
+<span class="k">window</span>.SITE_SECRETS = {
+  geminiKey:   <span class="s">"AIza..."</span>,              <span class="c">// your Google AI key</span>
+  githubToken: <span class="s">"ghp_..."</span>,              <span class="c">// your GitHub token</span>
+  repo:        <span class="s">"username/my-site"</span>,     <span class="c">// your GitHub username / repo name</span>
+  branch:      <span class="s">"main"</span>
+};</pre>
+      </div>
+      <ol start="3">
+        <li data-editable="">Replace the placeholder values with your actual keys and repository details.</li>
+        <li data-editable="">Save the file as <code>secrets.js</code> in the same folder as your <code>index.html</code>.</li>
+      </ol>
+      <h4 class="done" data-editable="">Done when</h4>
+      <p data-editable="">Your folder looks like this:</p>
+      <div class="code-block">
+<pre>my-site/
+├── <span class="p">index.html</span>
+└── <span class="p">secrets.js</span>    <span class="c">← stays on your machine, forever</span></pre>
+      </div>
+      <div class="inline-note lock">
+        <span class="inline-icon">🔒</span>
+        <span data-editable="">This file never leaves your computer. GitQi publishes by stripping <code>secrets.js</code> entirely before pushing anything to GitHub. Your credentials are never in your repository and never on the internet.</span>
+      </div>
+    </div>
+
+    <div class="guide-step" data-zone="step-6" data-zone-label="Step 6 · Edit &amp; Publish" id="step-6">
+      <div class="guide-step-head">
+        <div class="guide-step-num" aria-hidden="true">6</div>
+        <div>
+          <span class="section-eyebrow" data-editable="">Step 6 · Edit &amp; Publish</span>
+          <h2 data-editable="">Open the editor and <span class="accent-word magenta"><span style="color: var(--color-accent-2);" data-gitqi-style="">publish</span></span>.</h2>
+          <p data-editable=""><strong>What you're doing:</strong> opening your HTML file in Chrome, linking your folder, editing anything you like, and pushing it to GitHub with one click.</p>
+        </div>
+      </div>
+      <h4 class="why" data-editable="">Why it matters</h4>
+      <p data-editable="">GitQi activates automatically when it detects <code>secrets.js</code> next to your HTML file. You'll see a toolbar at the top of the page. From here you edit everything directly on the page — no forms, no dashboards, just the page itself. When you click <em>Publish</em>, your file lands in GitHub. That first publish is also what creates the <code>main</code> branch in your repository — which is a thing we'll need for the last step.</p>
+      <h4 class="how" data-editable="">How to do it</h4>
+      <ol>
+        <li data-editable="">Open <strong>Chrome</strong>, <strong>Edge</strong>, or another Chromium-based browser. Safari and Firefox don't support the required File System Access API yet.</li>
+        <li data-editable="">Drag your <code>index.html</code> file into a browser window — or use <em>File → Open File</em>, or right-click the file and choose <em>Open With</em>.</li>
+        <li data-editable="">You'll see the GitQi toolbar appear at the top of the page.</li>
+        <li data-editable="">Click <strong>Select Folder</strong> and choose your <code>my-site/</code> folder. This links GitQi to your files so changes save automatically as you edit.</li>
+        <li data-editable="">Click any text to edit it. Select text to bring up formatting options (bold, italic, fonts, colors, links).</li>
+        <li data-editable="">Click any image to swap it for one from your computer.</li>
+        <li data-editable="">When you're ready, click <strong>Publish</strong>. GitQi strips the editor code and your <code>secrets.js</code>, then pushes the clean HTML to GitHub.</li>
+      </ol>
+      <h4 class="done" data-editable="">Done when</h4>
+      <p data-editable="">You see a "Published ✓" confirmation. If you now go to your GitHub repository, you'll see your <code>index.html</code> file in the file list — and the repository will show a <code>main</code> branch. <strong>That's new.</strong> The empty repository now has a branch and a file, which means we can finally turn Pages on.</p>
+      <div class="inline-note win">
+        <span class="inline-icon">🎉</span>
+        <span data-editable="">Your file is now on GitHub. One more short step and it will be a live website.</span>
+      </div>
+    </div>
+
+    <div class="guide-step" data-zone="step-7" data-zone-label="Step 7 · Go Live" id="step-7">
+      <div class="guide-step-head">
+        <div class="guide-step-num" aria-hidden="true">7</div>
+        <div>
+          <span class="section-eyebrow" data-editable="">Step 7 · Go Live</span>
+          <h2 data-editable="">Turn on <span class="accent-word yellow"><span style="color: var(--color-accent-4);" data-gitqi-style="">GitHub Pages</span></span>.</h2>
+          <p data-editable=""><strong>What you're doing:</strong> telling GitHub to serve the file you just published as a live website.</p>
+        </div>
+      </div>
+      <h4 class="why" data-editable="">Why it matters</h4>
+      <p data-editable="">This is the step we deferred from Step 2. We couldn't do it earlier because GitHub Pages needs a branch to serve from — and a brand-new empty repository has no branches. Your first publish in Step 6 created the <code>main</code> branch. Now we can point GitHub Pages at it and your site goes live.</p>
+      <h4 class="how" data-editable="">How to do it</h4>
+      <ol>
+        <li data-editable="">Go to your repository on GitHub.</li>
+        <li data-editable="">Click <strong>Settings</strong> (in the repository's own menu bar — not your account settings).</li>
+        <li data-editable="">In the left sidebar, click <strong>Pages</strong>.</li>
+        <li data-editable="">Under <strong>Source</strong>, choose <em>Deploy from a branch</em>.</li>
+        <li data-editable="">Set <strong>Branch</strong> to <code>main</code> and <strong>Folder</strong> to <code>/ (root)</code>.</li>
+        <li data-editable="">Click <strong>Save</strong>.</li>
+        <li data-editable="">GitHub shows a banner like "Your site is live at <code>https://your-username.github.io/your-repo-name/</code>". The first deploy takes about a minute.</li>
+      </ol>
+      <h4 class="done" data-editable="">Done when</h4>
+      <p data-editable="">You can visit the URL GitHub showed you, and your site loads. 🎉</p>
+      <div class="inline-note win">
+        <span class="inline-icon">🔑</span>
+        <span data-editable=""><strong>You're in.</strong> You have the key now. From here, everything is just editing. Open your local <code>index.html</code> in Chrome whenever you want to change something — click, type, click <em>Publish</em>.</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section section--teal" data-zone="whats-next" data-zone-label="What's Next" id="whats-next" style="">
+  <div class="container">
+    <div class="section-head center">
+      <span class="section-eyebrow" data-editable="">What's next</span>
+      <h2 data-editable="">You've got the <span class="accent-word magenta">key</span>. Where next?</h2>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-icon accent">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+        </div>
+        <h3 data-editable="">Explore every feature</h3>
+        <p data-editable="">The editor has more tricks — reformatting, AI-generated sections, multi-page sync, favicon swap. A guided tour of what's possible.</p>
+        <div class="mt-md">
+          <a href="./features.html" class="btn btn-dark" data-editable="">See every feature <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon pink">
+          <span style="font-family: var(--font-heading); font-size: 1.4rem;">气</span>
+        </div>
+        <h3 data-editable="">Get the Qi</h3>
+        <p data-editable="">You've got the key — now go deeper. The local-first philosophy, self-hosting <code>gitqi.js</code>, the OSS source you can read and fork.</p>
+        <div class="mt-md">
+          <a href="./git-qi.html" class="btn btn-primary" data-editable="">Enter the Git Qi path <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer" data-zone="footer" data-zone-label="Footer" id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a href="./index.html" class="footer-brand">
+          <span class="nav-logo" aria-hidden="true">G</span>
+          <span>GitQi</span>
+        </a>
+        <p class="footer-tagline" data-editable="">A zero-dependency, AI-enabled inline editor for static websites. Free, open source, and delightfully opinionated.</p>
+        <div class="footer-socials">
+          <a href="https://github.com/swill/gitqi/" aria-label="GitHub repository" data-editable="" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.09 0 4.43-2.7 5.4-5.26 5.69.41.35.78 1.05.78 2.12v3.14c0 .31.21.68.8.56C20.21 21.38 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"></path></svg>
+          </a>
+          <a href="https://github.com/swill" aria-label="Author on GitHub" data-editable="" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-heading" data-editable="">Explore</p>
+        <ul class="footer-links">
+          <li><a href="./about.html" data-editable="">About the project</a></li>
+          <li><a href="./get-key.html" data-editable="">Get Key guide</a></li>
+          <li><a href="./git-qi.html" data-editable="">Git Qi (advanced)</a></li>
+          <li><a href="./features.html" data-editable="">Features &amp; editing</a></li>
+          <li><a href="./donate.html" data-editable="">Donate</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-heading" data-editable="">Resources</p>
+        <ul class="footer-links">
+          <li><a href="https://github.com/swill/gitqi/" data-editable="" target="_blank" rel="noopener noreferrer">Source on GitHub</a></li>
+          <li><a href="https://github.com/swill/gitqi/blob/main/README.md" data-editable="" target="_blank" rel="noopener noreferrer">Documentation (README)</a></li>
+          <li><a href="https://aistudio.google.com" data-editable="" target="_blank" rel="noopener noreferrer">Free Gemini API key</a></li>
+          <li><a href="https://pages.github.com/" data-editable="" target="_blank" rel="noopener noreferrer">GitHub Pages</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-editable="">© 2026 GitQi · Crafted with care by <a href="https://github.com/swill" target="_blank" rel="noopener noreferrer">@swill</a> · MIT licensed · Forever free.</span>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
