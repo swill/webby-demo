@@ -439,7 +439,7 @@
 </style>
 
 
-<link rel="icon" type="image/png" href="./assets/favicon.png"><link rel="apple-touch-icon" href="./assets/favicon.png"><meta name="keywords" content="get key, getting started, setup, github pages, gitqi guide"></head>
+<link rel="icon" type="image/png" href="./assets/favicon.png"><link rel="apple-touch-icon" href="./assets/favicon.png"><meta name="keywords" content="get key, getting started, setup, github pages, gitqi guide"><style id="__gitqi-section-before-you-start-styles">/* No additional CSS required for this section. All necessary styles are provided in the global CSS. */</style></head>
 <body style="">
 <nav class="site-nav" style="">
   <div class="nav-inner">
@@ -494,166 +494,227 @@
   </div>
 </section>
 
-<section class="section" data-zone="before-you-start" data-zone-label="Before You Start" id="before-you-start" style="">
+<section class="section" data-zone="before-you-start" data-zone-label="Before You Start" id="before-you-start">
   <div class="container">
-    <div class="section-head">
-      <span class="section-eyebrow" data-editable="">Before you start</span>
-      <h2 data-editable="">What this is and <span class="accent-word magenta">what you'll have</span> at the end.</h2>
-      <p class="section-lead" data-editable="">GitQi is a small tool that turns an ordinary HTML file into something you can edit by clicking on it — and publish to a live website with one click. You don't need to install anything. You don't need a terminal. You just need Chrome or Edge.</p>
+    <div class="section-head center">
+      <h2 data-editable="">Build your <span style="color: var(--color-secondary);">first website</span>.</h2>
+      <p class="section-lead" data-editable="">Once setup, you will have the following configuration.</p>
     </div>
     <div class="grid-3">
       <div class="card">
-        <div class="card-icon yellow">✨</div>
-        <h3 data-editable="">A live website</h3>
-        <p data-editable="">Yours, at a free <code>.github.io</code> address. You can point a custom domain at it later if you want.</p>
+        <div class="card-icon yellow" data-editable="">✨</div>
+        <h3 data-editable="">A Live Website</h3>
+        <p data-editable="">Your website will be live at <code>&lt;user&gt;.github.io/&lt;site&gt;</code>, with the ability to customize your domain later.</p>
       </div>
       <div class="card">
-        <div class="card-icon teal">💰</div>
-        <h3 data-editable="">Zero recurring cost</h3>
-        <p data-editable="">A free GitHub account, a free AI key. No subscription. No billing card required at any step.</p>
+        <div class="card-icon teal" data-editable="">💻</div>
+        <h3 data-editable="">Local Editing</h3>
+        <p data-editable="">Your website lives as files on your computer, <strong><span style="color: var(--color-secondary);">edit</span><span style="color: var(--color-secondary);">&nbsp;by clicking</span></strong>&nbsp;in your browser, or <strong><span style="color: var(--color-secondary);">create content with AI</span></strong>.</p>
       </div>
       <div class="card">
-        <div class="card-icon pink">🌐</div>
-        <h3 data-editable="">A browser requirement</h3>
-        <p data-editable="">Use Chrome or Edge for editing. Your live site works in every browser — but the editor needs the File System Access API, which only Chromium browsers support today.</p>
+        <div class="card-icon pink" data-editable="">🚀</div>
+        <h3 data-editable="">One-Click Publishing</h3>
+        <p data-editable="">Click <strong><span style="color: var(--color-secondary);">Publish</span></strong> to push the changes from your computer to the live site.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section--alt" data-zone="steps" data-zone-label="The Steps" id="steps" style="">
+<section class="section section--alt" data-zone="what-you-need" data-zone-label="What You'll Need" id="what-you-need" style="">
   <div class="container">
+    <div class="section-head center">
+      <span class="section-eyebrow" data-editable="">What you'll need</span>
+      <h2 data-editable="">A short list of <font color="#ff8c3c"><span style="font-weight: 500;"><i>what you need</i></span></font>.</h2>
+      <p class="section-lead" data-editable="">All the pieces you need before you start. Everything is free, nothing requires a credit card, and each account is set up in the steps below.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-icon orange" data-editable="">🌐</div>
+        <h3 data-editable="">A Chromium-based browser</h3>
+        <p data-editable="">Chrome, Edge, Brave, Arc — any Chromium browser works. Safari and Firefox don't yet support the File System Access API that GitQi uses to link to your local folder.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon teal" data-editable="">💾</div>
+        <h3 data-editable="">A free GitHub account</h3>
+        <p data-editable="">Where your site's files live and from which GitHub Pages serves your website, for free, forever. <em>Setup below.</em></p>
+      </div>
+      <div class="card">
+        <div class="card-icon yellow" data-editable="">✨</div>
+        <h3 data-editable="">A free Gemini account</h3>
+        <p data-editable="">Google AI Studio provides the free API key GitQi uses to generate new sections and pages for your site. <em>Setup below.</em></p>
+      </div>
+      <div class="card">
+        <div class="card-icon pink" data-editable="">🤖</div>
+        <h3 data-editable="">A free Claude.ai account</h3>
+        <p data-editable="">Where you run the bootstrap prompt that generates the first version of your website's HTML. <em>Setup below.</em></p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class="guide-step" data-zone="step-1" data-zone-label="Step 1 · Prompt" id="step-1" style="position: relative;">
+<section class="section" data-zone="how-it-works" data-zone-label="How It Works" id="how-it-works" style="">
+  <div class="container">
+    <div class="section-head center">
+      <span class="section-eyebrow" data-editable="">How it works</span>
+      <h2 data-editable="">Five moves from <span class="accent-word teal">zero</span> to <span class="accent-word">live</span>.</h2>
+      <p class="section-lead" data-editable="">A quick view of the path. Each move is broken out into click-by-click instructions further down.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num" aria-hidden="true">1</div>
+        <div>
+          <h3 data-editable="">Setup the required tools and create a <code>secrets.js</code> file</h3>
+          <p data-editable="">One-time setup — create the accounts, generate the keys, save them into a single local file that never leaves your computer.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" aria-hidden="true">2</div>
+        <div>
+          <h3 data-editable="">Create a website by modifying the provided prompt</h3>
+          <p data-editable="">Fill in the GitQi bootstrap prompt with your site's details, paste it into Claude.ai, and save the HTML it produces as your starting point.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" aria-hidden="true">3</div>
+        <div>
+          <h3 data-editable="">Edit the content on the website in the browser</h3>
+          <p data-editable="">Open your HTML file in a Chromium browser, click to edit any text, swap images, change colors — the editing surface is the page itself.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" aria-hidden="true">4</div>
+        <div>
+          <h3 data-editable="">Add new content or sections with AI</h3>
+          <p data-editable="">Describe a section and GitQi generates it, styled to match your site. Add pages, reformat zones, and keep building with prompts.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" aria-hidden="true">5</div>
+        <div>
+          <h3 data-editable="">Publish the website via GitHub</h3>
+          <p data-editable="">One click pushes your clean HTML to GitHub. GitHub Pages serves it as a live site at <code>&lt;username&gt;.github.io/&lt;site&gt;</code>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt" data-zone="setup-tools" data-zone-label="Setup the Tools" id="setup-tools" style="">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow" data-editable="">Setup the required tools</span>
+      <h2 data-editable="">Make your <span class="accent-word magenta">accounts</span> and gather your <span class="accent-word yellow"><span style="color: var(--color-accent);">keys</span></span>.</h2>
+      <p class="section-lead" data-editable="">Four short setup tasks. Do each once, keep the credentials safe, and you're done with setup forever. The final sub-step collects everything into a single <code>secrets.js</code> file used in the next section.</p>
+    </div>
+
+    <div class="guide-step" data-zone="setup-github" data-zone-label="Setup · GitHub Repo &amp; Token" id="setup-github" style="position: relative;">
       <div class="guide-step-head">
         <div class="guide-step-num" aria-hidden="true">1</div>
         <div>
-          <span class="section-eyebrow" data-editable="">Step 1 · Prompt</span>
-          <h2 data-editable="">Design your <span class="accent-word magenta">site prompt</span>.</h2>
-          <p data-editable=""><strong>What you're doing:</strong> writing a description of your site so an AI can build the first version for you.</p>
+          <span class="section-eyebrow" data-editable="">Setup · GitHub</span>
+          <h2 data-editable="">Setup a GitHub <span class="accent-word teal">repo</span> and get a <span class="accent-word pink">token</span>.</h2>
+          <p data-editable=""><strong>What you're doing:</strong> making a home on GitHub for your site's files to live, then giving GitQi narrow permission to push files into that one repository.</p>
         </div>
       </div>
       <h4 class="why" data-editable="">Why it matters</h4>
-      <p data-editable="">GitQi doesn't use templates. Instead, it uses your ideas and AI to generate an HTML file (or multiple) that matches your business, your tone, and your visual taste — from the ground up. You describe it; AI builds it. Everything it produces, you can edit word-by-word on the page later.</p>
+      <p data-editable="">GitHub is where your site will live. GitQi publishes by pushing your HTML file to a GitHub repository, and GitHub then serves it as a live website through <em>GitHub Pages</em> — for free, forever, with no subscription. To push on your behalf, GitQi needs a <em>Personal Access Token</em> — scoped only to this one site repository, with no access to anything else on your account.</p>
       <h4 class="how" data-editable="">How to do it</h4>
-      <ol>
-        <li data-editable="">Open the Bootstrap Prompt from the <a href="https://github.com/swill/gitqi/blob/main/BOOTSTRAP_PROMPT.md" target="_blank" rel="noopener noreferrer">GitQi repository</a>.</li>
-        <li data-editable="">Fill in the bracketed fields: your name, your business, a tagline, the sections you want, and the vibe or feel you're going for. Be specific — "warm, earthy, handcrafted" is more useful than "nice".</li>
-        <li data-editable="">Gather 2–5 screenshots or photos of sites, palettes, or designs you like. These are attached to the prompt, not uploaded anywhere permanent.</li>
-        <li data-editable="">Open <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">Claude.ai</a> (a free account works), paste the prompt, attach your images, and send it.</li>
-        <li data-editable="">Copy the HTML it produces and save it as <code>index.html</code> in a new folder on your desktop (e.g. <code>my-site/</code>).</li>
-      </ol>
-      <h4 class="done" data-editable="">Done when</h4>
-      <p data-editable="">You have an <code>index.html</code> file in a folder on your computer.</p>
-      <div class="inline-note">
-        <span class="inline-icon">💡</span>
-        <span data-editable="">The AI-generated HTML is a starting point, not a final product. You can edit every word of it directly on the page — that's what GitQi is for. Don't try to make it perfect in the prompt, establish a starting theme you are happy with.</span>
-      </div>
-    </div>
-
-    <div class="guide-step" data-zone="step-2" data-zone-label="Step 2 · Repo" id="step-2" style="position: relative;">
-      <div class="guide-step-head">
-        <div class="guide-step-num" aria-hidden="true">2</div>
-        <div>
-          <span class="section-eyebrow" data-editable="">Step 2 · Repo</span>
-          <h2 data-editable="">Create a GitHub <span class="accent-word teal">repository</span>.</h2>
-          <p data-editable=""><strong>What you're doing:</strong> making a home on GitHub for your site's files to live. Free, permanent, and entirely yours.</p>
-        </div>
-      </div>
-      <h4 class="why" data-editable="">Why it matters</h4>
-      <p data-editable="">GitHub is where your site will live. GitQi publishes by pushing your HTML file to a GitHub repository, and GitHub then serves it as a live website through a feature called <em>GitHub Pages</em> — for free, forever, with no subscription. Your site is just a file in a folder on GitHub. You can always download it, move it, or delete it.</p>
-      <h4 class="how" data-editable="">How to do it</h4>
+      <p data-editable=""><strong>Create the repository:</strong></p>
       <ol>
         <li data-editable="">Go to <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com</a> and create a free account if you don't have one.</li>
         <li data-editable="">In the top-right, click the <code>+</code> icon → <strong>New repository</strong>.</li>
         <li data-editable="">Name it something simple and lowercase with hyphens, like <code>my-clinic-site</code>.</li>
         <li data-editable="">Set it to <strong>Public</strong> (required for free GitHub Pages).</li>
         <li data-editable="">Leave every other option at its default. You do <em>not</em> need to add a README, a <code>.gitignore</code>, or a license — GitQi will populate the repository for you.</li>
-        <li data-editable="">Click <strong>Create repository</strong>.</li>
+        <li data-editable="">Click <strong>Create repository</strong>. You'll land on a page that says something like "Quick setup — if you've done this kind of thing before". The repository exists but is empty. That's exactly what we want.</li>
       </ol>
-      <h4 class="done" data-editable="">Done when</h4>
-      <p data-editable="">You land on a page that says something like "Quick setup — if you've done this kind of thing before". The repository exists but is empty. That's exactly what we want. We'll come back and turn on GitHub Pages in <strong>Step 7</strong>, once there's a file in the repo for Pages to serve.</p>
-      <div class="inline-note lock">
-        <span class="inline-icon">🔒</span>
-        <span data-editable="">Your repository is public, which means anyone can see your site's HTML. That's normal and expected — it's how GitHub Pages works. Your personal credentials (API keys, tokens) will never be in this repository. GitQi is specifically designed to prevent that.</span>
-      </div>
-    </div>
-
-    <div class="guide-step" data-zone="step-3" data-zone-label="Step 3 · Token" id="step-3" style="position: relative;">
-      <div class="guide-step-head">
-        <div class="guide-step-num" aria-hidden="true">3</div>
-        <div>
-          <span class="section-eyebrow" data-editable="">Step 3 · Token</span>
-          <h2 data-editable="">Create a GitHub <span class="accent-word pink">access token</span>.</h2>
-          <p data-editable=""><strong>What you're doing:</strong> giving GitQi narrow permission to push files into your one repository.</p>
-        </div>
-      </div>
-      <h4 class="why" data-editable="">Why it matters</h4>
-      <p data-editable="">When you click <em>Publish</em> in GitQi, the tool needs to write your HTML file to GitHub. To do that, it needs permission. A <em>Personal Access Token</em> is how you grant that permission — scoped only to this one site repository, with no access to anything else on your account.</p>
-      <h4 class="how" data-editable="">How to do it</h4>
-      <ol>
-        <li data-editable="">On GitHub, click your profile photo (top-right) → <strong>Settings</strong>.</li>
+      <p data-editable=""><strong>Create the access token:</strong></p>
+      <ol start="7">
+        <li data-editable="">Click your profile photo (top-right) → <strong>Settings</strong>.</li>
         <li data-editable="">Scroll to the bottom of the left sidebar → <strong>Developer settings</strong>.</li>
         <li data-editable="">Click <strong>Personal access tokens</strong> → <strong>Fine-grained tokens</strong>.</li>
         <li data-editable="">Click <strong>Generate new token</strong>.</li>
         <li data-editable="">Give it a name like <code>gitqi-my-site</code> so future-you remembers what it's for.</li>
-        <li data-editable="">Set expiration to not expire, or expire in 1 year (in which case you'll repeat this step once a year).</li>
+        <li data-editable="">Set expiration to <em>Never expire</em>, or expire in 1 year (in which case you'll repeat this step once a year).</li>
         <li data-editable="">Under <strong>Repository access</strong>, choose <em>Only select repositories</em> and pick the repository you just created.</li>
         <li data-editable="">Under <strong>Permissions → Repository permissions</strong>, find <strong>Contents</strong> and add it, then set it to <em>Read and write</em>.</li>
         <li data-editable="">Click <strong>Generate token</strong> and <strong>copy the token immediately</strong> — GitHub only shows it once. It starts with <code>ghp_</code>.</li>
       </ol>
       <h4 class="done" data-editable="">Done when</h4>
-      <p data-editable="">You have a token string starting with <code>ghp_</code> copied somewhere safe (a notes app is fine — we'll move it into a file in Step 5).</p>
+      <p data-editable="">You have an empty repository created and a token string starting with <code>ghp_</code> copied somewhere safe (a notes app is fine — you'll move it into <code>secrets.js</code> shortly).</p>
       <div class="inline-note lock">
         <span class="inline-icon">🔒</span>
-        <span data-editable="">This token can only read and write files in your one repository. It cannot access your GitHub account, your profile, your other repositories, or anything else. If it's ever exposed, you can revoke it with one click and generate a new one.</span>
+        <span data-editable="">Your repository is public, which means anyone can see your site's HTML — that's normal and expected for GitHub Pages. Your credentials (API keys, tokens) will never be in the repository. The token itself is scoped to this one repo, cannot access anything else on your account, and you can revoke it with one click if it's ever exposed.</span>
       </div>
     </div>
 
-    <div class="guide-step" data-zone="step-4" data-zone-label="Step 4 · AI Key" id="step-4" style="position: relative;">
+    <div class="guide-step" data-zone="setup-gemini" data-zone-label="Setup · Gemini" id="setup-gemini" style="position: relative;">
       <div class="guide-step-head">
-        <div class="guide-step-num" aria-hidden="true">4</div>
+        <div class="guide-step-num" aria-hidden="true">2</div>
         <div>
-          <span class="section-eyebrow" data-editable="">Step 4 · AI Key</span>
-          <h2 data-editable="">Get a free <span class="accent-word yellow"><span style="color: var(--color-accent);" data-gitqi-style="">AI key</span></span>.</h2>
-          <p data-editable=""><strong>What you're doing:</strong>&nbsp;grabbing a free key from Google AI Studio so GitQi can generate new sections and pages for your site.</p>
+          <span class="section-eyebrow" data-editable="">Setup · Gemini</span>
+          <h2 data-editable="">Setup Gemini and get an <span class="accent-word yellow"><span style="color: var(--color-accent);">API key</span></span>.</h2>
+          <p data-editable=""><strong>What you're doing:</strong> grabbing a free key from Google AI Studio so GitQi can generate new sections and pages for your site.</p>
         </div>
       </div>
       <h4 class="why" data-editable="">Why it matters</h4>
-      <p data-editable="">GitQi uses AI to help you add new content — describe a section and it appears, styled to match your site. To do this, it needs access to an AI model. Google AI Studio provides a free API key with a generous usage limit — no billing, no credit card, no payment details required. It's the easiest free AI key on the internet.</p>
+      <p data-editable="">GitQi uses AI to help you add new content — describe a section and it appears, styled to match your site. Google AI Studio provides a free API key with a generous usage limit — no billing, no credit card, no payment details required. It's the easiest free AI key on the internet.</p>
       <h4 class="how" data-editable="">How to do it</h4>
       <ol>
         <li data-editable="">Go to <a href="https://aistudio.google.com" target="_blank" rel="noopener noreferrer">aistudio.google.com</a> and sign in with your Google account (Gmail works fine).</li>
         <li data-editable="">Accept the terms of service if prompted.</li>
-        <li data-editable="">Click <strong>Get API key</strong> in the left sidebar (or at <a href="https://aistudio.google.com/api-keys" target="_blank" rel="noopener noreferrer">aistudio.google.com/api-keys</a>).</li>
+        <li data-editable="">Click <strong>Get API key</strong> in the left sidebar (or go directly to <a href="https://aistudio.google.com/api-keys" target="_blank" rel="noopener noreferrer">aistudio.google.com/api-keys</a>).</li>
         <li data-editable="">Click <strong>Create API key</strong>. If AI Studio asks you to pick a Google Cloud project, let it create a new one for you — you don't need to configure it.</li>
         <li data-editable="">Copy the key that appears. It starts with <code>AIza</code>.</li>
       </ol>
       <h4 class="done" data-editable="">Done when</h4>
       <p data-editable="">You have a key string starting with <code>AIza</code> copied somewhere safe.</p>
-      <div class="inline-note">
-        <span class="inline-icon">💡</span>
-        <span data-editable="">This key is used directly from your browser — it never passes through GitQi's servers (there are no GitQi servers). Your usage is strictly between your browser and Google's API. The free tier is generous for personal site use.</span>
-      </div>
       <div class="inline-note lock">
         <span class="inline-icon">🔒</span>
         <span data-editable="">Google will <strong>never</strong> ask you for a payment method to create this key. If you see a prompt about "enabling billing", you're in the wrong place — step back to AI Studio (not Google Cloud Console) and try again.</span>
       </div>
     </div>
 
-    <div class="guide-step" data-zone="step-5" data-zone-label="Step 5 · secrets.js" id="step-5" style="position: relative;">
+    <div class="guide-step" data-zone="setup-claude" data-zone-label="Setup · Claude.ai" id="setup-claude" style="position: relative;">
       <div class="guide-step-head">
-        <div class="guide-step-num" aria-hidden="true">5</div>
+        <div class="guide-step-num" aria-hidden="true">3</div>
         <div>
-          <span class="section-eyebrow" data-editable="">Step 5 · secrets.js</span>
-          <h2 data-editable="">Create your <span class="accent-word"><span style="color: var(--color-primary);" data-gitqi-style=""><span style="color: var(--color-secondary);" data-gitqi-style="">secrets.js</span></span></span> file.</h2>
+          <span class="section-eyebrow" data-editable="">Setup · Claude.ai</span>
+          <h2 data-editable="">Setup Claude.ai for the <span class="accent-word magenta">bootstrap prompt</span>.</h2>
+          <p data-editable=""><strong>What you're doing:</strong> creating a free Claude.ai account — the AI you'll use to build the first version of your website from the GitQi bootstrap prompt.</p>
+        </div>
+      </div>
+      <h4 class="why" data-editable="">Why it matters</h4>
+      <p data-editable="">GitQi doesn't use templates. Instead, it uses your ideas plus an AI to generate an HTML file (or multiple) that matches your business, your tone, and your visual taste — from the ground up. Claude.ai's free tier is well-suited to running the GitQi bootstrap prompt and producing a complete starter page. You describe it; Claude builds it. Everything it produces, you can edit word-by-word on the page later.</p>
+      <h4 class="how" data-editable="">How to do it</h4>
+      <ol>
+        <li data-editable="">Go to <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">claude.ai</a>.</li>
+        <li data-editable="">Click <strong>Sign up</strong> and register with your email (or continue with Google).</li>
+        <li data-editable="">Verify your email if prompted, accept the terms of service, and complete the brief onboarding.</li>
+        <li data-editable="">That's it — you're logged in and ready to paste prompts. No API key, no billing, nothing to copy.</li>
+      </ol>
+      <h4 class="done" data-editable="">Done when</h4>
+      <p data-editable="">You're signed in at <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">claude.ai</a> and can see the chat interface. You'll come back here in the <strong>Building &amp; Editing</strong> section to paste the GitQi bootstrap prompt.</p>
+      <div class="inline-note">
+        <span class="inline-icon">💡</span>
+        <span data-editable="">You'll use Claude.ai once to generate your starter HTML, then occasionally afterwards if you want to bootstrap a whole new page from scratch. Day-to-day editing and new-section generation happens inside GitQi itself, using your Gemini key.</span>
+      </div>
+    </div>
+
+    <div class="guide-step" data-zone="setup-secrets" data-zone-label="Setup · secrets.js" id="setup-secrets" style="position: relative;">
+      <div class="guide-step-head">
+        <div class="guide-step-num" aria-hidden="true">4</div>
+        <div>
+          <span class="section-eyebrow" data-editable="">Setup · secrets.js</span>
+          <h2 data-editable="">Create your <span class="accent-word"><span style="color: var(--color-secondary);">secrets.js</span></span> file.</h2>
           <p data-editable=""><strong>What you're doing:</strong> saving your keys into one small file that lives only on your computer. It is never published.</p>
         </div>
       </div>
       <h4 class="why" data-editable="">Why it matters</h4>
-      <p data-editable="">GitQi needs to know your GitHub token, your AI key, and which repository to publish to. Rather than asking you every time, it reads this from a file called <code>secrets.js</code> that sits next to your HTML. This file is the only thing you configure. It never gets uploaded — GitQi is specifically designed to strip it out before publishing.</p>
+      <p data-editable="">GitQi needs to know your GitHub token, your Gemini key, and which repository to publish to. Rather than asking you every time, it reads these values from a file called <code>secrets.js</code> that sits next to your HTML. This file is the only thing you configure. It never gets uploaded — GitQi is specifically designed to strip it out before publishing.</p>
       <h4 class="how" data-editable="">How to do it</h4>
       <ol>
+        <li data-editable="">Create a new folder on your desktop for your site (for example, <code>my-site/</code>). This is where <code>secrets.js</code> and your <code>index.html</code>&nbsp;(and any other html files) will live side by side.</li>
         <li data-editable="">Open a plain-text editor (Notepad on Windows, TextEdit on Mac — on Mac, switch to plain-text mode under <em>Format → Make Plain Text</em>).</li>
         <li data-editable="">Paste the following exactly:</li>
       </ol>
@@ -666,9 +727,71 @@
   branch:      <span class="s">"main"</span>
 };</pre>
       </div>
-      <ol start="3">
-        <li data-editable="">Replace the placeholder values with your actual keys and repository details.</li>
-        <li data-editable="">Save the file as <code>secrets.js</code> in the same folder as your <code>index.html</code>.</li>
+      <ol start="4">
+        <li data-editable="">Replace the placeholder values with your actual Gemini key, GitHub token, and <code>username/repo-name</code>.</li>
+        <li data-editable="">Save the file as <code>secrets.js</code> in the folder you created.</li>
+      </ol>
+      <h4 class="done" data-editable="">Done when</h4>
+      <p data-editable="">Your folder contains <code>secrets.js</code> with your real keys in place. You'll add <code>index.html</code> next to it in the first sub-step of <strong>Building &amp; Editing</strong>.</p>
+      <div class="inline-note lock">
+        <span class="inline-icon">🔒</span>
+        <span data-editable="">This file never leaves your computer. GitQi publishes by stripping <code>secrets.js</code> entirely before pushing anything to GitHub. Your credentials are never in your repository and never on the internet.</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" data-zone="build-edit" data-zone-label="Building &amp; Editing" id="build-edit" style="">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow" data-editable="">Building &amp; editing the site</span>
+      <h2 data-editable="">Build it, <span class="accent-word teal">edit</span> it, <span class="accent-word">ship</span> it.</h2>
+      <p class="section-lead" data-editable="">With setup done, everything from here on is just editing and publishing. Generate your starter HTML, link the folder, click to edit, and publish when you're ready.</p>
+    </div>
+
+    <div class="guide-step" data-zone="build-bootstrap" data-zone-label="Build · Bootstrap prompt" id="build-bootstrap" style="position: relative;">
+      <div class="guide-step-head">
+        <div class="guide-step-num" aria-hidden="true">1</div>
+        <div>
+          <span class="section-eyebrow" data-editable="">Build · Bootstrap prompt</span>
+          <h2 data-editable="">Use the bootstrap prompt to create the <span class="accent-word magenta">initial site</span>.</h2>
+          <p data-editable=""><strong>What you're doing:</strong> writing a description of your site so Claude can build the first version for you.</p>
+        </div>
+      </div>
+      <h4 class="why" data-editable="">Why it matters</h4>
+      <p data-editable="">This is the creative spark — a single prompt that becomes your starting HTML. Don't try to make it perfect here; establish a starting theme you're happy with. Everything it produces, you can edit word-by-word on the page later.</p>
+      <h4 class="how" data-editable="">How to do it</h4>
+      <ol>
+        <li data-editable="">Open the Bootstrap Prompt from the <a href="https://github.com/swill/gitqi/blob/main/BOOTSTRAP_PROMPT.md" target="_blank" rel="noopener noreferrer">GitQi repository</a>.</li>
+        <li data-editable="">Fill in the bracketed fields: your name, your business, a tagline, the sections you want, and the vibe or feel you're going for. Be specific — "warm, earthy, handcrafted" is more useful than "nice".</li>
+        <li data-editable="">Gather 2–5 screenshots or photos of sites, palettes, or designs you like. These are attached to the prompt, not uploaded anywhere permanent.</li>
+        <li data-editable="">Open <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">Claude.ai</a> (the account you set up above), paste the prompt, attach your images, and send it.</li>
+        <li data-editable="">Copy the HTML it produces and save it as <code>index.html</code>.</li>
+      </ol>
+      <h4 class="done" data-editable="">Done when</h4>
+      <p data-editable="">You have an <code>index.html</code> file — your site's starting point.</p>
+      <div class="inline-note">
+        <span class="inline-icon">💡</span>
+        <span data-editable="">The AI-generated HTML is a starting point, not a final product. You can edit every word of it directly on the page — that's what GitQi is for.</span>
+      </div>
+    </div>
+
+    <div class="guide-step" data-zone="build-folder" data-zone-label="Build · Folder" id="build-folder" style="position: relative;">
+      <div class="guide-step-head">
+        <div class="guide-step-num" aria-hidden="true">2</div>
+        <div>
+          <span class="section-eyebrow" data-editable="">Build · Folder</span>
+          <h2 data-editable="">Put <code>secrets.js</code> and <code>index.html</code> in the <span class="accent-word teal">same folder</span>.</h2>
+          <p data-editable=""><strong>What you're doing:</strong> placing the two files next to each other so GitQi can find your keys when the page loads.</p>
+        </div>
+      </div>
+      <h4 class="why" data-editable="">Why it matters</h4>
+      <p data-editable="">GitQi activates only when it finds <code>secrets.js</code> sitting next to your HTML file. This is how it stays local-first — there's nothing to configure in a dashboard, no server to talk to. Your folder is the whole setup.</p>
+      <h4 class="how" data-editable="">How to do it</h4>
+      <ol>
+        <li data-editable="">Move the <code>index.html</code> you just saved into the same folder that holds <code>secrets.js</code> (the folder you created in Setup, for example <code>my-site/</code>).</li>
+        <li data-editable="">Make sure both files are at the same level — not in sub-folders, not zipped.</li>
       </ol>
       <h4 class="done" data-editable="">Done when</h4>
       <p data-editable="">Your folder looks like this:</p>
@@ -677,52 +800,89 @@
 ├── <span class="p">index.html</span>
 └── <span class="p">secrets.js</span>    <span class="c">← stays on your machine, forever</span></pre>
       </div>
-      <div class="inline-note lock">
-        <span class="inline-icon">🔒</span>
-        <span data-editable="">This file never leaves your computer. GitQi publishes by stripping <code>secrets.js</code> entirely before pushing anything to GitHub. Your credentials are never in your repository and never on the internet.</span>
+    </div>
+
+    <div class="guide-step" data-zone="build-open" data-zone-label="Build · Open" id="build-open" style="position: relative;">
+      <div class="guide-step-head">
+        <div class="guide-step-num" aria-hidden="true">3</div>
+        <div>
+          <span class="section-eyebrow" data-editable="">Build · Open</span>
+          <h2 data-editable="">Open the HTML file in your <span class="accent-word">Chromium browser</span>.</h2>
+          <p data-editable=""><strong>What you're doing:</strong> loading your local <code>index.html</code> in a Chromium-based browser so the GitQi toolbar appears.</p>
+        </div>
+      </div>
+      <h4 class="why" data-editable="">Why it matters</h4>
+      <p data-editable="">GitQi runs entirely in the browser. When it detects <code>secrets.js</code> next to your HTML, it turns the page into an editor — a toolbar appears at the top, and every element becomes clickable. No install, no build step.</p>
+      <h4 class="how" data-editable="">How to do it</h4>
+      <ol>
+        <li data-editable="">Open <strong>Chrome</strong>, <strong>Edge</strong>, <strong>Brave</strong>, or another Chromium-based browser. Safari and Firefox don't yet support the File System Access API GitQi uses.</li>
+        <li data-editable="">Drag your <code>index.html</code> file into a browser window — or use <em>File → Open File</em>, or right-click the file and choose <em>Open With</em>.</li>
+        <li data-editable="">You'll see the GitQi toolbar appear at the top of the page.</li>
+        <li data-editable="">Click <strong>Select Folder</strong> in the toolbar and choose your <code>my-site/</code> folder. This links GitQi to your files so changes save automatically as you edit.</li>
+      </ol>
+      <h4 class="done" data-editable="">Done when</h4>
+      <p data-editable="">The GitQi toolbar is visible at the top of the page and your folder is linked. You're now in edit mode.</p>
+    </div>
+
+    <div class="guide-step" data-zone="build-edit-inline" data-zone-label="Build · Inline editing" id="build-edit-inline" style="position: relative;">
+      <div class="guide-step-head">
+        <div class="guide-step-num" aria-hidden="true">4</div>
+        <div>
+          <span class="section-eyebrow" data-editable="">Build · Inline editing</span>
+          <h2 data-editable="">Edit the content with the <span class="accent-word pink">inline editor</span>.</h2>
+          <p data-editable=""><strong>What you're doing:</strong> changing text, formatting, and images directly on the page — no forms, no dashboards, just the page itself.</p>
+        </div>
+      </div>
+      <h4 class="why" data-editable="">Why it matters</h4>
+      <p data-editable="">The AI-generated HTML is a starting point. Almost nothing on the page will match your voice perfectly out of the gate, and that's by design. GitQi lets you adjust it in place — see your change, keep what works, change what doesn't.</p>
+      <h4 class="how" data-editable="">How to do it</h4>
+      <ol>
+        <li data-editable="">Click any text to put the cursor in it and start typing.</li>
+        <li data-editable="">Select text to bring up formatting options — bold, italic, fonts, colors, links.</li>
+        <li data-editable="">Click any image to swap it for one from your computer.</li>
+        <li data-editable="">Changes save to your folder automatically as you edit — no "save" button.</li>
+      </ol>
+      <h4 class="done" data-editable="">Done when</h4>
+      <p data-editable="">The page reads the way you want it to read, in your own words.</p>
+    </div>
+
+    <div class="guide-step" data-zone="build-ai-sections" data-zone-label="Build · AI sections" id="build-ai-sections" style="position: relative;">
+      <div class="guide-step-head">
+        <div class="guide-step-num" aria-hidden="true">5</div>
+        <div>
+          <span class="section-eyebrow" data-editable="">Build · AI sections</span>
+          <h2 data-editable="">Create new content and sections <span class="accent-word yellow">with AI</span>.</h2>
+          <p data-editable=""><strong>What you're doing:</strong> using your Gemini key to generate new sections, reformats, or whole pages — styled to match the rest of your site.</p>
+        </div>
+      </div>
+      <h4 class="why" data-editable="">Why it matters</h4>
+      <p data-editable="">Adding "a testimonials section" or "an FAQ about shipping" usually means fighting a template or writing HTML by hand. In GitQi you describe it in a sentence and a matching section appears. The site grows with your business, not against it.</p>
+      <h4 class="how" data-editable="">How to do it</h4>
+      <ol>
+        <li data-editable="">Use <strong>+ Add Section</strong> (between sections) to append a new zone, or <strong>⟳ Reformat</strong> on any existing section to rework it.</li>
+        <li data-editable="">Use <strong>+ Add Page</strong> in the toolbar to create an entirely new HTML file that inherits the same nav, footer, and styles.</li>
+        <li data-editable="">Describe what you want in plain language — "a three-column pricing section with an annual / monthly toggle" works better than one-word prompts.</li>
+        <li data-editable="">Review the generated section inline. Keep editing with the inline editor, or undo and prompt again.</li>
+      </ol>
+      <h4 class="done" data-editable="">Done when</h4>
+      <p data-editable="">The site has the sections and pages you need, styled consistently with the rest of the page.</p>
+      <div class="inline-note">
+        <span class="inline-icon">💡</span>
+        <span data-editable="">Your Gemini key is used directly from your browser to Google's API. Nothing is logged or relayed through a GitQi server — there isn't one.</span>
       </div>
     </div>
 
-    <div class="guide-step" data-zone="step-6" data-zone-label="Step 6 · Edit &amp; Publish" id="step-6" style="position: relative;">
+    <div class="guide-step" data-zone="build-pages" data-zone-label="Build · GitHub Pages" id="build-pages" style="position: relative;">
       <div class="guide-step-head">
         <div class="guide-step-num" aria-hidden="true">6</div>
         <div>
-          <span class="section-eyebrow" data-editable="">Step 6 · Edit &amp; Publish</span>
-          <h2 data-editable="">Open the editor and <span class="accent-word magenta"><span style="color: var(--color-accent-2);" data-gitqi-style="">publish</span></span>.</h2>
-          <p data-editable=""><strong>What you're doing:</strong> opening your HTML file in Chrome, linking your folder, editing anything you like, and pushing it to GitHub with one click.</p>
+          <span class="section-eyebrow" data-editable="">Build · GitHub Pages</span>
+          <h2 data-editable="">Update <span class="accent-word teal">GitHub Pages</span> to deploy <code>main</code>.</h2>
+          <p data-editable=""><strong>What you're doing:</strong> telling GitHub to serve the <code>main</code> branch of your repository as a live website. A one-time step.</p>
         </div>
       </div>
       <h4 class="why" data-editable="">Why it matters</h4>
-      <p data-editable="">GitQi activates automatically when it detects <code>secrets.js</code> next to your HTML file. You'll see a toolbar at the top of the page. From here you edit everything directly on the page — no forms, no dashboards, just the page itself. When you click <em>Publish</em>, your file lands in GitHub. That first publish is also what creates the <code>main</code> branch in your repository — which is a thing we'll need for the last step.</p>
-      <h4 class="how" data-editable="">How to do it</h4>
-      <ol>
-        <li data-editable="">Open <strong>Chrome</strong>, <strong>Edge</strong>, or another Chromium-based browser. Safari and Firefox don't support the required File System Access API yet.</li>
-        <li data-editable="">Drag your <code>index.html</code> file into a browser window — or use <em>File → Open File</em>, or right-click the file and choose <em>Open With</em>.</li>
-        <li data-editable="">You'll see the GitQi toolbar appear at the top of the page.</li>
-        <li data-editable="">Click <strong>Select Folder</strong> and choose your <code>my-site/</code> folder. This links GitQi to your files so changes save automatically as you edit.</li>
-        <li data-editable="">Click any text to edit it. Select text to bring up formatting options (bold, italic, fonts, colors, links).</li>
-        <li data-editable="">Click any image to swap it for one from your computer.</li>
-        <li data-editable="">When you're ready, click <strong>Publish</strong>. GitQi strips the editor code and your <code>secrets.js</code>, then pushes the clean HTML to GitHub.</li>
-      </ol>
-      <h4 class="done" data-editable="">Done when</h4>
-      <p data-editable="">You see a "Published ✓" confirmation. If you now go to your GitHub repository, you'll see your <code>index.html</code> file in the file list — and the repository will show a <code>main</code> branch. <strong>That's new.</strong> The empty repository now has a branch and a file, which means we can finally turn Pages on.</p>
-      <div class="inline-note win">
-        <span class="inline-icon">🎉</span>
-        <span data-editable="">Your file is now on GitHub. One more short step and it will be a live website.</span>
-      </div>
-    </div>
-
-    <div class="guide-step" data-zone="step-7" data-zone-label="Step 7 · Go Live" id="step-7" style="position: relative;">
-      <div class="guide-step-head">
-        <div class="guide-step-num" aria-hidden="true">7</div>
-        <div>
-          <span class="section-eyebrow" data-editable="">Step 7 · Go Live</span>
-          <h2 data-editable="">Turn on <span class="accent-word yellow"><span style="color: var(--color-accent-4);" data-gitqi-style="">GitHub Pages</span></span>.</h2>
-          <p data-editable=""><strong>What you're doing:</strong> telling GitHub to serve the file you just published as a live website.</p>
-        </div>
-      </div>
-      <h4 class="why" data-editable="">Why it matters</h4>
-      <p data-editable="">This is the step we deferred from Step 2. We couldn't do it earlier because GitHub Pages needs a branch to serve from — and a brand-new empty repository has no branches. Your first publish in Step 6 created the <code>main</code> branch. Now we can point GitHub Pages at it and your site goes live.</p>
+      <p data-editable="">GitHub Pages is the free service that turns the files in your repository into a live website. You tell it which branch to serve from — we'll point it at <code>main</code>, which the first publish (next sub-step) creates. Once configured, every subsequent publish automatically redeploys.</p>
       <h4 class="how" data-editable="">How to do it</h4>
       <ol>
         <li data-editable="">Go to your repository on GitHub.</li>
@@ -731,10 +891,35 @@
         <li data-editable="">Under <strong>Source</strong>, choose <em>Deploy from a branch</em>.</li>
         <li data-editable="">Set <strong>Branch</strong> to <code>main</code> and <strong>Folder</strong> to <code>/ (root)</code>.</li>
         <li data-editable="">Click <strong>Save</strong>.</li>
-        <li data-editable="">GitHub shows a banner like "Your site is live at <code>https://your-username.github.io/your-repo-name/</code>". The first deploy takes about a minute.</li>
       </ol>
       <h4 class="done" data-editable="">Done when</h4>
-      <p data-editable="">You can visit the URL GitHub showed you, and your site loads. 🎉</p>
+      <p data-editable="">Pages is set to deploy from <code>main</code>. If <code>main</code> doesn't exist yet (brand-new repo), Pages will start serving the moment your first publish creates it.</p>
+      <div class="inline-note">
+        <span class="inline-icon">💡</span>
+        <span data-editable="">This is a one-time setup per repository. You never have to touch Pages settings again — future publishes redeploy automatically.</span>
+      </div>
+    </div>
+
+    <div class="guide-step" data-zone="build-publish" data-zone-label="Build · Publish &amp; live" id="build-publish" style="position: relative;">
+      <div class="guide-step-head">
+        <div class="guide-step-num" aria-hidden="true">7</div>
+        <div>
+          <span class="section-eyebrow" data-editable="">Build · Publish &amp; live</span>
+          <h2 data-editable="">Publish and view at <span class="accent-word magenta">&lt;username&gt;.github.io/&lt;site&gt;</span>.</h2>
+          <p data-editable=""><strong>What you're doing:</strong> clicking <em>Publish</em>, which pushes your clean HTML to GitHub. GitHub Pages serves it as a live website.</p>
+        </div>
+      </div>
+      <h4 class="why" data-editable="">Why it matters</h4>
+      <p data-editable="">This is the moment everything becomes real. GitQi strips the editor code and your <code>secrets.js</code>, then pushes the clean HTML to GitHub. The first publish also creates the <code>main</code> branch Pages needs to serve from — so the very first click is what brings the site online.</p>
+      <h4 class="how" data-editable="">How to do it</h4>
+      <ol>
+        <li data-editable="">In the GitQi toolbar, click <strong>Publish</strong>.</li>
+        <li data-editable="">Wait for the "Published ✓" confirmation. The first publish takes a little longer because it creates <code>main</code> in your repo.</li>
+        <li data-editable="">Visit <code>https://&lt;your-username&gt;.github.io/&lt;your-repo-name&gt;/</code>. The first deploy takes about a minute — refresh if it's not live yet.</li>
+        <li data-editable="">For every future edit: click Publish, wait a few seconds, refresh.</li>
+      </ol>
+      <h4 class="done" data-editable="">Done when</h4>
+      <p data-editable="">Your site loads at the GitHub Pages URL. 🎉</p>
       <div class="inline-note win">
         <span class="inline-icon">🔑</span>
         <span data-editable=""><strong>You're in.</strong> You have the key now. From here, everything is just editing. Open your local <code>index.html</code> in Chrome whenever you want to change something — click, type, click <em>Publish</em>.</span>
@@ -818,6 +1003,7 @@
     </div>
   </div>
 </footer>
+
 
 
 
