@@ -283,13 +283,13 @@
   .step { display: grid; grid-template-columns: 76px 1fr; gap: var(--space-md); align-items: start; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius); padding: calc(var(--space-md) - 0.1rem); transition: transform 0.22s ease, box-shadow 0.22s ease; }
   .step:hover { transform: translateX(4px); box-shadow: var(--shadow); }
   .step-num { width: 64px; height: 64px; border-radius: 18px; display: grid; place-items: center; font-family: var(--font-heading); font-size: 1.65rem; color: white; background: var(--color-primary); font-weight: 600; font-variation-settings: 'opsz' 144; }
-  .steps .step:nth-child(1) .step-num { background: var(--color-accent); color: var(--color-primary); }
-  .steps .step:nth-child(2) .step-num { background: var(--color-secondary); }
-  .steps .step:nth-child(3) .step-num { background: var(--color-accent-2); color: var(--color-primary); }
-  .steps .step:nth-child(4) .step-num { background: var(--color-accent-3); color: var(--color-primary); }
-  .steps .step:nth-child(5) .step-num { background: var(--color-accent-4); }
-  .steps .step:nth-child(6) .step-num { background: var(--color-accent-5); }
-  .steps .step:nth-child(7) .step-num { background: var(--color-primary); color: var(--color-accent-3); }
+  .steps .step:nth-child(1) .step-num, .step-accent { background: var(--color-accent); color: var(--color-primary); }
+  .steps .step:nth-child(2) .step-num, .step-secondary { background: var(--color-secondary); }
+  .steps .step:nth-child(3) .step-num, .step-accent-2 { background: var(--color-accent-2); color: var(--color-primary); }
+  .steps .step:nth-child(4) .step-num, .step-accent-3 { background: var(--color-accent-3); color: var(--color-primary); }
+  .steps .step:nth-child(5) .step-num, .step-accent-4 { background: var(--color-accent-4); }
+  .steps .step:nth-child(6) .step-num, .step-accent-5 { background: var(--color-accent-5); }
+  .steps .step:nth-child(7) .step-num, .step-primary { background: var(--color-primary); color: var(--color-accent-3); }
   .step h3 { margin: 0 0 0.3rem; }
   .step p { margin: 0; color: var(--color-text-muted); }
   .section--dark .step h1, .section--dark .step h2, .section--dark .step h3 { color: var(--color-accent-5); }
@@ -380,13 +380,13 @@
   .guide-step:last-child { margin-bottom: 0; }
   .guide-step-head { display: grid; grid-template-columns: 80px 1fr; gap: var(--space-md); align-items: start; margin-bottom: var(--space-sm); }
   .guide-step-num { width: 72px; height: 72px; border-radius: 20px; display: grid; place-items: center; font-family: var(--font-heading); font-size: 2rem; color: var(--color-accent-3); background: var(--color-primary); font-weight: 600; font-variation-settings: 'opsz' 144; line-height: 1; }
-  /*.guide-step:nth-of-type(1) .guide-step-num { background: var(--color-accent); color: var(--color-primary); }
-  .guide-step:nth-of-type(2) .guide-step-num { background: var(--color-secondary); }
-  .guide-step:nth-of-type(3) .guide-step-num { background: var(--color-accent-4); }
-  .guide-step:nth-of-type(4) .guide-step-num { background: var(--color-accent-3); color: var(--color-primary); }
-  .guide-step:nth-of-type(5) .guide-step-num { background: var(--color-accent-2); color: var(--color-primary); }
-  .guide-step:nth-of-type(6) .guide-step-num { background: var(--color-accent-5); }
-  .guide-step:nth-of-type(7) .guide-step-num { background: var(--color-primary); color: var(--color-accent-3); }*/
+  .guide-accent { background: var(--color-accent); color: var(--color-primary); }
+  .guide-secondary { background: var(--color-secondary); }
+  .guide-accent-4 { background: var(--color-accent-4); }
+  .guide-accent-3 { background: var(--color-accent-3); color: var(--color-primary); }
+  .guide-accent-2 { background: var(--color-accent-2); color: var(--color-primary); }
+  .guide-accent-5 { background: var(--color-accent-5); }
+  .guide-primary { background: var(--color-primary); color: var(--color-accent-3); }
   .guide-step-head h2 { margin: 0.15rem 0 0.4rem; font-size: clamp(1.45rem, 1.6vw + 0.9rem, 2.05rem); }
   .guide-step-head .section-eyebrow { margin-bottom: 0.2rem; }
   .guide-step-head p { color: var(--color-text-muted); margin: 0; }
@@ -439,7 +439,21 @@
 </style>
 
 
-<link rel="icon" type="image/png" href="./assets/favicon.png"><link rel="apple-touch-icon" href="./assets/favicon.png"><meta name="keywords" content="get key, getting started, setup, github pages, gitqi guide"><style id="__gitqi-section-before-you-start-styles">/* No additional CSS required for this section. All necessary styles are provided in the global CSS. */</style></head>
+<link rel="icon" type="image/png" href="./assets/favicon.png"><link rel="apple-touch-icon" href="./assets/favicon.png"><meta name="keywords" content="get key, getting started, setup, github pages, gitqi guide"><style id="__gitqi-section-before-you-start-styles">/* No additional CSS required for this section. All necessary styles are provided in the global CSS. */</style><style id="__gitqi-section-how-it-works-styles">/* Custom coloring for the guide step numbers */
+.guide-step .guide-step-num.num-1 {
+  background: var(--color-accent);
+  color: var(--color-primary);
+}
+
+.guide-step .guide-step-num.num-2 {
+  background: var(--color-secondary);
+  color: var(--color-bg);
+}
+
+/* Adjust margin for the first h4 inside a guide-step to ensure consistent spacing */
+.guide-step .guide-step-head + h4 {
+  margin-top: var(--space-sm);
+}</style></head>
 <body style="">
 <nav class="site-nav" style="">
   <div class="nav-inner">
@@ -528,69 +542,56 @@
       <div class="card">
         <div class="card-icon orange" data-editable="">🌐</div>
         <h3 data-editable="">A Chromium-based browser</h3>
-        <p data-editable="">Chrome, Edge, Brave, Arc — any Chromium browser works. Safari and Firefox don't yet support the File System Access API that GitQi uses to link to your local folder.</p>
+        <p data-editable="">Chrome, Edge, Brave, Arc — any Chromium browser works, as we depend on the File System Access API.&nbsp;&nbsp;<br>Edits are made to local files&nbsp;through an editor in the browser.</p>
       </div>
       <div class="card">
         <div class="card-icon teal" data-editable="">💾</div>
         <h3 data-editable="">A free GitHub account</h3>
-        <p data-editable="">Where your site's files live and from which GitHub Pages serves your website, for free, forever. <em>Setup below.</em></p>
+        <p data-editable="">Where your site's files live and from which GitHub Pages serves your website, for free, forever. <span style="font-style: italic; color: var(--color-accent-4);">Setup below</span><em>.</em><br>Your website:<em> <code>&lt;user&gt;.github.io/&lt;site&gt;</code> (can customize)</em></p>
       </div>
       <div class="card">
         <div class="card-icon yellow" data-editable="">✨</div>
         <h3 data-editable="">A free Gemini account</h3>
-        <p data-editable="">Google AI Studio provides the free API key GitQi uses to generate new sections and pages for your site. <em>Setup below.</em></p>
+        <p data-editable="">Google AI Studio provides the free API key GitQi uses to generate new sections and pages for your site. <em><span style="color: var(--color-accent-4);">Setup below</span>.</em></p>
       </div>
       <div class="card">
         <div class="card-icon pink" data-editable="">🤖</div>
         <h3 data-editable="">A free Claude.ai account</h3>
-        <p data-editable="">Where you run the bootstrap prompt that generates the first version of your website's HTML. <em>Setup below.</em></p>
+        <p data-editable="">Where you run the bootstrap prompt that generates the first version of your website's HTML. <em><span style="color: var(--color-accent-4);">Setup below.</span></em></p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section" data-zone="how-it-works" data-zone-label="How It Works" id="how-it-works" style="">
+<section class="section" data-zone="how-it-works" data-zone-label="How It Works" id="how-it-works">
   <div class="container">
     <div class="section-head center">
       <span class="section-eyebrow" data-editable="">How it works</span>
-      <h2 data-editable="">Five moves from <span class="accent-word teal">zero</span> to <span class="accent-word">live</span>.</h2>
-      <p class="section-lead" data-editable="">A quick view of the path. Each move is broken out into click-by-click instructions further down.</p>
+      <h2 data-editable="">From <span class="accent-word teal"><span style="color: var(--color-accent-5);"><span style="color: var(--color-text-muted);"><span style="color: var(--color-text);"><span style="color: var(--color-accent-4);">zero</span></span></span></span></span> to <span class="accent-word"><span style="color: var(--color-accent-2);">live</span></span>.</h2>
+      
     </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num" aria-hidden="true">1</div>
-        <div>
-          <h3 data-editable="">Setup the required tools and create a <code>secrets.js</code> file</h3>
-          <p data-editable="">One-time setup — create the accounts, generate the keys, save them into a single local file that never leaves your computer.</p>
+    <div>
+      <div class="guide-step">
+        <div class="guide-step-head">
+          <div class="guide-step-num guide-accent-4" aria-hidden="true">1</div>
+          <div>
+            <h2 data-editable="">Setup <span style="color: var(--color-secondary);">accounts</span> and get <span style="color: var(--color-accent-2);"><span style="color: var(--color-accent);">keys</span></span></h2>
+            <p data-editable="">One-time setup for all required tools and security.</p>
+          </div>
         </div>
+        <h4 data-editable="" class="how">Setup the required tools and create a <code>secrets.js</code> file</h4>
+        <p data-editable="">One-time setup — create the accounts, generate the keys, save them into a single local file that never leaves your computer.</p>
       </div>
-      <div class="step">
-        <div class="step-num" aria-hidden="true">2</div>
-        <div>
-          <h3 data-editable="">Create a website by modifying the provided prompt</h3>
-          <p data-editable="">Fill in the GitQi bootstrap prompt with your site's details, paste it into Claude.ai, and save the HTML it produces as your starting point.</p>
+      <div class="guide-step">
+        <div class="guide-step-head">
+          <div class="guide-step-num guide-accent-2" aria-hidden="true">2</div>
+          <div>
+            <h2 data-editable=""><span style="color: var(--color-accent);">Build</span>, <span style="color: var(--color-accent-2);">edit</span> and <span style="color: var(--color-accent-4);">publish</span> your site</h2>
+            <p data-editable="">Create and manage your website with AI, then publish with a click.</p>
+          </div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-num" aria-hidden="true">3</div>
-        <div>
-          <h3 data-editable="">Edit the content on the website in the browser</h3>
-          <p data-editable="">Open your HTML file in a Chromium browser, click to edit any text, swap images, change colors — the editing surface is the page itself.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num" aria-hidden="true">4</div>
-        <div>
-          <h3 data-editable="">Add new content or sections with AI</h3>
-          <p data-editable="">Describe a section and GitQi generates it, styled to match your site. Add pages, reformat zones, and keep building with prompts.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num" aria-hidden="true">5</div>
-        <div>
-          <h3 data-editable="">Publish the website via GitHub</h3>
-          <p data-editable="">One click pushes your clean HTML to GitHub. GitHub Pages serves it as a live site at <code>&lt;username&gt;.github.io/&lt;site&gt;</code>.</p>
-        </div>
+        <h4 data-editable="" class="how">Iterate and Publish with AI-Powered creation and in-line editing</h4>
+        <p data-editable="">Leverage AI to generate your initial site structure from a prompt, then refine and expand its content directly in your browser with intuitive editing. Add new sections with AI prompts and publish your polished HTML to GitHub with a single click for instant deploys.</p>
       </div>
     </div>
   </div>
@@ -606,7 +607,7 @@
 
     <div class="guide-step" data-zone="setup-github" data-zone-label="Setup · GitHub Repo &amp; Token" id="setup-github" style="position: relative;">
       <div class="guide-step-head">
-        <div class="guide-step-num" aria-hidden="true">1</div>
+        <div class="guide-step-num guide-accent-4" aria-hidden="true">1</div>
         <div>
           <span class="section-eyebrow" data-editable="">Setup · GitHub</span>
           <h2 data-editable="">Setup a GitHub <span class="accent-word teal">repo</span> and get a <span class="accent-word pink">token</span>.</h2>
@@ -620,7 +621,7 @@
       <ol>
         <li data-editable="">Go to <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com</a> and create a free account if you don't have one.</li>
         <li data-editable="">In the top-right, click the <code>+</code> icon → <strong>New repository</strong>.</li>
-        <li data-editable="">Name it something simple and lowercase with hyphens, like <code>my-clinic-site</code>.</li>
+        <li data-editable="">Name it something simple and lowercase with hyphens, like <code>my-pro-site</code>.</li>
         <li data-editable="">Set it to <strong>Public</strong> (required for free GitHub Pages).</li>
         <li data-editable="">Leave every other option at its default. You do <em>not</em> need to add a README, a <code>.gitignore</code>, or a license — GitQi will populate the repository for you.</li>
         <li data-editable="">Click <strong>Create repository</strong>. You'll land on a page that says something like "Quick setup — if you've done this kind of thing before". The repository exists but is empty. That's exactly what we want.</li>
@@ -647,7 +648,7 @@
 
     <div class="guide-step" data-zone="setup-gemini" data-zone-label="Setup · Gemini" id="setup-gemini" style="position: relative;">
       <div class="guide-step-head">
-        <div class="guide-step-num" aria-hidden="true">2</div>
+        <div class="guide-step-num guide-accent-4" aria-hidden="true">2</div>
         <div>
           <span class="section-eyebrow" data-editable="">Setup · Gemini</span>
           <h2 data-editable="">Setup Gemini and get an <span class="accent-word yellow"><span style="color: var(--color-accent);">API key</span></span>.</h2>
@@ -674,7 +675,7 @@
 
     <div class="guide-step" data-zone="setup-claude" data-zone-label="Setup · Claude.ai" id="setup-claude" style="position: relative;">
       <div class="guide-step-head">
-        <div class="guide-step-num" aria-hidden="true">3</div>
+        <div class="guide-step-num guide-accent-4" aria-hidden="true">3</div>
         <div>
           <span class="section-eyebrow" data-editable="">Setup · Claude.ai</span>
           <h2 data-editable="">Setup Claude.ai for the <span class="accent-word magenta">bootstrap prompt</span>.</h2>
@@ -700,7 +701,7 @@
 
     <div class="guide-step" data-zone="setup-secrets" data-zone-label="Setup · secrets.js" id="setup-secrets" style="position: relative;">
       <div class="guide-step-head">
-        <div class="guide-step-num" aria-hidden="true">4</div>
+        <div class="guide-step-num guide-accent-4" aria-hidden="true">4</div>
         <div>
           <span class="section-eyebrow" data-editable="">Setup · secrets.js</span>
           <h2 data-editable="">Create your <span class="accent-word"><span style="color: var(--color-secondary);">secrets.js</span></span> file.</h2>
@@ -749,7 +750,7 @@
 
     <div class="guide-step" data-zone="build-bootstrap" data-zone-label="Build · Bootstrap prompt" id="build-bootstrap" style="position: relative;">
       <div class="guide-step-head">
-        <div class="guide-step-num" aria-hidden="true">1</div>
+        <div class="guide-step-num guide-accent-2" aria-hidden="true">1</div>
         <div>
           <span class="section-eyebrow" data-editable="">Build · Bootstrap prompt</span>
           <h2 data-editable="">Use the bootstrap prompt to create the <span class="accent-word magenta">initial site</span>.</h2>
@@ -776,7 +777,7 @@
 
     <div class="guide-step" data-zone="build-folder" data-zone-label="Build · Folder" id="build-folder" style="position: relative;">
       <div class="guide-step-head">
-        <div class="guide-step-num" aria-hidden="true">2</div>
+        <div class="guide-step-num guide-accent-2" aria-hidden="true">2</div>
         <div>
           <span class="section-eyebrow" data-editable="">Build · Folder</span>
           <h2 data-editable="">Put <code>secrets.js</code> and <code>index.html</code> in the <span class="accent-word teal">same folder</span>.</h2>
@@ -801,7 +802,7 @@
 
     <div class="guide-step" data-zone="build-open" data-zone-label="Build · Open" id="build-open" style="position: relative;">
       <div class="guide-step-head">
-        <div class="guide-step-num" aria-hidden="true">3</div>
+        <div class="guide-step-num guide-accent-2" aria-hidden="true">3</div>
         <div>
           <span class="section-eyebrow" data-editable="">Build · Open</span>
           <h2 data-editable="">Open the HTML file in your <span class="accent-word">Chromium browser</span>.</h2>
@@ -823,7 +824,7 @@
 
     <div class="guide-step" data-zone="build-edit-inline" data-zone-label="Build · Inline editing" id="build-edit-inline" style="position: relative;">
       <div class="guide-step-head">
-        <div class="guide-step-num" aria-hidden="true">4</div>
+        <div class="guide-step-num guide-accent-2" aria-hidden="true">4</div>
         <div>
           <span class="section-eyebrow" data-editable="">Build · Inline editing</span>
           <h2 data-editable="">Edit the content with the <span class="accent-word pink">inline editor</span>.</h2>
@@ -845,7 +846,7 @@
 
     <div class="guide-step" data-zone="build-ai-sections" data-zone-label="Build · AI sections" id="build-ai-sections" style="position: relative;">
       <div class="guide-step-head">
-        <div class="guide-step-num" aria-hidden="true">5</div>
+        <div class="guide-step-num guide-accent-2" aria-hidden="true">5</div>
         <div>
           <span class="section-eyebrow" data-editable="">Build · AI sections</span>
           <h2 data-editable="">Create new content and sections <span class="accent-word yellow">with AI</span>.</h2>
@@ -871,7 +872,7 @@
 
     <div class="guide-step" data-zone="build-pages" data-zone-label="Build · GitHub Pages" id="build-pages" style="position: relative;">
       <div class="guide-step-head">
-        <div class="guide-step-num" aria-hidden="true">6</div>
+        <div class="guide-step-num guide-accent-2" aria-hidden="true">6</div>
         <div>
           <span class="section-eyebrow" data-editable="">Build · GitHub Pages</span>
           <h2 data-editable="">Update <span class="accent-word teal">GitHub Pages</span> to deploy <code>main</code>.</h2>
@@ -899,10 +900,10 @@
 
     <div class="guide-step" data-zone="build-publish" data-zone-label="Build · Publish &amp; live" id="build-publish" style="position: relative;">
       <div class="guide-step-head">
-        <div class="guide-step-num" aria-hidden="true">7</div>
+        <div class="guide-step-num guide-accent-2" aria-hidden="true">7</div>
         <div>
           <span class="section-eyebrow" data-editable="">Build · Publish &amp; live</span>
-          <h2 data-editable="">Publish and view at <span class="accent-word magenta">&lt;username&gt;.github.io/&lt;site&gt;</span>.</h2>
+          <h2 data-editable="">Publish and view at <span class="accent-word magenta">&lt;user&gt;.github.io/&lt;site&gt;</span>.</h2>
           <p data-editable=""><strong>What you're doing:</strong> clicking <em>Publish</em>, which pushes your clean HTML to GitHub. GitHub Pages serves it as a live website.</p>
         </div>
       </div>
@@ -912,7 +913,7 @@
       <ol>
         <li data-editable="">In the GitQi toolbar, click <strong>Publish</strong>.</li>
         <li data-editable="">Wait for the "Published ✓" confirmation. The first publish takes a little longer because it creates <code>main</code> in your repo.</li>
-        <li data-editable="">Visit <code>https://&lt;your-username&gt;.github.io/&lt;your-repo-name&gt;/</code>. The first deploy takes about a minute — refresh if it's not live yet.</li>
+        <li data-editable="">Visit <code>https://&lt;user&gt;.github.io/&lt;site&gt;/</code>. The first deploy takes about a minute — refresh if it's not live yet.</li>
         <li data-editable="">For every future edit: click Publish, wait a few seconds, refresh.</li>
       </ol>
       <h4 class="done" data-editable="">Done when</h4>
@@ -1000,6 +1001,7 @@
     </div>
   </div>
 </footer>
+
 
 
 
